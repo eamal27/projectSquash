@@ -1,0 +1,44 @@
+Michael Miljanovic [11:54 AM] 
+Q: Can usernames be blank?
+A: No
+
+Bradley Gardiner [11:55 AM] 
+Question: Are passwords required??? Can anyone login as an admin just by knowing the username?
+
+Michael Miljanovic [11:56 AM] 
+No passwords are required
+
+[11:56]  
+Q: What is the minimum account credit?
+A: 0.00
+
+Michael Miljanovic [12:03 PM] 
+Q: Can you log out then log back in during the same session?
+A: No
+
+Saman Yaghini [12:04 PM] 
+Are you allowed to have spaces or numbers in the username?
+
+Michael Miljanovic [12:05 PM] 
+yes
+
+Saman Yaghini [12:06 PM] 
+Do we have to care about speed and/or memory constraints?
+
+Michael Miljanovic [12:07 PM] 
+You don't have to perfectly optimize, but you shouldn't be wasteful
+
+Anthony Didonato [12:15 PM] 
+Just confirming that buying 0 tickets should not be accepted?
+
+[12:16]  
+and I guess also less than 0 should be rejected as well
+
+Michael Miljanovic [12:16 PM] 
+Yes, ticket purchases must be positive
+
+Anthony Didonato [12:21 PM] 
+Which types of accounts can issue refunds? Only admins, or admins and the seller?
+
+Michael Miljanovic [12:21 PM
+Only admins

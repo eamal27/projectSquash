@@ -1,0 +1,17 @@
+
+Test Cases for Teller Transactions
+
+create
+	1. Input: The username entered is more than 15 characters 
+	   Output: Incorrect: Please re-enter username. Can be at most 15 characters in length 	
+	2. Input: username: tR-!@ ^&*b3  type: full-standard
+	   Output New User created: tR-!@ ^&*b3
+	3. Input: credit amount 00.00 for user
+	   Output: Credit accepted. Account  credited 0.00
+	4. Input: credit amount 333.33 for user
+	   Output: credited 333.33 into new user account
+	5. Input: credit amount 1000.00
+	   Output: Invalid: Not accepted, maximum amount credited can be 999.99
+	   
+	   
+	
