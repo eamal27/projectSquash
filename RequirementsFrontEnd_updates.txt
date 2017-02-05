@@ -40,5 +40,124 @@ Yes, ticket purchases must be positive
 Anthony Didonato [12:21 PM] 
 Which types of accounts can issue refunds? Only admins, or admins and the seller?
 
-Michael Miljanovic [12:21 PM
+Michael Miljanovic [12:21 PM] 
 Only admins
+
+Saman Yaghini [12:23 PM] 
+Are we allowed to implement a single line text output saying the login is successful?
+
+Michael Miljanovic [12:24 PM] 
+If you want, but it isn't mandatory
+
+Saman Yaghini [12:28 PM] 
+Is each individual test case input and each associated output located in their own individual files?
+
+Michael Miljanovic [12:28 PM] 
+yes
+
+Cody Macedo [12:30 PM] 
+Do usernames have any special format? or can any characters be used in any order?
+
+Michael Miljanovic [12:31 PM] 
+No special format
+
+
+----- February 1st -----
+Alexander Crawford [12:56 PM] 
+Should purchasing a ticket both deduct credit from the purchaser and increment credit for the seller?
+
+Michael Miljanovic [1:08 PM] 
+Q: If someone is refunded which would put their account over the 999,999 limit, what happens?
+A: Reject the refund
+
+[1:08]  
+@alexander.crawford  yes
+
+[1:10]  
+Q: If someone is refunded FROM which would put their account under 0, what happens?
+A: Reject the refund
+
+[1:11]  
+Q: If a ticket sale would put the seller over their limit, what happens?
+A: Set their credit to 999,999
+
+Michael Miljanovic [1:20 PM] 
+Q: What if the session is terminated prematurely?
+A: No daily file is made and no transactions should be recorded. You can assume in most cases users will log out before leaving.
+
+[1:22]  
+Q: Can you create a user with the same name as a user who was deleted during the same day?
+A: No
+
+Michael Miljanovic [1:36 PM] 
+Q: If someone tries to addcredit which would put an account over the 999,999 limit, what happens?
+A: Reject the add
+
+[1:38]  
+Clarification: Users cannot buy tickets from deleted users, and deleted users cannot sell new tickets. Other transactions are okay.
+
+Michael Miljanovic [1:45 PM] 
+Clarification: When creating an account, *you must also prompt for how much credit the account begins with*
+
+[1:48]  
+Clarification: You can't delete an account the same day it was created.
+
+Michael Stergianis [1:53 PM] 
+Q: For the daily transaction file, what is the naming convention?
+
+Michael Miljanovic [1:53 PM] 
+A: Doesn't matter
+
+Alexander Crawford [1:54 PM] 
+Q: Alphanumeric characters and spaces are allowed for usernames. Are any other special characters allowed?
+
+Michael Miljanovic [1:57 PM] 
+A: Ascii only
+
+
+----- Yesterday February 3rd, 2017 -----
+Wesley Lawrence [4:37 PM] 
+Q: To clarify, there is no credit system? If a user gets a refund, it is sent back into his account as money, and not as in-store credit?
+
+Brian Domingo [4:49 PM] 
+Q: If a user buys tickets for multiple events, and wants to refund one of the tickets, how will they be able to specify which ticket they want to refund?
+
+Michael Miljanovic [6:04 PM] 
+Refunds just increase account money.
+
+Refunds and ticket sales have no relationship.
+
+Saif Niaz [11:57 PM] 
+Q: Is there any restriction on how many tickets a user can buy per day?
+
+
+----- Today February 4th, 2017 -----
+Mitchell Childerhose [12:15 PM] 
+Q: After a login, what is displayed to the screen? Is it a list of all the transactions you can choose from or does it just wait for the next input?
+
+Michael Miljanovic [1:29 PM] 
+No purchase limit other than 4 per transaction.
+
+Nothing is displayed after log in.
+
+Joshua Lemmon [2:58 PM] 
+Q: After a refund do the refunded tickets go back into the seller's inventory?
+
+Michael Miljanovic [3:26 PM] 
+No
+
+Alexander Crawford [8:27 PM] 
+What's the minimum price for a ticket sale?
+
+Michael Miljanovic [9:03 PM] 
+0$
+
+Jeremy Bradbury [10:31 PM] 
+Actually a ticket has to be greater than zero
+
+
+
+
+
+
+
