@@ -159,5 +159,3 @@ Actually a ticket has to be greater than zero
 
 
 
-
-

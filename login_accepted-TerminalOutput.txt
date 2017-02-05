@@ -1,0 +1,4 @@
+Welcome to the Ticket Selling Service System
+Enter session type:
+login accepted
+session terminated
