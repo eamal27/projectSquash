@@ -1,0 +1,4 @@
+
+login
+not_admin
+logout

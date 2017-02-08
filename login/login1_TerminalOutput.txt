@@ -1,0 +1,5 @@
+
+user accounts file read successful
+login
+Enter transaction command:
+logout
