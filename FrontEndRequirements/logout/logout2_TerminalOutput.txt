@@ -1,0 +1,6 @@
+
+Welcome to the Ticket Selling Service System
+Enter system command:
+login accepted
+session terminated
+Thank you for using the Ticket Selling Service System

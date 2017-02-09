@@ -1,0 +1,5 @@
+Welcome to the Ticket Selling Service System
+Enter system command:
+login failed
+session terminated
+Thank you for using the Ticket Selling Service System

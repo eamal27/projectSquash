@@ -1,0 +1,10 @@
+
+Welcome to the Ticket Selling Service System
+Enter system command:
+login success
+Type the transaction to carry out:
+Enter a username:
+Enter type of user:
+Enter credit amount:
+Invalid: credit amount is less than 0.00
+Re-enter credit amount:
