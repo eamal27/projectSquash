@@ -4,6 +4,4 @@ buy
 valid title
 user sell
 0
-1
-yes
 logout

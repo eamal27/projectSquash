@@ -3,7 +3,4 @@ user
 buy
 valid title
 not a user
-user sell
-1
-yes
 logout

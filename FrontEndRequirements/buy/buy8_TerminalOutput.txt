@@ -5,9 +5,5 @@ Type the transaction to carry out:
 Enter event title:
 Enter username of seller:
 Seller not found.
-Enter username of seller:
-Enter number of tickets to buy:
-Tickets priced at $1.00 each, for a total of $1.00, confirm purchase?
-Purchase successful
 Type the transaction to carry out:
 Thank you for using the Ticket Selling Service System
