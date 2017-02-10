@@ -1,0 +1,6 @@
+Welcome to the Ticket Selling Service System
+Enter system command:
+login success
+Type the transaction to carry out:
+You cannot do this transaction on this account type.
+Thank you for using the Ticket Selling Service System

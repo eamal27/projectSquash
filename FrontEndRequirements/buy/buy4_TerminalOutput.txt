@@ -1,0 +1,13 @@
+Welcome to the Ticket Selling Service System
+Enter system command:
+login success
+Type the transaction to carry out:
+Enter event title:
+Invalid event title.
+Enter valid event title:
+Enter username of seller:
+Enter number of tickets to buy:
+Tickets priced at $1.00 each, for a total of $1.00, confirm purchase?
+Purchase successful
+Type the transaction to carry out:
+Thank you for using the Ticket Selling Service System

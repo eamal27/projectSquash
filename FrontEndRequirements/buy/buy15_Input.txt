@@ -1,0 +1,8 @@
+login
+admin
+buy
+also valid title
+user sell
+5
+yes
+logout

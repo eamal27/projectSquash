@@ -1,0 +1,9 @@
+login
+user
+buy
+testing a title with more than 25 characters
+valid title
+user sell
+1
+yes
+logout

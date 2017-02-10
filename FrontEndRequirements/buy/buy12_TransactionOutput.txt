@@ -1,0 +1,2 @@
+04 valid title               user sell       002 001.00
+00 admin           AA 999998.99

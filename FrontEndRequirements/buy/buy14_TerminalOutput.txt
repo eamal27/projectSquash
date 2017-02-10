@@ -1,0 +1,20 @@
+Welcome to the Ticket Selling Service System
+Enter system command:
+login success
+Type the transaction to carry out:
+Enter event title:
+Enter ticket value:
+Enter number of tickets:
+Tickets put up for sale successfully.
+Type the transaction to carry out:
+Thank you for using the Ticket Selling Service System
+
+Welcome to the Ticket Selling Service System
+Enter system command:
+login success
+Type the transaction to carry out:
+Enter event title:
+Enter username of seller:
+No event found.
+Type the transaction to carry out:
+Thank you for using the Ticket Selling Service System
