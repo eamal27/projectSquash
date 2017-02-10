@@ -1,5 +1,5 @@
 login
 admin
-addcredit
-not user
+user rich
+1000
 logout
