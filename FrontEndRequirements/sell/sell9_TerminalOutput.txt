@@ -6,6 +6,5 @@ Enter a Title:
 Enter a ticket value:
 Enter an amount of tickets:
 Invalid ticket amount.
-Enter a valid ticket amount:
-Tickets entered successfuly.
+Type the transaction to carry out:
 Thank you for using the Ticket Selling Service System

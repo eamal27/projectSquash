@@ -3,6 +3,4 @@ user
 sell
 valid title
 1000
-1
-1
 logout

@@ -4,8 +4,5 @@ login success
 Type the transaction to carry out:
 Enter a Title:
 Invalid Title.
-Enter title again:
-Enter a ticket value:
-Enter an amount of tickets:
-Tickets entered successfuly.
+Type the transaction to carry out:
 Thank you for using the Ticket Selling Service System
