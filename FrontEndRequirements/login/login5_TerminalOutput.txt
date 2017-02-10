@@ -1,5 +1,8 @@
+
 Welcome to the Ticket Selling Service System
 Enter system command:
-login failed
+Invalid: can not create before logging in
+Re-enter system command:
 session terminated
 Thank you for using the Ticket Selling Service System
+

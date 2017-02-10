@@ -5,3 +5,4 @@ create
 user3
 buy-standard
 999999
+logout

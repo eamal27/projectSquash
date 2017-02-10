@@ -2,4 +2,6 @@
 login
 user1
 logout
-create
+login
+admin
+logout

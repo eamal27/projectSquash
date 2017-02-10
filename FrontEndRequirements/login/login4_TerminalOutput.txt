@@ -1,5 +1,8 @@
 Welcome to the Ticket Selling Service System
 Enter system command:
-login failed
+Invalid: user not recognized
+Re-enter system command:
+login success
+Type the transactin to carry out:
 session terminated
 Thank you for using the Ticket Selling Service System

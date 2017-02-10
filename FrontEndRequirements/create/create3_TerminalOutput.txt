@@ -1,7 +1,0 @@
-//tests that create asks for a username
-Welcome to the Ticket Selling Service System
-Enter system command:
-login success
-Type the transaction to carry out:
-Enter a username:
-

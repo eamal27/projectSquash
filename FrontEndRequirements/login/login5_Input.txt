@@ -1,4 +1,5 @@
-//Login user not recognized, it is not in the current user accounts file
 
+create
 login
-User*Unknown
+common_user
+logout

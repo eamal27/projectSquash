@@ -4,3 +4,6 @@ Enter system command:
 login success
 Type the transaction to carry out:
 invalid: non-admin can not delete user
+Re-enter transaction:
+session terminated
+Thank you for using the Ticket Selling Service System

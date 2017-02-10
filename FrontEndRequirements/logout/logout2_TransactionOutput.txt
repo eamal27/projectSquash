@@ -1,3 +1,2 @@
-//No real transactions, event transaction file has ending line
 
-00_000000000000000_00_000000.00
+00 user1           AA 000050.00

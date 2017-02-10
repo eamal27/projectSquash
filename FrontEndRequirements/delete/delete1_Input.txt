@@ -2,4 +2,4 @@
 login
 user1
 delete
-user1
+common_user

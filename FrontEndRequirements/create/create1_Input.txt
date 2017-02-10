@@ -2,3 +2,7 @@
 login
 admin
 create
+user2
+buy-standard
+125
+logout

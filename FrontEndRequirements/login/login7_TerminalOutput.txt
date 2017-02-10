@@ -1,8 +1,6 @@
-
 Welcome to the Ticket Selling Service System
 Enter system command:
 login successful
-Account: common_user
 Type the transaction to carry out:
 session terminated
 Thank you for using the Ticket Selling Service System

@@ -1,0 +1,3 @@
+
+00 admin           AA 000025.00
+01 userFifteenChar SS 000070.00
