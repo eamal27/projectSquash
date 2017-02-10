@@ -1,8 +1,0 @@
-Welcome to the Ticket Selling Service System
-Enter system command:
-login successful
-Account: non_admin
-Type the transaction to carry out:
-delete invalid
-session terminated
-Thank you for using the Ticket Selling Service System

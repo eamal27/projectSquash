@@ -1,2 +1,10 @@
 
-invalid: logout before logging in
+Welcome to the Ticket Selling Service System
+Enter system command:
+login success
+Type the transaction to carry out:
+Invalid: logout before logging in again
+Re-enter transaction:
+session terminated
+Thank you for using the Ticket Selling Service System
+

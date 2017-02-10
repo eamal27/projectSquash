@@ -4,3 +4,5 @@ Enter system command:
 login accepted
 session terminated
 Thank you for using the Ticket Selling Service System
+Invalid: can only login
+

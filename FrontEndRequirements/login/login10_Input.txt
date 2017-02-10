@@ -1,6 +1,5 @@
 
 login
-non_admin
-create
+common_user
+delete
 logout
-

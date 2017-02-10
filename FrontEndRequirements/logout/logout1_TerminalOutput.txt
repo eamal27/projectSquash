@@ -1,7 +1,4 @@
 
 Welcome to the Ticket Selling Service System
 Enter system command:
-logout invalid
-session terminated
-Thank you for using the Ticket Selling Service System
-
+Invalid: can not logout before logging in

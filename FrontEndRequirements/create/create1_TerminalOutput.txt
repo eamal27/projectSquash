@@ -4,3 +4,7 @@ Enter system command:
 login success
 Type the transaction to carry out:
 Enter username:
+Enter user type:
+Enter credit amount:
+session terminated
+Thank you for using the Ticket Selling Service System

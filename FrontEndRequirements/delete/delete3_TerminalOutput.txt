@@ -6,3 +6,7 @@ Type the transaction to carry out:
 Enter a username:
 invalid: can not delete current user
 Reenter username:
+user1 has been deleted
+Type the transaction to carry out:
+session terminated
+Thank you for using the Ticket Selling Service System

@@ -1,5 +1,0 @@
-
-login
-non_admin
-delete
-logout

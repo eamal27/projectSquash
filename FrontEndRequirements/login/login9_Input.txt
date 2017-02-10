@@ -1,4 +1,9 @@
 
 login
-not_admin
+common_user
+sell
+Cinema Movie
+33.00
+5
 logout
+

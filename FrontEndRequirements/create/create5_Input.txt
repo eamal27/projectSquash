@@ -3,3 +3,6 @@ login
 admin
 create
 userFifteenChar
+sell-standard
+70.00
+logout

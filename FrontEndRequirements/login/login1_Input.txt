@@ -1,10 +1,4 @@
-login 
-admin
-logout	
-
-
-
-	
-	   
-	   
-
+//tests login is successful and that username entered can log in
+login
+user1
+logout

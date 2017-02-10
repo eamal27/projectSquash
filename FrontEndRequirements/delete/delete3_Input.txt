@@ -1,5 +1,7 @@
 
 login
-admin_user
+admin
 delete
-admin_user
+admin
+user1
+logout

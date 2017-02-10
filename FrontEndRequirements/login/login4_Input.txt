@@ -1,5 +1,8 @@
+//Login user not recognized, it is not in the current user accounts file
 
 login
-user1StandardAcc
+User*Unknown
+login
+user1
 logout
 
