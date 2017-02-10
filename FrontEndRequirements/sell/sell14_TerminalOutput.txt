@@ -1,0 +1,9 @@
+Welcome to the Ticket Selling Service System
+Enter system command:
+login success
+Type the transaction to carry out:
+Enter a Title:
+Enter a ticket value:
+Enter an amount of tickets:
+Tickets entered successfuly.
+Thank you for using the Ticket Selling Service System
