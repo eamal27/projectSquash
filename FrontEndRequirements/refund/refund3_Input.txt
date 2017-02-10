@@ -3,6 +3,4 @@ admin
 refund
 user
 not user
-user sell
-1
 logout

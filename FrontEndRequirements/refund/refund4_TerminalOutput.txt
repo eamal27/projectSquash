@@ -6,7 +6,5 @@ Enter username of buyer:
 Enter username of seller:
 Enter the refund amount:
 Invalid refund amount.
-Enter valid refund amount:
-Refund successful.
 Type the transaction to carry out:
 Thank you for using the Ticket Selling Service System

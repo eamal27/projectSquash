@@ -1,2 +1,1 @@
-05 user            user sell      000001.00
 00 admin           AA 999999.99

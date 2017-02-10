@@ -4,9 +4,5 @@ login success
 Type the transaction to carry out:
 Enter username of buyer:
 Invalid username.
-Enter valid username for buyer:
-Enter username of seller:
-Enter the refund amount:
-Refund successful.
 Type the transaction to carry out:
 Thank you for using the Ticket Selling Service System
