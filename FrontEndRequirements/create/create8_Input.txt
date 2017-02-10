@@ -2,6 +2,7 @@
 login
 admin
 create
-user2
-sell-standard
-
+user3
+buy-standard
+0.00
+logout

@@ -1,7 +1,0 @@
-
-login
-admin
-create
-user4
-buy-standard
--0.01

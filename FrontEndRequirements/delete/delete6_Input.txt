@@ -7,3 +7,4 @@ buy
 raptors game
 3
 user3
+logout

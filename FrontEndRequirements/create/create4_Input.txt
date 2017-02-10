@@ -2,8 +2,7 @@
 login
 admin
 create
-UsernameToooLong
-fulluser
-full-standard
-30.00
+userFifteenChar
+sell-standard
+70.00
 logout

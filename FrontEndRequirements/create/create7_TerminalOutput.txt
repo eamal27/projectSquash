@@ -4,4 +4,7 @@ Enter system command:
 login success
 Type the transaction to carry out:
 Enter a username:
-Invalid: username not new, exists in system
+Enter type of user:
+Enter credit amount:
+Invalid: credit amount exceeds $999,999
+session terminated

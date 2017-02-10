@@ -2,5 +2,7 @@
 login
 admin
 create
-user1
-full-standard
+user3
+buy-standard
+999999
+logout

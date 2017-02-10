@@ -10,3 +10,7 @@ Enter event title:
 Enter number of tickets:
 Enter seller's username:
 Invalid: can not buy from a deleted user
+Enter system command:
+session terminated
+Thank you for using the Ticket Selling Service System 
+

@@ -4,6 +4,7 @@ Enter system command:
 login success
 Type the transaction to carry out:
 Enter a username:
-Enter type of user:
-Enter credit amount:
-User created with username: user3, type: buy-standard, credit: 0.00
+User5 deleted successfully
+Type the transaction to carry out:
+Enter a username:
+Invalid: can not create user that is deleted
