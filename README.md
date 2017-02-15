@@ -3,6 +3,7 @@
 coding conventions
 
 for () 
+
 {
 
 }
@@ -10,7 +11,9 @@ for ()
 variable_name
 
 /*
+
 \* function description
+
 */
 
 functionName()
