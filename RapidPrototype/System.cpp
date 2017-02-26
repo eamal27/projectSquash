@@ -14,7 +14,9 @@ using namespace std;
 	need to use login command. The system command is taken as a parameter then checked
 	through multiple conditions on which command it has initiated. Only the login command
 	will be accpeted, for user to be successfully logged into the system.*/
-	 string System::initialLogin(string systemCmd){
+bool logged_in;
+
+	 string initialLogin(string systemCmd){
 		string loginMessage;
 		
 		if(systemCmd == "login"){
@@ -32,7 +34,7 @@ using namespace std;
 		return loginMessage; 
 	}
 
-	bool System::verifyUsername(string username){
+	bool verifyUsername(string username){
 		
 		//checks that username is not blank and is at most 15 characters
 		if(username.length()==0 || username.length()>15){
@@ -47,7 +49,7 @@ using namespace std;
 
 	/*Checks whether a particular type of user can issue a specific transaction. Transaction such as create
 	and delete can only be issued by a user of admin type. */
-	bool System::initiateTransaction(string user_type, string transactin_name){
+	bool initiateTransaction(string user_type, string transactin_name){
 		
 		if(user_type == "admin" && transactin_name =="create" || 
 			user_type == "admin" && transactin_name =="delete"){
@@ -65,7 +67,7 @@ using namespace std;
 
 	/*Allows the user to logout, if contraints are met. Can not logout if user is
 	not logged in. */
-	string System::logout(){
+	string logout(){
 
 		string message = "";
 

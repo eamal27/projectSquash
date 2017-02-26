@@ -1,27 +1,9 @@
-CC = gcc
-CFLAGS = -Wall -Wextra -std=c99
-LFLAGS = 
-LIBS = 
-SOURCES = main.c System.c TicketInventory.c Transaction.c User.c UserInteraction.c
-OBJECTS = $(subst .c,.o,$(SOURCES))
-EXE = prototype.exe
-.PHONY: clean help
+.PHONY: clean run
 
-prototype.exe : main.o System.o TicketInventory.o Transaction.o User.o UserInteraction.o
-	$(CC) $(CFLAGS) $^ $(LIBS) -o $@ 
+out : main.cpp System.cpp TicketInventory.cpp Transaction.cpp User.cpp UserInteraction.cpp
+	g++ -g main.cpp System.cpp TicketInventory.cpp Transaction.cpp User.cpp UserInteraction.cpp -std=c++11 -lpthread
 
-%.o : %.c
-	$(CC) $(CFLAGS) -c $< 
-
-all : $(EXE)
+all : out
 
 clean:
-	rm -f $(OBJECTS) $(EXE) *~
-
-cleanup:
-	rm -f $(OBJECTS) *~
-
-help:
-	@echo "Valid targets:"
-	@echo "  all:    generates all binary files"
-	@echo "  clean:  removes .o and .exe files"
+	rm -f a.out

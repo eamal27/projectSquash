@@ -5,33 +5,27 @@
 
 using namespace std;
 
-	int quantity;
-	float ticket_price;
-	std::string seller_name;
-	std::string event_title;
+float TicketInventory::totalPrice(int quantity, float ticket_price){
+	return 0;
+}
 
-	float totalPrice(int quantity, float ticket_price){
+std::string TicketInventory::findSeller(std::string ticket_file){
+	return "";
+}
 
-	}
+std::string TicketInventory::findEvent(std::string ticket_file){
+	return "";
+}
 
-	std::string findSeller(std::string ticket_file){
+//Finds the number of tickets from the ticket file, and returns the value.
+int TicketInventory::numberTickets(std::string ticket_file){
+	int value_from_file = 3;
 
-	}
+	/*will need to extract the number of tickets from the ticket file
+	using a loop that parses to end of file. The line will be searched for 
+	pattern of the quantity of tickets in the file. */
 
-	std::string findEvent(std::string ticket_file){
+	this->quantity = value_from_file;
 
-
-	}
-
-	//Finds the number of tickets from the ticket file, and returns the value.
-	int numberTickets(std::string ticket_file){
-		int value_from_file = 3;
-
-		/*will need to extract the number of tickets from the ticket file
-		using a loop that parses to end of file. The line will be searched for 
-		pattern of the quantity of tickets in the file. */
-		
-		quantity = value_from_file;
-
-		return quantity;
-	}
+	return this->quantity;
+}

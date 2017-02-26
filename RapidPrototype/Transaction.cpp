@@ -5,28 +5,28 @@
 
 using namespace std;
 
-		std::string create(std::string username, std::string user_type){
-
-		}
+bool create(std::string username, std::string user_type){
+	return true;
+}
 		
-		void addcredit(std::string username, float credit_amount){
-
-		}
+bool addcredit(std::string username, float credit_amount){
+	return true;
+}
 		
-		void refund(std::string buyer_username, std::string seller_username, float credit_transfer){
-
-		}
+bool refund(std::string buyer_username, std::string seller_username, float credit_transfer){
+	return true;
+}
 		
-		void buy(std::string eventTitle, int quantity, string seller_username){
-
-		}
+bool buy(std::string eventTitle, int quantity, string seller_username){
+	return true;
+}
 		
-		void sell(std::string eventTitle, float sale_price, int quantity){
-
-		}
+bool sell(std::string eventTitle, float sale_price, int quantity){
+	return true;
+}
 		
-		string deleteUser(std::string username){
-			string deleteMsg = "User deleted successfully";
+bool deleteUser(std::string username){
+	string deleteMsg = "User deleted successfully";
 
-			return deleteMsg;
-		}
+	return true;
+}
