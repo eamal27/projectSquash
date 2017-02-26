@@ -2,7 +2,8 @@
 #include <string>
 #include "UserInteraction.h"
 #include "User.h"
-#include "TicketInventory.h"
+
+User user;
 
 //sets the user object for access to account type and username
 void setUser(User u) {

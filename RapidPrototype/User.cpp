@@ -13,6 +13,7 @@ Methods:
 #include <iostream>
 #include <string>
 #include "User.h"
+
 using namespace std;
 
 
@@ -20,7 +21,7 @@ using namespace std;
   found by parsing the file, filtering for username and converting
   this data to a string value for username */
   string User::findUsername(string user_file){//tests user_file can hold value
-  string filename =  string(user_file);
+    string filename =  string(user_file);
 
     username = filename; //this tests username attribute can hold value
     return username; //test for returning a string value

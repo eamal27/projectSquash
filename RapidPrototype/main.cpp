@@ -17,11 +17,9 @@ int main(){
 	string theUser = newUser.findUsername(name);//calls findUsername using user file
 	cout<<"The new user with username " <<theUser <<"\n";
 
-	System newSystem;
-
-	string message = newSystem.initialLogin("login");
+	string message = initialLogin("login");
 	cout<<message <<"\n";
-	string logoutMsg = newSystem.logout();
+	string logoutMsg = logout();
 	cout<<logoutMsg<<"\n";
 
 	return 0;

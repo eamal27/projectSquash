@@ -9,10 +9,7 @@ using namespace std;
 
 		}
 		
-		//Returns whether the user type is amdin or not. Uses parameter user_type find out if
-		//it is a an admin user.		
 		void addcredit(std::string username, float credit_amount){
-
 
 		}
 		
@@ -29,7 +26,6 @@ using namespace std;
 		}
 		
 		string deleteUser(std::string username){
-			user_deleted = true;
 			string deleteMsg = "User deleted successfully";
 
 			return deleteMsg;

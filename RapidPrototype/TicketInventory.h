@@ -1,3 +1,5 @@
+#ifndef TICKETINVENTORY_H_
+#define TICKETINVENTORY_H_
 
 class TicketInventory{
 
@@ -12,3 +14,5 @@ class TicketInventory{
 		std::string findEvent(std::string ticket_file);
 		int numberTickets(std::string ticket_file);
 };
+
+#endif
