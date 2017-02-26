@@ -5,27 +5,13 @@
 
 using namespace std;
 
-		bool user_deleted;
-		bool admin_nonadmin;
-	
-
 		std::string create(std::string username, std::string user_type){
 
 		}
 		
 		//Returns whether the user type is amdin or not. Uses parameter user_type find out if
-		//it is a an admin user.
-		bool isAdmin(std::string user_type){
-			
-			if(user_type == "admin"){//checks for an admin user type
-				admin_nonadmin = true; //is an admin
-			}
-			else{
-				admin_nonadmin = false; //is not an admin
-			}
-		}
-		
-		void addcreadit(std::string username, float credit_amount){
+		//it is a an admin user.		
+		void addcredit(std::string username, float credit_amount){
 
 
 		}
@@ -47,9 +33,4 @@ using namespace std;
 			string deleteMsg = "User deleted successfully";
 
 			return deleteMsg;
-		}
-		
-		bool isUserDeleted(){
-	
-			return user_deleted;
 		}
