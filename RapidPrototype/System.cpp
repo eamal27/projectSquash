@@ -53,10 +53,15 @@ int main(int argc, char *argv[]){
 
 bool initialLogin(string systemCmd){
 	string loginMessage;
-		
+
 	if(systemCmd == "login"){
+<<<<<<< HEAD
 		cout<<"Please Enter Username:\n"; 
 		return true; //only returns true if they login, for now it assumes whatever login they enter is ok
+=======
+		cout<<"Please enter username:\n";
+		return true;
+>>>>>>> ec0b4cca766365841332933cb23d81534e615235
 	}
 	else if(systemCmd == "logout"){//logout command fails
 		cout<<"Invalid: can not logout before logging in\n";
@@ -75,7 +80,7 @@ bool initialLogin(string systemCmd){
 }
 
 bool verifyUsername(string username){
-		
+
 	//checks that username is not blank and is at most 15 characters
 	if(username.length()==0 || username.length()>15){
 		return false;
@@ -90,7 +95,7 @@ bool verifyUsername(string username){
 /*Checks whether a particular type of user can issue a specific transaction. Transaction such as create
 and delete can only be issued by a user of admin type. */
 bool initiateTransaction(string user_type, string transactin_name){
-	
+
 	if(user_type == "AA" && (transactin_name =="create" || transactin_name =="delete")){
 		if(transactin_name =="create") {
 			createUI();
@@ -107,8 +112,8 @@ bool initiateTransaction(string user_type, string transactin_name){
 	else {
 		cout<<"Invalid command\n";
 		return true;
-	}		
-}		
+	}
+}
 
 /*Allows the user to logout, if contraints are met. Can not logout if user is
 not logged in. */
@@ -117,4 +122,3 @@ bool logout(){
 	//will change the current user in UserInteraction to null;
 	return false;
 }
-
