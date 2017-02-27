@@ -33,7 +33,7 @@ void createUI() {
     new_user.debitAccount(user_credit);
 
     string create_username = new_user.username;
-    cout<<"The new created user has username " <<create_username <<"\n";
+    cout<<"Created user " <<create_username <<" Successfully\n";
 }
 
 //asks user for information needed for adding credit

@@ -7,6 +7,9 @@ Login Class
 #include <iostream>
 #include <string>
 #include "System.h"
+#include "Transaction.h"
+#include "TicketInventory.h"
+#include "User.h"
 #include "UserInteraction.h"
 
 using namespace std;
@@ -16,12 +19,44 @@ need to use login command. The system command is taken as a parameter then check
 through multiple conditions on which command it has initiated. Only the login command
 will be accpeted, for user to be successfully logged into the system.*/
 
+int main(int argc, char *argv[]){
+
+	//verify that the username used to login is a current user
+	User new_user; // creates a new user
+
+	cout<<"Welcome to the Ticket Selling Service System\n";
+	bool logged = false;
+	string command;
+	while(!logged) {
+		cout<<"Enter system command:\n";
+		cin>>command;
+		logged = initialLogin(command); //later we will than check their username efore exiting loop
+		//but for now we assume any name is correct
+	}
+	string name;
+	cin>>name;
+	string theUser = new_user.findUsername(name);//calls findUsername using user file
+	string type = new_user.findAccType(name); //finds associated account type
+	//for now all accounts besides "admin" are FS
+	cout<<"Login Success\n";
+	
+	while(logged) {
+		cout<<"Type the transaction to carry out:\n";
+		cin>>command;
+		logged = initiateTransaction(type,command); //tells the system the users account type and entered command
+		//this way it can determine if it should allow said command.
+		//only working commands are logout and create
+	}
+	cout<<"Thank you for using the Ticket Selling Service System\n";
+	return 0;
+}
+
 bool initialLogin(string systemCmd){
 	string loginMessage;
 		
 	if(systemCmd == "login"){
-		cout<<"Please Enter Username:\n";
-		return true;
+		cout<<"Please Enter Username:\n"; 
+		return true; //only returns true if they login, for now it assumes whatever login they enter is ok
 	}
 	else if(systemCmd == "logout"){//logout command fails
 		cout<<"Invalid: can not logout before logging in\n";
@@ -33,7 +68,7 @@ bool initialLogin(string systemCmd){
 		cout<<"Invalid: need to login first before issuing a transaction\n";
 		return false;
 	}
-	else {
+	else { //otherwise user entered non valid command
 		cout<<"Invalid: not a system command\n";
 		return false;
 	}
