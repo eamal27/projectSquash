@@ -24,8 +24,7 @@ int main(int argc, char *argv[]){
 	string logoutMsg = logout();
 	cout<<logoutMsg<<"\n";
 
-	UserInteraction create_user;
-	create_user.createUI();
+	createUI();
 
 
 	return 0;

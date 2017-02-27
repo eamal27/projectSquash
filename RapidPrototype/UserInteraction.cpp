@@ -12,7 +12,7 @@ void setUser(User u) {
 }
 
 //walks user through account creation proccess
-void UserInteraction::createUI() {
+void createUI() {
     string username, user_type;
     float user_credit;
 
@@ -37,13 +37,13 @@ void UserInteraction::createUI() {
 }
 
 //asks user for information needed for adding credit
-void UserInteraction::addCreditUI(){
+void addCreditUI(){
 
 
 }
 
 //asks user for information needed to refund the buyer
-void UserInteraction::refundUI(){
+void refundUI(){
   string buyer_username, seller_username;
   float refund_amount;
 
@@ -59,18 +59,18 @@ void UserInteraction::refundUI(){
 }
 
 //asks user for information needed for a purchase of tickets
-void UserInteraction::buyUI(){
+void buyUI(){
 
 }
 
 //asks user for information needed to sell tickets
-void UserInteraction::sellUI(){
+void sellUI(){
 
 }
 
 //asks user for information needed to delete a user.
-void UserInteraction::deleteUserUI(){
-  string username;
+void deleteUserUI(){
+   string username;
 
    cout<<"Enter a username: ";
    cout<<username;
