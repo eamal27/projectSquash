@@ -13,11 +13,7 @@ int main(int argc, char *argv[]){
 
 	//verify that the username used to login is a current user
 	User new_user; // creates a new user
-	/*
-	*Welcome to the Ticket Selling Service System
-	Enter system command:
-	login success
-	Type the transaction to carry out: */
+
 	cout<<"Welcome to the Ticket Selling Service System\n";
 	bool logged = false;
 	string command;
@@ -30,13 +26,13 @@ int main(int argc, char *argv[]){
 	cin>>name;
 	string theUser = new_user.findUsername(name);//calls findUsername using user file
 	string type = new_user.findAccType(name);
-	cout<<"Logged in with username "<<theUser<<"\n";
+	cout<<"Login Success\n";
 	
 	while(logged) {
 		cout<<"Type the transaction to carry out:\n";
 		cin>>command;
 		logged = initiateTransaction(type,command);
 	}
-
+	cout<<"Thank you for using the Ticket Selling Service System\n";
 	return 0;
 }
