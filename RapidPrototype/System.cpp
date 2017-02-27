@@ -55,13 +55,8 @@ bool initialLogin(string systemCmd){
 	string loginMessage;
 
 	if(systemCmd == "login"){
-<<<<<<< HEAD
 		cout<<"Please Enter Username:\n"; 
 		return true; //only returns true if they login, for now it assumes whatever login they enter is ok
-=======
-		cout<<"Please enter username:\n";
-		return true;
->>>>>>> ec0b4cca766365841332933cb23d81534e615235
 	}
 	else if(systemCmd == "logout"){//logout command fails
 		cout<<"Invalid: can not logout before logging in\n";
