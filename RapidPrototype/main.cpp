@@ -17,19 +17,21 @@ int main(int argc, char *argv[]){
 	cout<<"Welcome to the Ticket Selling Service System\n";
 	bool logged = false;
 	string command;
-	while(!logged) {
+	while(!logged) {//when you are logged in
 		cout<<"Enter system command:\n";
 		cin>>command;
-		logged = initialLogin(command); //later we will than check their username efore exiting loop
+		logged = initialLogin(command); //later we will then check their username efore exiting loop
 		//but for now we assume any name is correct
 	}
 	string name;
 	cin>>name;
 	string theUser = new_user.findUsername(name);//calls findUsername using user file
 	string type = new_user.findAccType(name); //finds associated account type
-	//for now all accounts besides "admin" are FS
+	/*currently the username is also the type for the user. Type 'admin' as username
+	 to issue a 'create' transsaction.
+	 for now all accounts besides "admin" are FS */
 	cout<<"Login Success\n";
-	
+
 	while(logged) {
 		cout<<"Type the transaction to carry out:\n";
 		cin>>command;
