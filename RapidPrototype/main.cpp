@@ -11,15 +11,22 @@
 using namespace std;
 
 int main(int argc, char *argv[]){
-	User newUser; // creates a new user
+
+	//verify that the username used to login is a current user
+	User new_user; // creates a new user
 	string name = "sohail";
-	string theUser = newUser.findUsername(name);//calls findUsername using user file
+	string theUser = new_user.findUsername(name);//calls findUsername using user file
 	cout<<"The new user with username " <<theUser <<"\n";
 
+	//checks that login and logout output appropriate messages
 	string message = initialLogin("login");
 	cout<<message <<"\n";
 	string logoutMsg = logout();
 	cout<<logoutMsg<<"\n";
+
+	UserInteraction create_user;
+	create_user.createUI();
+
 
 	return 0;
 }

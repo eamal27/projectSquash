@@ -2,6 +2,7 @@
 #define USER_H_
 
 class User {
+public:
   std::string username; //the User's username for the account
   std::string user_acc_type; //is the user account type (eg. full-standard, admin, etc.)
   float acc_amount; //is the current amount in user's account
@@ -11,7 +12,7 @@ class User {
   public:
     void setUsername(std::string username);
     std::string getUsername();
-    void setUserType(std::string username);
+    void setUserType(std::string user_type);
     std::string getUserType();
     std::string findUsername(std::string user_file);
     std::string findAccType(std::string user_file);

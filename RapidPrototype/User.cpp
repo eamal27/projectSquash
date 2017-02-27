@@ -16,6 +16,10 @@ Methods:
 
 using namespace std;
 
+  std::string username; //the User's username for the account
+  std::string user_acc_type; //is the user account type (eg. full-standard, admin, etc.)
+  float acc_amount; //is the current amount in user's account
+
   //sets the username of a User, when create is issued
   void User::setUsername(string new_user){
     username = new_user;

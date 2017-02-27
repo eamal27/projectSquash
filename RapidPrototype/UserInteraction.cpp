@@ -12,7 +12,7 @@ void setUser(User u) {
 }
 
 //walks user through account creation proccess
-void createUI() {
+void UserInteraction::createUI() {
     string username, user_type;
     float user_credit;
 
@@ -24,24 +24,26 @@ void createUI() {
     cout<<"Enter a credit amount: ";
     cin>>user_credit;
     cout<<"User created with username: "<<username <<", type: "
-    <<user_type <<", creidt amount" <<user_credit; //Successful create of new user
+    <<user_type <<", creidt amount $" <<user_credit<<"\n"; //Successful create of new user
 
     //Set the inforamtion for new user in User accounts
-    User user1;
-    user1.setUsername(username);
-    user1.setUserType(user_type);
-    user1.debitAccount(user_credit);
+    User new_user;
+    new_user.setUsername(username);
+    new_user.setUserType(user_type);
+    new_user.debitAccount(user_credit);
 
+    string create_username = new_user.username;
+    cout<<"\nThe new created user has username " <<create_username <<"\n";
 }
 
 //asks user for information needed for adding credit
-void addcreditUI(){
+void UserInteraction::addCreditUI(){
 
 
 }
 
 //asks user for information needed to refund the buyer
-void refundUI(){
+void UserInteraction::refundUI(){
   string buyer_username, seller_username;
   float refund_amount;
 
@@ -57,17 +59,17 @@ void refundUI(){
 }
 
 //asks user for information needed for a purchase of tickets
-void buyUI(){
+void UserInteraction::buyUI(){
 
 }
 
 //asks user for information needed to sell tickets
-void sellUI(){
+void UserInteraction::sellUI(){
 
 }
 
 //asks user for information needed to delete a user.
-void deleteUserUI(){
+void UserInteraction::deleteUserUI(){
   string username;
 
    cout<<"Enter a username: ";
