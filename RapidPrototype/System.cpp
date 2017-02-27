@@ -25,27 +25,43 @@ int main(int argc, char *argv[]){
 	User new_user; // creates a new user
 
 	cout<<"Welcome to the Ticket Selling Service System\n";
-	bool logged = false;
-	string command;
-	while(!logged) {
-		cout<<"Enter system command:\n";
-		cin>>command;
-		logged = initialLogin(command); //later we will than check their username efore exiting loop
-		//but for now we assume any name is correct
-	}
-	string name;
-	cin>>name;
-	string theUser = new_user.findUsername(name);//calls findUsername using user file
-	string type = new_user.findAccType(name); //finds associated account type
-	//for now all accounts besides "admin" are FS
-	cout<<"Login Success\n";
-	
-	while(logged) {
-		cout<<"Type the transaction to carry out:\n";
-		cin>>command;
-		logged = initiateTransaction(type,command); //tells the system the users account type and entered command
-		//this way it can determine if it should allow said command.
-		//only working commands are logout and create
+
+	bool quit = false;
+	while(!quit) {
+		bool logged = false;
+		string command, theUser, type;
+		while(!logged) {
+			cout<<"Enter system command:\n";
+			cin>>command;
+			if (command == "quit") {
+				quit = true;
+				cout<<"Session terminated\n";
+				break;
+			}
+			logged = initialLogin(command); //later we will than check their username efore exiting loop
+			//but for now we assume any name is correct
+			if(logged) {
+				string name;
+				cin>>name; //would check name and possible change logged to false
+				theUser = new_user.findUsername(name);//calls findUsername using user file
+				type = new_user.findAccType(name); //finds associated account type
+				cout<<"Login Success\n";
+			}
+		}
+		//for now all accounts besides "admin" are FS
+
+		while(logged) {
+			cout<<"Type the transaction to carry out:\n";
+			cin>>command;
+			if (command == "quit") {
+				quit = true;
+				cout<<"Session terminated\n";
+				break;
+			}
+			logged = initiateTransaction(type,command); //tells the system the users account type and entered command
+			//this way it can determine if it should allow said command.
+			//only working commands are logout and create
+		}
 	}
 	cout<<"Thank you for using the Ticket Selling Service System\n";
 	return 0;
