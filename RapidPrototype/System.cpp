@@ -7,6 +7,7 @@ Login Class
 #include <iostream>
 #include <string>
 #include "System.h"
+#include "UserInteraction.h"
 
 using namespace std;
 
@@ -14,24 +15,28 @@ using namespace std;
 need to use login command. The system command is taken as a parameter then checked
 through multiple conditions on which command it has initiated. Only the login command
 will be accpeted, for user to be successfully logged into the system.*/
-bool logged_in;
 
- string initialLogin(string systemCmd){
+bool initialLogin(string systemCmd){
 	string loginMessage;
 		
 	if(systemCmd == "login"){
-		loginMessage = "login successful";
-		logged_in = true;
+		cout<<"Please Enter Username:\n";
+		return true;
 	}
 	else if(systemCmd == "logout"){//logout command fails
-		loginMessage = "Invalid: can not logout before logging in";
+		cout<<"Invalid: can not logout before logging in\n";
+		return false;
 	}
 	//any tranaction other than a login fails
 	else if(systemCmd == "create" || systemCmd == "delete" || systemCmd == "sell" ||
 	 systemCmd == "buy" || systemCmd == "refund" || systemCmd == "addcredit"){
-		loginMessage = "Invalid: need to login first before issuing a transaction";
+		cout<<"Invalid: need to login first before issuing a transaction\n";
+		return false;
 	}
-	return loginMessage; 
+	else {
+		cout<<"Invalid: not a system command\n";
+		return false;
+	}
 }
 
 bool verifyUsername(string username){
@@ -51,35 +56,30 @@ bool verifyUsername(string username){
 and delete can only be issued by a user of admin type. */
 bool initiateTransaction(string user_type, string transactin_name){
 	
-	if(user_type == "admin" && transactin_name =="create" || 
-		user_type == "admin" && transactin_name =="delete"){
-
+	if(user_type == "AA" && (transactin_name =="create" || transactin_name =="delete")){
+		if(transactin_name =="create") {
+			createUI();
+		}
 		return true;
 	}
-	else if(user_type != "admin" && transactin_name =="create" || user_type != "admin" 
-			&& transactin_name =="create"){
-		return false;
+	else if(user_type != "AA" && (transactin_name =="create" || transactin_name =="delete")){
+		cout<<"Insufficient permission\n";
+		return true;
 	}
-
-
-	return false;		
+	else if(transactin_name =="logout"){
+		return logout();
+	}
+	else {
+		cout<<"Invalid command\n";
+		return true;
+	}		
 }		
 
 /*Allows the user to logout, if contraints are met. Can not logout if user is
 not logged in. */
-string logout(){
-
-	string message = "";
-
-	if(logged_in == true){ //User is logged in
-		message = "logout successful";
-		logged_in = false;//change to logout
-		return message;
-	}
-	else {//user not logged in
-		message = "Invalid: can not logout";
-		return message;
-	}
-	return message;
+bool logout(){
+	cout<<"logout successful\n";
+	//will change the current user in UserInteraction to null;
+	return false;
 }
 

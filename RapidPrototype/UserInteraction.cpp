@@ -23,7 +23,7 @@ void createUI() {
     cin>>user_type;
     cout<<"Enter a credit amount: ";
     cin>>user_credit;
-    cout<<"User created with username: "<<username <<", type: "
+    cout<<"Creating user with username: "<<username <<", type: "
     <<user_type <<", creidt amount $" <<user_credit<<"\n"; //Successful create of new user
 
     //Set the inforamtion for new user in User accounts
@@ -33,7 +33,7 @@ void createUI() {
     new_user.debitAccount(user_credit);
 
     string create_username = new_user.username;
-    cout<<"\nThe new created user has username " <<create_username <<"\n";
+    cout<<"The new created user has username " <<create_username <<"\n";
 }
 
 //asks user for information needed for adding credit

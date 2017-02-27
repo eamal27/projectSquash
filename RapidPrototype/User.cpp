@@ -54,8 +54,13 @@ using namespace std;
   found by parsing the file, filtering for the account type and converting
   this data to a string value for account type. */
   string User::findAccType(string user_file){
-
-      return "";
+      //defaults for now
+      if (username == "admin") {
+        return "AA";
+      }
+      else {
+        return "FS";
+      }
   }
 
   /*Uses the user accounts file to retrieve the availabe credit for the user.
