@@ -16,6 +16,25 @@ Methods:
 
 using namespace std;
 
+  //sets the username of a User, when create is issued
+  void User::setUsername(string new_user){
+    username = new_user;
+  }
+
+    //gets the username of a User, when needed in transactions
+  string User::getUsername(){
+    return username;
+  }
+
+  //sets the user account type for a User, when create is issued
+  void User::setUserType(string user_type){
+    user_acc_type = user_type;
+  }
+
+    //gets the user account type of a User, when needed in transactions
+  string User::getUserType(){
+    return user_acc_type;
+  }
 
   /*Uses the user accounts file to get the username. The username is
   found by parsing the file, filtering for username and converting
@@ -55,5 +74,3 @@ using namespace std;
   void User::creditAccount(float value){
       acc_amount -= value;
   }
-
-

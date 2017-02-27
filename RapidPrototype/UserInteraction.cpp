@@ -3,6 +3,7 @@
 #include "UserInteraction.h"
 #include "User.h"
 
+using namespace std;
 User user;
 
 //sets the user object for access to account type and username
@@ -12,6 +13,24 @@ void setUser(User u) {
 
 //walks user through account creation proccess
 void createUI() {
+    string username, user_type;
+    float user_credit;
+
+    //Prompts admin for username, user type, and credit amount
+    cout<<"Enter a username: ";
+    cin>>username;
+    cout<<"Enter type of user: ";
+    cin>>user_type;
+    cout<<"Enter a credit amount: ";
+    cin>>user_credit;
+    cout<<"User created with username: "<<username <<", type: "
+    <<user_type <<", creidt amount" <<user_credit; //Successful create of new user
+
+    //Set the inforamtion for new user in User accounts
+    User user1;
+    user1.setUsername(username);
+    user1.setUserType(user_type);
+    user1.debitAccount(user_credit);
 
 }
 
@@ -21,22 +40,39 @@ void addcreditUI(){
 
 }
 
-//asks user for information needed to refund		
+//asks user for information needed to refund the buyer
 void refundUI(){
+  string buyer_username, seller_username;
+  float refund_amount;
+
+  //promts user for information
+  cout<<"Enter username of buyer: ";
+  cout<<buyer_username;
+  cout<<"Enter username of seller: ";
+  cout<<seller_username;
+  cout<<"Enter refund amount: ";
+  cout<<refund_amount;
+  cout<<"Refund successful.";
 
 }
-		
+
 //asks user for information needed for a purchase of tickets
 void buyUI(){
 
 }
 
-//asks user for information needed to sell tickets		
+//asks user for information needed to sell tickets
 void sellUI(){
 
 }
 
 //asks user for information needed to delete a user.
 void deleteUserUI(){
-	
+  string username;
+
+   cout<<"Enter a username: ";
+   cout<<username;
+   //delete user from user accounts
+   cout<<"delete success";
+
 }
