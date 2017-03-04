@@ -25,14 +25,20 @@ int main(int argc, char *argv[]){
 	User new_user; // creates a new user
 
 	cout<<"Welcome to the Ticket Selling Service System\n";
-
+	//Command: login, logout, create, quit
 	bool quit = false;
+	int start = 1;
 	while(!quit) {
 		bool logged = false;
 		string command, theUser, type;
 		while(!logged) {
+
+			if(start == 1 || command == "cmd"){
+				cout<<"System Commands:\n"<<"login\t\tlogout\t\tquit\ncreate\t\tcmd\n";
+			}
 			cout<<"Enter system command:\n";
 			cin>>command;
+
 			if (command == "quit") {
 				quit = true;
 				cout<<"Session terminated\n";
@@ -41,11 +47,12 @@ int main(int argc, char *argv[]){
 			logged = initialLogin(command); //later we will than check their username efore exiting loop
 			//but for now we assume any name is correct
 			if(logged) {
-				string name;
-				cin>>name; //would check name and possible change logged to false
+				string name = "admin";
+				//cin>>name; //would check name and possible change logged to false
 				theUser = new_user.findUsername(name);//calls findUsername using user file
 				type = new_user.findAccType(name); //finds associated account type
-				cout<<"Login Success\n";
+				cout<<"Login Success\n";  //The abover findUsername, findAccType shoudl
+																	//be done in initial login function
 			}
 		}
 		//for now all accounts besides "admin" are FS
@@ -69,10 +76,16 @@ int main(int argc, char *argv[]){
 
 bool initialLogin(string systemCmd){
 	string loginMessage;
-
+	string username;
 	if(systemCmd == "login"){
-		cout<<"Please Enter Username:\n"; 
-		return true; //only returns true if they login, for now it assumes whatever login they enter is ok
+		cout<<"Please enter username:\n";
+		cin>>username;
+		if(username.length() <= 15 && username.length()> 0)
+			return true; //only returns true if they login, for now it assumes whatever login they enter is ok
+		else{
+			cout<<"Invalid: username violates character length of 0-15";
+			return false;
+		}
 	}
 	else if(systemCmd == "logout"){//logout command fails
 		cout<<"Invalid: can not logout before logging in\n";

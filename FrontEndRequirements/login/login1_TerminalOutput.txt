@@ -2,6 +2,8 @@
 Welcome to the Ticket Selling Service System
 Enter system command:
 login successful
+Please enter username:
 Type the transaction to carry out:
+logout successful
 session terminated
 Thank you for using the Ticket Selling Service System
