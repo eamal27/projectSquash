@@ -11,6 +11,7 @@ Login Class
 #include "TicketInventory.h"
 #include "User.h"
 #include "UserInteraction.h"
+#include <fstream>
 
 using namespace std;
 
@@ -19,10 +20,12 @@ need to use login command. The system command is taken as a parameter then check
 through multiple conditions on which command it has initiated. Only the login command
 will be accpeted, for user to be successfully logged into the system.*/
 
+User new_user;
+
 int main(int argc, char *argv[]){
 
 	//verify that the username used to login is a current user
-	User new_user; // creates a new user
+
 
 	cout<<"Welcome to the Ticket Selling Service System\n";
 	//Command: login, logout, create, quit
@@ -44,13 +47,12 @@ int main(int argc, char *argv[]){
 				cout<<"Session terminated\n";
 				break;
 			}
+
 			logged = initialLogin(command); //later we will than check their username efore exiting loop
 			//but for now we assume any name is correct
 			if(logged) {
-				string name = "admin";
-				//cin>>name; //would check name and possible change logged to false
-				theUser = new_user.findUsername(name);//calls findUsername using user file
-				type = new_user.findAccType(name); //finds associated account type
+
+				type = "AA"; //finds associated account type
 				cout<<"Login Success\n";  //The abover findUsername, findAccType shoudl
 																	//be done in initial login function
 			}
@@ -65,6 +67,7 @@ int main(int argc, char *argv[]){
 				cout<<"Session terminated\n";
 				break;
 			}
+
 			logged = initiateTransaction(type,command); //tells the system the users account type and entered command
 			//this way it can determine if it should allow said command.
 			//only working commands are logout and create
@@ -78,12 +81,12 @@ bool initialLogin(string systemCmd){
 	string loginMessage;
 	string username;
 	if(systemCmd == "login"){
-		cout<<"Please enter username:\n";
+		cout<<"Please enter username (0-15 characters):\n";
 		cin>>username;
-		if(username.length() <= 15 && username.length()> 0)
+		if(verifyUsername(username))
 			return true; //only returns true if they login, for now it assumes whatever login they enter is ok
 		else{
-			cout<<"Invalid: username violates character length of 0-15";
+			cout<<"Invalid: username not a current user or voilates length contraint\n\n";
 			return false;
 		}
 	}
@@ -104,13 +107,16 @@ bool initialLogin(string systemCmd){
 }
 
 bool verifyUsername(string username){
-
 	//checks that username is not blank and is at most 15 characters
 	if(username.length()==0 || username.length()>15){
 		return false;
 	}
-	else{
+	else if(new_user.findUsername(username)){
+
 		return true;
+	}
+	else{
+		return false;
 	}
 
 	return false;

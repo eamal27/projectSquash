@@ -13,9 +13,11 @@ Methods:
 #include <iostream>
 #include <string>
 #include "User.h"
+#include <fstream>
 
 using namespace std;
 
+  std::string filename; //user accounts file
   std::string username; //the User's username for the account
   std::string user_acc_type; //is the user account type (eg. full-standard, admin, etc.)
   float acc_amount; //is the current amount in user's account
@@ -39,21 +41,42 @@ using namespace std;
   string User::getUserType(){
     return user_acc_type;
   }
+/*
+  //sets the user amount for a User
+  void User::setUserAmount(string user_amount){
+    acc_amount = user_amount;
+  }
+
+    //gets the user amount of a User, when needed in transactions
+  float User::getUserAmount(){
+    return user_acc_type;
+  } */
 
   /*Uses the user accounts file to get the username. The username is
   found by parsing the file, filtering for username and converting
   this data to a string value for username */
-  string User::findUsername(string user_file){//tests user_file can hold value
-    string filename =  string(user_file);
+  bool User::findUsername(string username){//tests user_file can hold value
+    ifstream infile("CurrentUsers.txt");
+    string currUser;
 
-    username = filename; //this tests username attribute can hold value
-    return username; //test for returning a string value
+    while(infile >> currUser >> user_acc_type >> acc_amount ){
+      User the_user;
+      if (username == currUser){
+        setUsername(username);
+        setUserType(user_acc_type);
+        //setUserAmount(acc_amount);
+        return true;
+      }
+
+    }
+
+    return false; //test for returning a string value
   }
 
   /*Uses the user accounts file to get the user account type. The account type is
   found by parsing the file, filtering for the account type and converting
   this data to a string value for account type. */
-  string User::findAccType(string user_file){
+  string User::findAccType(string username){
       //defaults for now
       if (username == "admin") {
         return "AA";
@@ -66,7 +89,7 @@ using namespace std;
   /*Uses the user accounts file to retrieve the availabe credit for the user.
   The available credit is found by parsing the file, filtering for user credit
   and returning the data as a float value indicating the amount available. */
-  float User::findAvailableCredit(string user_file){
+  float User::findAvailableCredit(string username){
 
 
     return 0.0;
