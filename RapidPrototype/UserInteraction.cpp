@@ -13,16 +13,45 @@ void setUser(User u) {
 
 //walks user through account creation proccess
 void createUI() {
-    string username, user_type;
-    float user_credit;
+    string username ="", user_type = "II";
+    float user_credit = 0;
+    int  count = 0;
 
     //Prompts admin for username, user type, and credit amount
-    cout<<"Enter a username: ";
-    cin>>username;
-    cout<<"Enter type of user: ";
-    cin>>user_type;
-    cout<<"Enter a credit amount: ";
-    cin>>user_credit;
+
+    while(username.length()==0 || username.length()>15){
+      if(count == 0)
+        cout<<"Enter a username (0-15 characters): ";
+      else
+        cout<<"Invalid: characters violate constraint\n Re-enter username (0-15 characters): ";
+      cin>>username;
+      count++;
+    }
+    count = 0;
+    while(user_type != "AA"){
+       if(user_type == "AA" || user_type == "FS" || user_type == "BS"
+                  || user_type == "SS"){
+                    break;
+                  }
+       if(count == 0)
+          cout<<"Enter type of user ('AA', 'FS', 'BS', 'SS'): ";
+       else{
+         cout<<"Invalid: user type not recognized\n Re-ennter user type ('AA', 'FS', 'BS', 'SS'): ";
+       }
+       cin>>user_type;
+       count++;
+    }
+    count = 0;
+    while(user_credit ==0|| user_credit < 0 || user_credit> 999999){
+       if(count == 0)
+          cout<<"Enter a credit amount (1-999999): ";
+       else{
+         cout<<"Invalid credit amount\n Re-ennter credit amount (1-999999): ";
+       }
+       cin>>user_credit;
+       count++;
+    }
+
     cout<<"Creating user with username: "<<username <<", type: "
     <<user_type <<", creidt amount $" <<user_credit<<"\n"; //Successful create of new user
 

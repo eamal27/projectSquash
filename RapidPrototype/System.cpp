@@ -48,11 +48,10 @@ int main(int argc, char *argv[]){
 				break;
 			}
 
-			logged = initialLogin(command); //later we will than check their username efore exiting loop
-			//but for now we assume any name is correct
-			if(logged) {
+			logged = initialLogin(command); //login checks for username
 
-				type = "AA"; //finds associated account type
+			if(logged) {
+				type = new_user.getUserType();
 				cout<<"Login Success\n";  //The abover findUsername, findAccType shoudl
 																	//be done in initial login function
 			}
@@ -67,7 +66,6 @@ int main(int argc, char *argv[]){
 				cout<<"Session terminated\n";
 				break;
 			}
-
 			logged = initiateTransaction(type,command); //tells the system the users account type and entered command
 			//this way it can determine if it should allow said command.
 			//only working commands are logout and create

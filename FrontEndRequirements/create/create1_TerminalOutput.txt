@@ -6,5 +6,6 @@ Type the transaction to carry out:
 Enter username:
 Enter user type:
 Enter credit amount:
+User created with username: user2, user type: buy-standard, amount: 125
 session terminated
 Thank you for using the Ticket Selling Service System

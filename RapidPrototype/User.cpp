@@ -44,7 +44,8 @@ using namespace std;
 /*
   //sets the user amount for a User
   void User::setUserAmount(string user_amount){
-    acc_amount = user_amount;
+
+    acc_amount = atof(user_amount.c_str());
   }
 
     //gets the user amount of a User, when needed in transactions
