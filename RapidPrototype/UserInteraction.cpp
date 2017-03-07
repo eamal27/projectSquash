@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <string>
 #include "UserInteraction.h"
 #include "User.h"
@@ -14,7 +15,7 @@ void setUser(User u) {
 //walks user through account creation proccess
 void createUI() {
     string username ="", user_type = "II";
-    float user_credit = 0;
+    float user_debit = 0;
     int  count = 0;
 
     //Prompts admin for username, user type, and credit amount
@@ -25,6 +26,11 @@ void createUI() {
       else
         cout<<"Invalid: characters violate constraint\n Re-enter username (0-15 characters): ";
       cin>>username;
+      bool existUser = user.findUsername(username); //true: existing username, false: new username
+      if(existUser){
+        username = "";
+        continue;
+      }
       count++;
     }
     count = 0;
@@ -42,24 +48,32 @@ void createUI() {
        count++;
     }
     count = 0;
-    while(user_credit ==0|| user_credit < 0 || user_credit> 999999){
+    while(user_debit ==0|| user_debit < 0 || user_debit> 999999){
        if(count == 0)
           cout<<"Enter a credit amount (1-999999): ";
        else{
          cout<<"Invalid credit amount\n Re-ennter credit amount (1-999999): ";
        }
-       cin>>user_credit;
+       cin>>user_debit;
        count++;
     }
 
     cout<<"Creating user with username: "<<username <<", type: "
-    <<user_type <<", creidt amount $" <<user_credit<<"\n"; //Successful create of new user
+    <<user_type <<", debit amount $" <<user_debit<<"\n"; //Successful create of new user
 
     //Set the inforamtion for new user in User accounts
     User new_user;
     new_user.setUsername(username);
     new_user.setUserType(user_type);
-    new_user.debitAccount(user_credit);
+    new_user.debitAccount(user_debit);
+    int usr_length = username.length();
+    int num_spaces = 15 - usr_length;
+    string spaces;
+    ofstream daily_transactions_file("Daily_Transactions.txt");
+    for(int x = 0; x < num_spaces; x++){
+        spaces = " "+spaces;
+    }
+    daily_transactions_file <<"01 "<<username<<spaces<<" "<<user_type<<" "<<user_debit;
 
     string create_username = new_user.username;
     cout<<"Created user " <<create_username <<" Successfully\n";
