@@ -1,8 +1,9 @@
 #! /bin/bash
 file="../FrontEndRequirements/";
 
-#test login first
+#test order login-logout
 login=$file"login/login";
+logout=$file"logout/logout";
 input="_Input.txt";
 tranout="_TransactionOutput.txt";
 termout="_TerminalOutput.txt";
@@ -17,7 +18,7 @@ while true; do
         break;
     fi
 done
-
+#login test
 for num in {1..5}; do
     ./a.out < $login$num$input &> output.txt;
     if diff output.txt $login$num$termout >/dev/null; then
@@ -32,6 +33,23 @@ for num in {1..5}; do
         passfail="fail";
     fi
     echo "login$num transaction = $passfail" >> $testName;
+done
+#logout test
+    echo " " >> $testName;
+for num in {1..4}; do
+    ./a.out < $logout$num$input &> output.txt;
+    if diff output.txt $logout$num$termout >/dev/null; then
+        passfail="pass";
+    else
+        passfail="fail";
+    fi
+    echo "logout$num terminal = $passfail" >> $testName;
+    if diff output.txt $logout$num$tranout >/dev/null; then
+        passfail="pass";
+    else
+        passfail="fail";
+    fi
+    echo "logout$num transaction = $passfail" >> $testName;
 done
 
 cat $testName

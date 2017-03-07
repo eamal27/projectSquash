@@ -8,3 +8,12 @@ login4 terminal = pass
 login4 transaction = fail
 login5 terminal = pass
 login5 transaction = fail
+ 
+logout1 terminal = pass
+logout1 transaction = fail
+logout2 terminal = pass
+logout2 transaction = fail
+logout3 terminal = pass
+logout3 transaction = fail
+logout4 terminal = pass
+logout4 transaction = fail
