@@ -15,4 +15,3 @@ create		cmd
 Enter system command:
 session terminated
 Thank you for using the Ticket Selling Service System
-

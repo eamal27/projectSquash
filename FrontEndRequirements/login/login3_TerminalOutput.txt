@@ -11,7 +11,7 @@ create		cmd
 Enter system command:
 Please enter username:
 login successful
-Type a transaction to carry out:
+Type the transaction to carry out:
 logout successful
 System Commands:
 login		logout		quit

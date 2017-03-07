@@ -34,4 +34,5 @@ for num in {1..5}; do
     echo "login$num transaction = $passfail" >> $testName;
 done
 
+cat $testName
 rm output.txt
