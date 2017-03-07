@@ -1,6 +1,5 @@
-
 login
 user1StandardAcc
 login
-admin
 logout
+quit

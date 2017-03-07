@@ -44,7 +44,7 @@ int main(int argc, char *argv[]){
 
 			if (command == "quit") {
 				quit = true;
-				cout<<"Session terminated\n";
+				cout<<"session terminated\n";
 				break;
 			}
 
@@ -52,7 +52,7 @@ int main(int argc, char *argv[]){
 
 			if(logged) {
 				type = new_user.getUserType();
-				cout<<"Login Success\n";  //The abover findUsername, findAccType shoudl
+				cout<<"login successful\n";  //The abover findUsername, findAccType shoudl
 																	//be done in initial login function
 			}
 		}
