@@ -1,5 +1,5 @@
 login
-user1StandardAcc
+user1
 login
 logout
 quit

@@ -10,7 +10,7 @@ passfail="pass";
 testNum=1;
 
 while true; do
-    testName=Test_$(date +%d-%m-%Y)_$testNum.txt
+    testName=Tests/Test_$(date +%d-%m-%Y)_$testNum.txt
     if [ -f $testName ]; then
         ((testNum+= 1));
     else
@@ -19,7 +19,7 @@ while true; do
 done
 
 for num in {1..5}; do
-    ./RapidPrototype/a.out < $login$num$input &> output.txt;
+    ./a.out < $login$num$input &> output.txt;
     if diff output.txt $login$num$termout >/dev/null; then
         passfail="pass";
     else

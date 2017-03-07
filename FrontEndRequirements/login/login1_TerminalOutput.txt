@@ -3,8 +3,8 @@ System Commands:
 login		logout		quit
 create		cmd
 Enter system command:
-login successful
 Please enter username:
+login successful
 Type the transaction to carry out:
 logout successful
 System Commands:
