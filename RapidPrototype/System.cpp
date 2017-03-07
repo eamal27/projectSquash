@@ -84,7 +84,7 @@ bool initialLogin(string systemCmd){
 		if(verifyUsername(username))
 			return true; //only returns true if they login, for now it assumes whatever login they enter is ok
 		else{
-			cout<<"Invalid: username not a current user or voilates length constraint\n\n";
+			cout<<"Invalid: username not a current user or voilates length constraint\n";
 			return false;
 		}
 	}
