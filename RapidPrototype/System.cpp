@@ -79,7 +79,7 @@ bool initialLogin(string systemCmd){
 	string loginMessage;
 	string username;
 	if(systemCmd == "login"){
-		cout<<"Please enter username (0-15 characters):\n";
+		cout<<"Please enter username:\n";
 		cin>>username;
 		if(verifyUsername(username))
 			return true; //only returns true if they login, for now it assumes whatever login they enter is ok
