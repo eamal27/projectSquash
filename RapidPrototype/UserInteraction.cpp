@@ -8,6 +8,9 @@
 
 using namespace std;
 User user;
+int file_num = 1;
+ostringstream file_new;
+
 
 //sets the user object for access to account type and username
 void setUser(User u) {
@@ -32,7 +35,7 @@ void createUI() {
       cin>>username;
       bool existUser = user.findUsername(username); //true: existing username, false: new username
       if(existUser){
-        username = "";
+
         continue;
       }
       count++;
@@ -41,8 +44,8 @@ void createUI() {
     while(user_type != "AA"){
        if(user_type == "AA" || user_type == "FS" || user_type == "BS"
                   || user_type == "SS"){
-                    break;
-                  }
+            break;
+       }
        if(count == 0)
           cout<<"Enter type of user ('AA', 'FS', 'BS', 'SS'): ";
        else{
@@ -53,9 +56,9 @@ void createUI() {
        count++;
     }
     count = 0;
-    while(user_debit < 0 || user_debit >= 1000000){
+    while(user_debit < 0 || user_debit >= 999999){
        if(count == 0)
-          cout<<"Enter a credit amount (0-999999.99): ";
+          cout<<"Enter a credit amount (0-999999): ";
        else{
          cout<<"Invalid credit amount\n";
          return;
@@ -67,7 +70,8 @@ void createUI() {
     cout<<"Creating user with username: "<<username <<", type: "
     <<user_type <<", debit amount $" <<user_debit<<"\n"; //Successful create of new user
 
-    ofstream daily_transactions_file("Daily_Transactions.txt");
+    string filename = "temp_file.txt";
+    ofstream temp_file(filename, ios::app);
     while(username.length() < 15){
         username += " ";
     }
@@ -91,13 +95,45 @@ void createUI() {
     while(deb_string.length() < 9){
         deb_string.insert(deb_string.begin(),'0');
     }
-    //need to do transaction stuff in other file, also need to check if user with this name exists
-    daily_transactions_file <<"01 "<<username<<" "<<user_type<<" "<<deb_string;
+
+    temp_file <<"01 "<<username<<" "<<user_type<<" "<<deb_string<<"\n";
     cout<<"Created user Successfully\n";
 }
 
 //asks user for information needed for adding credit
 void addCreditUI(){
+  int count = 0;
+  string username = "";//to enter loop
+  float user_debit;
+
+  while(username.length()==0 || username.length()>15){
+    if(count == 0)
+      cout<<"Enter a username (1-15 characters): ";
+    else{
+      cout<<"Invalid: characters violate constraint\n";
+      return;
+    }
+    cin>>username;
+    bool existUser = user.findUsername(username); //true: existing username, false: new username
+    if(existUser){
+      continue;
+    }
+    count++;
+  }
+  count = 0;
+  while(user_debit < 0 || user_debit >= 1000000){
+     if(count == 0)
+        cout<<"Enter a credit amount (0-1000000): ";
+     else{
+       cout<<"Invalid credit amount\n";
+       return;
+     }
+     cin>>user_debit;
+     count++;
+  }
+
+  user.setUsername(username);
+  user.debitAccount(user_debit);
 
 
 }
@@ -125,6 +161,40 @@ void buyUI(){
 
 //asks user for information needed to sell tickets
 void sellUI(){
+  string sell_title = "";
+  int num_tickects = 0, count =0;
+  float sale_price = 0;
+
+  while(sell_title.length() == 0 || sell_title.length()>25){
+    if(count == 0)
+      cout<<"Enter title (1-15 characters): ";
+    else{
+      cout<<"Invalid: characters violate constraint\n";
+      return;
+    }
+    cin>>sell_title;
+    count++;
+  }
+  count = 0;
+  while(sale_price<1 || sale_price > 999.99){
+    if(count == 0)
+      cout<<"Enter number of tickects for sale (1-999.99): ";
+    else{
+      cout<<"Invalid: characters violate constraint\n";
+      continue;
+    }
+  }
+  count = 0;
+  while(num_tickects<1 || num_tickects > 100){
+    if(count == 0)
+      cout<<"Enter number of tickects for sale (1-100): ";
+    else{
+      cout<<"Invalid: characters violate constraint\n";
+      continue;
+    }
+    cin>>num_tickects;
+  }
+
 
 }
 

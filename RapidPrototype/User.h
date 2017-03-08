@@ -15,8 +15,8 @@ public:
     std::string getUsername();
     void setUserType(std::string user_type);
     std::string getUserType();
-    //void setUserAmount(std::string user_amount){
-    //float getUserAmount();
+    //void setUserAmount(std::string user_amount);
+    float getUserAmount();
     bool findUsername(std::string username);
     std::string findAccType(std::string username);
     float findAvailableCredit(std::string username);
