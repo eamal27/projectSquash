@@ -1,5 +1,4 @@
-
-create
 login
-common_user
+admin
 logout
+quit

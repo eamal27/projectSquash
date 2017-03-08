@@ -1,6 +1,6 @@
-
 login
-user1StandardAcc
+userwithaverylongname
 login
-admin
+user1
 logout
+quit

@@ -1,7 +1,7 @@
-
 login
 user1
 logout
 login
 admin
 logout
+quit

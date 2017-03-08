@@ -1,8 +1,21 @@
 Welcome to the Ticket Selling Service System
+System Commands:
+login		logout		quit
+create		cmd
 Enter system command:
-Invalid: user not recognized
-Re-enter system command:
-login success
-Type the transactin to carry out:
+Please enter username:
+Invalid: username not a current user or violates length constraint
+System Commands:
+login		logout		quit
+create		cmd
+Enter system command:
+Please enter username:
+login successful
+Type the transaction to carry out:
+logout successful
+System Commands:
+login		logout		quit
+create		cmd
+Enter system command:
 session terminated
 Thank you for using the Ticket Selling Service System

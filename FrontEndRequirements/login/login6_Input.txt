@@ -1,8 +1,0 @@
-
-login
-admin
-create
-user1
-admin
-50.00
-logout

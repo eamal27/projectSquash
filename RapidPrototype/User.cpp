@@ -41,17 +41,17 @@ using namespace std;
   string User::getUserType(){
     return user_acc_type;
   }
-/*
-  //sets the user amount for a User
+
+/*  //sets the user amount for a User
   void User::setUserAmount(string user_amount){
 
     acc_amount = atof(user_amount.c_str());
   }
-
+*/
     //gets the user amount of a User, when needed in transactions
   float User::getUserAmount(){
-    return user_acc_type;
-  } */
+    return acc_amount;
+  } /* */
 
   /*Uses the user accounts file to get the username. The username is
   found by parsing the file, filtering for username and converting

@@ -1,5 +1,5 @@
-
 login
-non-admin
+user1
 create
 logout
+quit

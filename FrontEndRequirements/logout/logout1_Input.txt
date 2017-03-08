@@ -1,4 +1,2 @@
-//logout command is issued before a login
-
 logout
-
+quit

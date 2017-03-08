@@ -1,4 +1,3 @@
-
 Welcome to the Ticket Selling Service System
 Enter system command:
 login success

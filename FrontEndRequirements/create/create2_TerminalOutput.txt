@@ -1,8 +1,17 @@
 Welcome to the Ticket Selling Service System
+System Commands:
+login		logout		quit
+create		cmd
 Enter system command:
-login success
+Please enter username:
+login successful
 Type the transaction to carry out:
-Invalid: Only an admin can issue a create transaction
-Re-enter transaction:
+Insufficient permission
+Type the transaction to carry out:
+logout successful
+System Commands:
+login		logout		quit
+create		cmd
+Enter system command:
 session terminated
 Thank you for using the Ticket Selling Service System

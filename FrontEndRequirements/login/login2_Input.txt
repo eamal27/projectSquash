@@ -1,6 +1,5 @@
-
 login
-admin
+user1
 login
 logout
-
+quit

@@ -31,28 +31,34 @@ int main(int argc, char *argv[]){
 	//Command: login, logout, create, quit
 	bool quit = false;
 	int start = 1;
+	string temp_file = "temp_file.txt";
+
 	while(!quit) {
 		bool logged = false;
 		string command, theUser, type;
 		while(!logged) {
 
 			if(start == 1 || command == "cmd"){
-				cout<<"System Commands:\n"<<"login\t\tlogout\t\tquit\ncreate\t\tcmd\n";
+				cout<<"System Commands:\n"<<"login\t\tlogout\t\tquit\ncreate\t\t"
+				<<"addcredit\tcmd\n";
 			}
 			cout<<"Enter system command:\n";
 			cin>>command;
 
 			if (command == "quit") {
 				quit = true;
-				cout<<"Session terminated\n";
+				cout<<"session terminated\n";
 				break;
 			}
 
 			logged = initialLogin(command); //login checks for username
 
 			if(logged) {
+
+    		ofstream temp_file("temp_file.txt", ios::app);
+				temp_file<<new_user.getUsername() << "\n";//write the logged user to temporary file
 				type = new_user.getUserType();
-				cout<<"Login Success\n";  //The abover findUsername, findAccType shoudl
+				cout<<"login successful\n";  //The abover findUsername, findAccType shoudl
 																	//be done in initial login function
 			}
 		}
@@ -79,12 +85,12 @@ bool initialLogin(string systemCmd){
 	string loginMessage;
 	string username;
 	if(systemCmd == "login"){
-		cout<<"Please enter username (0-15 characters):\n";
+		cout<<"Please enter username:\n";
 		cin>>username;
 		if(verifyUsername(username))
 			return true; //only returns true if they login, for now it assumes whatever login they enter is ok
 		else{
-			cout<<"Invalid: username not a current user or voilates length contraint\n\n";
+			cout<<"Invalid: username not a current user or violates length constraint\n";
 			return false;
 		}
 	}
@@ -124,9 +130,12 @@ bool verifyUsername(string username){
 and delete can only be issued by a user of admin type. */
 bool initiateTransaction(string user_type, string transactin_name){
 
-	if(user_type == "AA" && (transactin_name =="create" || transactin_name =="delete")){
+	if(user_type == "AA"){
 		if(transactin_name =="create") {
 			createUI();
+		}
+		if(transactin_name=="addcredit"){
+				addCreditUI();
 		}
 		return true;
 	}
