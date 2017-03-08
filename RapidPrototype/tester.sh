@@ -4,6 +4,7 @@ file="../FrontEndRequirements/";
 #test order login-logout
 login=$file"login/login";
 logout=$file"logout/logout";
+create=$file"create/create";
 input="_Input.txt";
 tranout="_TransactionOutput.txt";
 termout="_TerminalOutput.txt";
@@ -50,6 +51,23 @@ for num in {1..4}; do
         passfail="fail";
     fi
     echo "logout$num transaction = $passfail" >> $testName;
+done
+#create test
+    echo " " >> $testName;
+for num in {1..11}; do
+    ./a.out < $create$num$input &> output.txt;
+    if diff output.txt $create$num$termout >/dev/null; then
+        passfail="pass";
+    else
+        passfail="fail";
+    fi
+    echo "create$num terminal = $passfail" >> $testName;
+    if diff output.txt $create$num$tranout >/dev/null; then
+        passfail="pass";
+    else
+        passfail="fail";
+    fi
+    echo "create$num transaction = $passfail" >> $testName;
 done
 
 cat $testName

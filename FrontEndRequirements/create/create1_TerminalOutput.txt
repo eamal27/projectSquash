@@ -1,11 +1,18 @@
-
 Welcome to the Ticket Selling Service System
+System Commands:
+login		logout		quit
+create		cmd
 Enter system command:
-login success
+Please enter username:
+login successful
 Type the transaction to carry out:
-Enter username:
-Enter user type:
-Enter credit amount:
-User created with username: user2, user type: buy-standard, amount: 125
+Enter a username (0-15 characters): Enter type of user ('AA', 'FS', 'BS', 'SS'): Enter a credit amount (1-999999): Creating user with username: user2, type: BS, debit amount $1
+Created user user2 Successfully
+Type the transaction to carry out:
+logout successful
+System Commands:
+login		logout		quit
+create		cmd
+Enter system command:
 session terminated
 Thank you for using the Ticket Selling Service System
