@@ -22,6 +22,8 @@ public:
     float findAvailableCredit(std::string username);
     void debitAccount(float value);
     void creditAccount(float value);
+    std::string convertCredit(float v);
+    std::string convertName(std::string u);
 };
 
 #endif

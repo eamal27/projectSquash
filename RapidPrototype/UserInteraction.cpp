@@ -72,29 +72,8 @@ void createUI() {
 
     string filename = "temp_file.txt";
     ofstream temp_file(filename, ios::app);
-    while(username.length() < 15){
-        username += " ";
-    }
-    ostringstream ss;
-    ss << (roundf(user_debit * 100) / 100);
-    string deb_string(ss.str());
-    bool dot = false;
-    for(int i = 0; i < deb_string.length(); i++) {
-        if(deb_string[i] == '.') {
-            int left = 2 - (deb_string.length()-i);
-            for(int j = 0; j < left; j++) {
-                deb_string += "0";
-            }
-            dot = true;
-            break;
-        }
-    }
-    if(!dot) {
-        deb_string += ".00";
-    }
-    while(deb_string.length() < 9){
-        deb_string.insert(deb_string.begin(),'0');
-    }
+    username = user.convertName(username);
+    string deb_string = user.convertCredit(user_debit);
 
     temp_file <<"01 "<<username<<" "<<user_type<<" "<<deb_string<<"\n";
     cout<<"Created user Successfully\n";
