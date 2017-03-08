@@ -1,7 +1,0 @@
-
-login
-admin
-delete
-user5
-create
-user5

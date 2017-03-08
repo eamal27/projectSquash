@@ -1,8 +1,8 @@
-
 login
 admin
 create
 userFifteenChar
-sell-standard
-70.00
+FS
+1
 logout
+quit

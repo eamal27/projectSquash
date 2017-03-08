@@ -1,7 +1,8 @@
-
 login
 admin
 create
-user4
-buy-standard
+user9
+FS
 -0.01
+logout
+quit

@@ -1,8 +1,8 @@
-
 login
 admin
 create
-user3
-buy-standard
+user8
+FS
 0.00
 logout
+quit
