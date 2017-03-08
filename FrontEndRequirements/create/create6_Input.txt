@@ -1,8 +1,8 @@
-
 login
 admin
 create
 user3
-buy-standard
-999999
+BS
+1
 logout
+quit

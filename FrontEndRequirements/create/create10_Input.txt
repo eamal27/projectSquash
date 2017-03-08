@@ -1,7 +1,10 @@
-
 login
 admin
 create
 
 
-u      
+user10
+FS
+1
+logout
+quit
