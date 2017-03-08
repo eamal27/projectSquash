@@ -6,4 +6,4 @@ user1           FS 31.57
 DeRose L        BS 77.33
 BMW             SS 78889.99
 Hudson Bay      SS 33545.97
-buyer1		 BS 6875.35
+buyer1	        BS 6875.35

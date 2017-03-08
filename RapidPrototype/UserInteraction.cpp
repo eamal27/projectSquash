@@ -6,6 +6,7 @@
 
 using namespace std;
 User user;
+//string filename = "Daily_Transactions";
 
 //sets the user object for access to account type and username
 void setUser(User u) {
