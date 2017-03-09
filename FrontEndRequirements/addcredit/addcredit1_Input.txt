@@ -4,3 +4,4 @@ addcredit
 user
 1
 logout
+quit

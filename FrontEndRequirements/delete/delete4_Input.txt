@@ -1,4 +1,5 @@
-
 login
 non-admin
 delete
+logout
+quit

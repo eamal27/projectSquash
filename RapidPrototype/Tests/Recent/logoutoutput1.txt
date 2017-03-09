@@ -1,9 +1,0 @@
-Welcome to the Ticket Selling Service System
-System Commands:
-login		logout		quit
-create		addcredit	cmd
-Enter system command:
-Invalid: can not logout before logging in
-Enter system command:
-session terminated
-Thank you for using the Ticket Selling Service System

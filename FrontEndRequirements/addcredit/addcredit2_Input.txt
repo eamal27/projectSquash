@@ -3,3 +3,4 @@ admin
 addcredit
 not user
 logout
+quit

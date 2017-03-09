@@ -1,15 +1,9 @@
 Welcome to the Ticket Selling Service System
-System Commands:
-login		logout		quit
-create		addcredit	cmd
 Enter system command:
 Please enter username:
 login successful
 Type the transaction to carry out:
 logout successful
-System Commands:
-login		logout		quit
-create		addcredit	cmd
 Enter system command:
 session terminated
 Thank you for using the Ticket Selling Service System

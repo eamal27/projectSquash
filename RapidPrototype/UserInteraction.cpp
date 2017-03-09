@@ -99,7 +99,10 @@ void addCreditUI(string user_type){
       bool existUser = user.findUsername(username); //true: existing username, false: new username
       if(existUser){
         username = "";//return to loop
-        continue;
+        break;
+      } else {
+        cout<<"Invalid: user not found\n";
+        return;
       }
       count++;
   }

@@ -17,14 +17,14 @@ while true; do
     fi
 done
 
-tests=(login logout create);
-maxNum=(5 4 10);
+tests=(login logout create delete addcredit);
+maxNum=(5 4 10 6 9);
 testNum=1;
-for i in {0..2}; do
+for i in {0..4}; do
     test=$file${tests[$i]}/${tests[$i]};
     for num in $(seq 1 ${maxNum[$i]}); do
         ./a.out Tests/Recent/trans < $test$num$input &> Tests/Recent/${tests[$i]}Output$num.txt;
-        if diff Tests/Recent/${tests[$i]}output$num.txt $test$num$termout >/dev/null; then
+        if diff Tests/Recent/${tests[$i]}Output$num.txt $test$num$termout >/dev/null; then
             passfail="pass";
         else
             passfail="fail";

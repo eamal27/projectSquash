@@ -1,5 +1,6 @@
-
 login
 admin
 delete
 nonExistUser
+logout
+quit

@@ -3,3 +3,4 @@ user sell
 addcredit
 1
 logout
+quit
