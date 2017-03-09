@@ -142,10 +142,23 @@ bool logout(){
 	ifstream reader;
 	ofstream writer;
 	reader.open("temp_file.txt");
-	writer.open("Daily_Transactions.txt");
+	bool exists = true;
+	int num = 1;
+	while(exists) {
+	    ifstream f("Daily_Transactions" + to_string(num) + ".txt");
+	    if (!f.good()) {
+	        exists = false;
+	        f.close();
+	    } else {
+	        num++;
+	    }
+	}
+	writer.open("Daily_Transactions" + to_string(num) + ".txt");
 	while(!reader.eof()){
 	    char c = reader.get();
-	    writer << c;
+	    if(!reader.eof()){ //don't want to read last character
+	        writer << c;
+	    }
 	}
 	writer << "00 " << user_logged.convertName(user_logged.getUsername()) << " " << user_logged.getUserType()
 	       << " " << user_logged.convertCredit(user_logged.getUserAmount()) << "\n";
