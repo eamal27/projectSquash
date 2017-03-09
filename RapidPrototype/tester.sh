@@ -19,22 +19,24 @@ done
 
 tests=(login logout create);
 maxNum=(5 4 10);
+testNum=1;
 for i in {0..2}; do
     test=$file${tests[$i]}/${tests[$i]};
     for num in $(seq 1 ${maxNum[$i]}); do
-        ./a.out < $test$num$input &> Tests/Recent/${tests[$i]}output$num.txt;
+        ./a.out Tests/Recent/trans < $test$num$input &> Tests/Recent/${tests[$i]}Output$num.txt;
         if diff Tests/Recent/${tests[$i]}output$num.txt $test$num$termout >/dev/null; then
             passfail="pass";
         else
             passfail="fail";
         fi
         echo "${tests[i]}$num terminal = $passfail" >> $testName;
-        if diff Tests/Recent/${tests[$i]}output$num.txt $test$num$tranout >/dev/null; then
+        if diff Tests/Recent/trans$testNum.txt $test$num$tranout >/dev/null; then
             passfail="pass";
         else
             passfail="fail";
         fi
         echo "${tests[i]}$num transaction = $passfail" >> $testName;
+        ((testNum+=1));
     done
     echo " " >> $testName;
 done

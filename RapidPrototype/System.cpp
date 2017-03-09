@@ -21,28 +21,23 @@ through multiple conditions on which command it has initiated. Only the login co
 will be accpeted, for user to be successfully logged into the system.*/
 
 User user_logged;
+bool test_mode;
+string out_file;
 
 int main(int argc, char *argv[]){
-
-	//verify that the username used to login is a current user
-
-
+    if (argc > 1) {
+        out_file = argv[1];
+    } else {
+        out_file = "Daily_Transactions";
+    }
 	cout<<"Welcome to the Ticket Selling Service System\n";
 	//Command: login, logout, create, quit
 	bool quit = false;
-	int start = 1;
-	string temp_file = "temp_file.txt";
 
 	while(!quit) {
 		bool logged = false;
 		string command;
 		while(!logged) {
-
-			if(start == 1 || command == "cmd"){
-				cout<<"System Commands:\n"<<"login\t\tlogout\t\tquit\ncreate\t\t"
-				<<"addcredit\tcmd\n";
-				start++;
-			}
 			cout<<"Enter system command:\n";
 			cin>>command;
 
@@ -72,7 +67,6 @@ int main(int argc, char *argv[]){
 			//this way it can determine if it should allow said command.
 			//only working commands are logout and create
 		}
-		start--;
 	}
 	cout<<"Thank you for using the Ticket Selling Service System\n";
 	return 0;
@@ -96,6 +90,9 @@ bool initialLogin(string systemCmd){
 	} else if(systemCmd == "create" || systemCmd == "delete" || systemCmd == "sell" ||
 	 systemCmd == "buy" || systemCmd == "refund" || systemCmd == "addcredit"){
 		cout<<"Invalid: need to login first before issuing a transaction\n";
+	} else if(systemCmd == "cmd"){
+		cout<<"System Commands:\n"<<"login\t\tlogout\t\tquit\ncreate\t\t"
+		<<"addcredit\tcmd\n";
 	} else { //otherwise user entered non valid command
 		cout<<"Invalid: not a system command\n";
 	}
@@ -145,7 +142,7 @@ bool logout(){
 	bool exists = true;
 	int num = 1;
 	while(exists) {
-	    ifstream f("Daily_Transactions" + to_string(num) + ".txt");
+	    ifstream f(out_file + to_string(num) + ".txt");
 	    if (!f.good()) {
 	        exists = false;
 	        f.close();
@@ -153,18 +150,19 @@ bool logout(){
 	        num++;
 	    }
 	}
-	writer.open("Daily_Transactions" + to_string(num) + ".txt");
-	while(!reader.eof()){
-	    char c = reader.get();
-	    if(!reader.eof()){ //don't want to read last character
-	        writer << c;
+	writer.open(out_file + to_string(num) + ".txt");
+	if (reader.good()) {
+	    while(!reader.eof()){
+	        char c = reader.get();
+	        if(!reader.eof()){ //don't want to read last character
+	            writer << c;
+	        }
 	    }
 	}
 	writer << "00 " << user_logged.convertName(user_logged.getUsername()) << " " << user_logged.getUserType()
 	       << " " << user_logged.convertCredit(user_logged.getUserAmount()) << "\n";
 	writer.close();
 	reader.close();
-	writer.open("temp_file.txt"); //too clear it
-	writer.close();
+	
 	return false;
 }
