@@ -8,6 +8,7 @@
 
 using namespace std;
 User user;
+string file = "temp_file.txt";
 int file_num = 1;
 ostringstream file_new;
 
@@ -35,7 +36,7 @@ void createUI() {
       cin>>username;
       bool existUser = user.findUsername(username); //true: existing username, false: new username
       if(existUser){
-
+        username = "";//return to loop condition
         continue;
       }
       count++;
@@ -70,8 +71,9 @@ void createUI() {
     cout<<"Creating user with username: "<<username <<", type: "
     <<user_type <<", debit amount $" <<user_debit<<"\n"; //Successful create of new user
 
-    string filename = "temp_file.txt";
-    ofstream temp_file(filename, ios::app);
+
+    ofstream temp_file(file, ios::app);
+
     username = user.convertName(username);
     string deb_string = user.convertCredit(user_debit);
 
@@ -80,41 +82,47 @@ void createUI() {
 }
 
 //asks user for information needed for adding credit
-void addCreditUI(){
+void addCreditUI(string user_type){
   int count = 0;
   string username = "";//to enter loop
-  float user_debit;
+  float user_debit = -1;
+   ofstream temp_file(file, ios::app);
+   cout<<user_type;
+    while(user_type == "AA" && (username.length()==0 || username.length()>15)){
 
-  while(username.length()==0 || username.length()>15){
-    if(count == 0)
-      cout<<"Enter a username (1-15 characters): ";
-    else{
-      cout<<"Invalid: characters violate constraint\n";
-      return;
+      if(count == 0)
+        cout<<"Enter a username (1-15 characters): ";
+      else{
+        cout<<"Invalid: characters violate constraint\n";
+        return;
+      }
+      cin>>username;
+      bool existUser = user.findUsername(username); //true: existing username, false: new username
+      if(existUser){
+        username = "";//return to loop
+        continue;
+      }
+      count++;
     }
-    cin>>username;
-    bool existUser = user.findUsername(username); //true: existing username, false: new username
-    if(existUser){
-      continue;
-    }
-    count++;
-  }
-  count = 0;
-  while(user_debit < 0 || user_debit >= 1000000){
+      count = 0;
+
+
+  while(user_debit < 0 || user_debit >= 1000.00){
      if(count == 0)
-        cout<<"Enter a credit amount (0-1000000): ";
+        cout<<"Enter a credit amount (0-1000.00): ";
      else{
        cout<<"Invalid credit amount\n";
        return;
      }
      cin>>user_debit;
-     count++;
+     count++; 
   }
 
   user.setUsername(username);
   user.debitAccount(user_debit);
-
-
+  
+  temp_file<<" " <<username<<" "<<user_debit<<"\n";//saves addcredit transaction to temp file
+  cout<<"Add credit successful\n";
 }
 
 //asks user for information needed to refund the buyer

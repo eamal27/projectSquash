@@ -121,17 +121,27 @@ bool initiateTransaction(string transactin_name){
     string user_type = user_logged.getUserType();
 	if(transactin_name =="logout"){
 		return logout();
-	} else if(user_type == "AA"){
-		if(transactin_name =="create") {
+	} 
+	else if(user_type == "AA"){
+		if(transactin_name =="create" || transactin_name == "addcredit") {
 			createUI();
-		} else if(transactin_name=="addcredit"){
-			addCreditUI();
-		}
-	} else if(user_type != "AA" && (transactin_name =="create" || transactin_name =="delete")){
+		} 
+		
+	}
+	else if(transactin_name == "addcredit"){
+		addCreditUI(user_type);
+	}
+	else if(transactin_name=="sellUI"){
+		sellUI();
+	}
+	else if(user_type != "AA" && (transactin_name =="create" || transactin_name =="delete")){
 		cout<<"Insufficient permission\n";
-	} else {
+	} 
+	else {
 		cout<<"Invalid command\n";
 	}
+
+
 	return true;
 }
 
