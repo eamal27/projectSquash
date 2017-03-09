@@ -3,7 +3,7 @@
 
 //void setUser();
 void createUI();
-void addCreditUI(std::string user_type);
+void addCreditUI(std::string user_type, double balance);
 void refundUI();
 void buyUI();
 void sellUI();

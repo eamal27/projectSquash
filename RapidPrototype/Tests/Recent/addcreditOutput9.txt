@@ -7,8 +7,6 @@ Invalid command
 Type the transaction to carry out:
 Invalid command
 Type the transaction to carry out:
-Invalid command
-Type the transaction to carry out:
 logout successful
 Enter system command:
 session terminated

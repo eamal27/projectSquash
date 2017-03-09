@@ -1,5 +1,5 @@
 login
-user sell
+user_sell
 addcredit
 1
 logout

@@ -1,11 +1,11 @@
 login1 terminal = pass
-login1 transaction = fail
+login1 transaction = pass
 login2 terminal = pass
-login2 transaction = fail
+login2 transaction = pass
 login3 terminal = pass
-login3 transaction = fail
+login3 transaction = pass
 login4 terminal = pass
-login4 transaction = fail
+login4 transaction = pass
 login5 terminal = pass
 login5 transaction = fail
  
@@ -20,7 +20,7 @@ logout4 transaction = fail
  
 create1 terminal = fail
 create1 transaction = fail
-create2 terminal = pass
+create2 terminal = fail
 create2 transaction = fail
 create3 terminal = fail
 create3 transaction = fail
@@ -38,4 +38,36 @@ create9 terminal = fail
 create9 transaction = fail
 create10 terminal = fail
 create10 transaction = fail
+ 
+delete1 terminal = fail
+delete1 transaction = fail
+delete2 terminal = fail
+delete2 transaction = fail
+delete3 terminal = fail
+delete3 transaction = fail
+delete4 terminal = fail
+delete4 transaction = fail
+delete5 terminal = fail
+delete5 transaction = fail
+delete6 terminal = fail
+delete6 transaction = fail
+ 
+addcredit1 terminal = fail
+addcredit1 transaction = fail
+addcredit2 terminal = fail
+addcredit2 transaction = fail
+addcredit3 terminal = fail
+addcredit3 transaction = fail
+addcredit4 terminal = fail
+addcredit4 transaction = fail
+addcredit5 terminal = fail
+addcredit5 transaction = fail
+addcredit6 terminal = fail
+addcredit6 transaction = fail
+addcredit7 terminal = fail
+addcredit7 transaction = fail
+addcredit8 terminal = fail
+addcredit8 transaction = fail
+addcredit9 terminal = fail
+addcredit9 transaction = fail
  

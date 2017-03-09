@@ -1,2 +1,0 @@
-01 userFifteenChar FS 000001.00
-00 admin           AA 01e+06.00

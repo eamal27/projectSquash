@@ -1,6 +1,6 @@
 login
 admin
-user rich
+user_rich
 1000
 logout
 quit

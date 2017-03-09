@@ -82,10 +82,10 @@ void createUI() {
 }
 
 //asks user for information needed for adding credit
-void addCreditUI(string user_type){
+void addCreditUI(string user_type, double balance){
   int count = 0;
   string username = "";//to enter loop
-  float user_debit = -1;
+  double debit_amount = -1;
   ofstream temp_file(file, ios::app);
   while(user_type == "AA" && (username.length()==0 || username.length()>15)){
 
@@ -109,21 +109,25 @@ void addCreditUI(string user_type){
   count = 0;
 
 
-  while(user_debit < 0 || user_debit > 1000.00){
+  while(debit_amount < 0 || debit_amount > 1000.00){
      if(count == 0)
         cout<<"Enter a credit amount (0-1000.00): ";
      else{
        cout<<"Invalid credit amount\n";
        return;
      }
-     cin>>user_debit;
+     cin>>debit_amount;
      count++; 
   }
-
-  user.setUsername(username);
-  user.debitAccount(user_debit);
   
-  temp_file<<" " <<username<<" "<<user_debit<<"\n";//saves addcredit transaction to temp file
+  user.setUser(username);
+  if ((user.getUserAmount() + debit_amount) < 999999.99) {
+    user.debitAccount(debit_amount);
+  } else {
+    cout<<"Invalid: User over maximum credit (999999.99)";
+  }
+  
+  temp_file<<" " <<username<<" "<<debit_amount<<"\n";//saves addcredit transaction to temp file
   cout<<"Add credit successful\n";
 }
 
@@ -179,12 +183,14 @@ void sellUI(){
       cout<<"Enter number of tickects for sale (1-100): ";
     else{
       cout<<"Invalid: characters violate constraint\n";
-      continue;
+      return;
     }
     cin>>num_tickects;
   }
-
-
+  /* needs to be have ability to look up and parse ticket information.
+  ofstream temp_file(file, ios::app);
+  temp_file<<" "<<sell_title<<" "<<user.convertName(user.getUsername())<<" "<<"\n";//saves addcredit transaction to temp file */
+  cout<<"Add credit successful\n";
 }
 
 //asks user for information needed to delete a user.

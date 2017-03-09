@@ -122,9 +122,9 @@ bool initiateTransaction(string transactin_name){
 	    createUI();
 	}
 	else if(transactin_name == "addcredit"){
-		addCreditUI(user_type);
+		addCreditUI(user_type, user_logged.getUserAmount());
 	}
-	else if(transactin_name=="sellUI"){
+	else if(transactin_name=="sell"){
 		sellUI();
 	}
 	else if(user_type != "AA" && (transactin_name =="create" || transactin_name =="delete")){
