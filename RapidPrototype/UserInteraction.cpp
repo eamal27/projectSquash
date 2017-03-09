@@ -176,6 +176,7 @@ void sellUI(){
       cout<<"Invalid: characters violate constraint\n";
       continue;
     }
+    cin>>sale_price;
   }
   count = 0;
   while(num_tickects<1 || num_tickects > 100){
