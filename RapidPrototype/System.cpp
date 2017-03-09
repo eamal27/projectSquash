@@ -79,8 +79,7 @@ bool initialLogin(string systemCmd){
 		cout<<"Please enter username:\n";
 		cin>>username;
 		if(verifyUsername(username)) {
-		    user_logged.setUsername(username);
-		    user_logged.setUserType(user_logged.findAccType(username));
+		    user_logged.setUser(username);
 			return true; //only returns true if they login, for now it assumes whatever login they enter is ok
 		} else{
 			cout<<"Invalid: username not a current user or violates length constraint\n";
@@ -92,7 +91,7 @@ bool initialLogin(string systemCmd){
 		cout<<"Invalid: need to login first before issuing a transaction\n";
 	} else if(systemCmd == "cmd"){
 		cout<<"System Commands:\n"<<"login\t\tlogout\t\tquit\ncreate\t\t"
-		<<"addcredit\tcmd\n";
+		<<"addcredit\tsell\ncmd\n";
 	} else { //otherwise user entered non valid command
 		cout<<"Invalid: not a system command\n";
 	}
@@ -119,11 +118,8 @@ bool initiateTransaction(string transactin_name){
 	if(transactin_name =="logout"){
 		return logout();
 	} 
-	else if(user_type == "AA"){
-		if(transactin_name =="create" || transactin_name == "addcredit") {
-			createUI();
-		} 
-		
+	else if(user_type == "AA" && transactin_name =="create"){
+	    createUI();
 	}
 	else if(transactin_name == "addcredit"){
 		addCreditUI(user_type);
@@ -137,8 +133,6 @@ bool initiateTransaction(string transactin_name){
 	else {
 		cout<<"Invalid command\n";
 	}
-
-
 	return true;
 }
 
@@ -168,11 +162,11 @@ bool logout(){
 	            writer << c;
 	        }
 	    }
+	    remove("temp_file.txt");
 	}
 	writer << "00 " << user_logged.convertName(user_logged.getUsername()) << " " << user_logged.getUserType()
 	       << " " << user_logged.convertCredit(user_logged.getUserAmount()) << "\n";
 	writer.close();
-	reader.close();
-	
+	reader.close();	
 	return false;
 }

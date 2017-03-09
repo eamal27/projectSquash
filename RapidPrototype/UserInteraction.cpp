@@ -86,15 +86,14 @@ void addCreditUI(string user_type){
   int count = 0;
   string username = "";//to enter loop
   float user_debit = -1;
-   ofstream temp_file(file, ios::app);
-   cout<<user_type;
-    while(user_type == "AA" && (username.length()==0 || username.length()>15)){
+  ofstream temp_file(file, ios::app);
+  while(user_type == "AA" && (username.length()==0 || username.length()>15)){
 
       if(count == 0)
-        cout<<"Enter a username (1-15 characters): ";
+          cout<<"Enter a username (1-15 characters): ";
       else{
-        cout<<"Invalid: characters violate constraint\n";
-        return;
+          cout<<"Invalid: characters violate constraint\n";
+          return;
       }
       cin>>username;
       bool existUser = user.findUsername(username); //true: existing username, false: new username
@@ -103,11 +102,11 @@ void addCreditUI(string user_type){
         continue;
       }
       count++;
-    }
-      count = 0;
+  }
+  count = 0;
 
 
-  while(user_debit < 0 || user_debit >= 1000.00){
+  while(user_debit < 0 || user_debit > 1000.00){
      if(count == 0)
         cout<<"Enter a credit amount (0-1000.00): ";
      else{
