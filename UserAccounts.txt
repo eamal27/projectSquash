@@ -1,5 +1,0 @@
-
-admin type admin credit: 1000
-common_user type: full-standard credit: 75.00
-user1 type: admin credit: 50.00
-non-admin: type sell-standard credit: 25.00
