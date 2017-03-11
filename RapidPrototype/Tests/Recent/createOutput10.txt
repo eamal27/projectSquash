@@ -1,0 +1,12 @@
+Welcome to the Ticket Selling Service System
+Enter system command:
+Please enter username:
+login successful
+Type the transaction to carry out:
+Enter a username (1-15 characters): Enter type of user ('AA', 'FS', 'BS', 'SS'): Enter a credit amount (0-999999): Creating user with username: user10, type: FS, debit amount $1
+Created user Successfully
+Type the transaction to carry out:
+logout successful
+Enter system command:
+session terminated
+Thank you for using the Ticket Selling Service System

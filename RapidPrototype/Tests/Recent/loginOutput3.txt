@@ -1,0 +1,12 @@
+Welcome to the Ticket Selling Service System
+Enter system command:
+Please enter username:
+Invalid: username not a current user or violates length constraint
+Enter system command:
+Please enter username:
+login successful
+Type the transaction to carry out:
+logout successful
+Enter system command:
+session terminated
+Thank you for using the Ticket Selling Service System

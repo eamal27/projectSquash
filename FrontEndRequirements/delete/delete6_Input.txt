@@ -1,0 +1,10 @@
+login
+admin
+delete
+user3
+buy
+raptors game
+3
+user3
+logout
+quit

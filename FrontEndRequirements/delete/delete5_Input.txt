@@ -1,0 +1,8 @@
+login
+admin
+create
+user7
+delete
+user7
+logout
+quit

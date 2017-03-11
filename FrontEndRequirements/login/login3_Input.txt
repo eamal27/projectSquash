@@ -1,0 +1,6 @@
+login
+userwithaverylongname
+login
+user1
+logout
+quit

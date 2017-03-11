@@ -1,0 +1,6 @@
+login
+user
+addcredit
+1
+logout
+quit

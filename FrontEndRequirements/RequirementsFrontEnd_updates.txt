@@ -1,0 +1,506 @@
+Michael Miljanovic [11:54 AM] 
+Q: Can usernames be blank?
+A: No
+
+Bradley Gardiner [11:55 AM] 
+Question: Are passwords required??? Can anyone login as an admin just by knowing the username?
+
+Michael Miljanovic [11:56 AM] 
+No passwords are required
+
+[11:56]  
+Q: What is the minimum account credit?
+A: 0.00
+
+Michael Miljanovic [12:03 PM] 
+Q: Can you log out then log back in during the same session?
+A: No
+
+Saman Yaghini [12:04 PM] 
+Are you allowed to have spaces or numbers in the username?
+
+Michael Miljanovic [12:05 PM] 
+yes
+
+Saman Yaghini [12:06 PM] 
+Do we have to care about speed and/or memory constraints?
+
+Michael Miljanovic [12:07 PM] 
+You don't have to perfectly optimize, but you shouldn't be wasteful
+
+Anthony Didonato [12:15 PM] 
+Just confirming that buying 0 tickets should not be accepted?
+
+[12:16]  
+and I guess also less than 0 should be rejected as well
+
+Michael Miljanovic [12:16 PM] 
+Yes, ticket purchases must be positive
+
+Anthony Didonato [12:21 PM] 
+Which types of accounts can issue refunds? Only admins, or admins and the seller?
+
+Michael Miljanovic [12:21 PM] 
+Only admins
+
+Saman Yaghini [12:23 PM] 
+Are we allowed to implement a single line text output saying the login is successful?
+
+Michael Miljanovic [12:24 PM] 
+If you want, but it isn't mandatory
+
+Saman Yaghini [12:28 PM] 
+Is each individual test case input and each associated output located in their own individual files?
+
+Michael Miljanovic [12:28 PM] 
+yes
+
+Cody Macedo [12:30 PM] 
+Do usernames have any special format? or can any characters be used in any order?
+
+Michael Miljanovic [12:31 PM] 
+No special format
+
+
+----- February 1st -----
+Alexander Crawford [12:56 PM] 
+Should purchasing a ticket both deduct credit from the purchaser and increment credit for the seller?
+
+Michael Miljanovic [1:08 PM] 
+Q: If someone is refunded which would put their account over the 999,999 limit, what happens?
+A: Reject the refund
+
+[1:08]  
+@alexander.crawford  yes
+
+[1:10]  
+Q: If someone is refunded FROM which would put their account under 0, what happens?
+A: Reject the refund
+
+[1:11]  
+Q: If a ticket sale would put the seller over their limit, what happens?
+A: Set their credit to 999,999
+
+Michael Miljanovic [1:20 PM] 
+Q: What if the session is terminated prematurely?
+A: No daily file is made and no transactions should be recorded. You can assume in most cases users will log out before leaving.
+
+[1:22]  
+Q: Can you create a user with the same name as a user who was deleted during the same day?
+A: No
+
+Michael Miljanovic [1:36 PM] 
+Q: If someone tries to addcredit which would put an account over the 999,999 limit, what happens?
+A: Reject the add
+
+[1:38]  
+Clarification: Users cannot buy tickets from deleted users, and deleted users cannot sell new tickets. Other transactions are okay.
+
+Michael Miljanovic [1:45 PM] 
+Clarification: When creating an account, *you must also prompt for how much credit the account begins with*
+
+[1:48]  
+Clarification: You can't delete an account the same day it was created.
+
+Michael Stergianis [1:53 PM] 
+Q: For the daily transaction file, what is the naming convention?
+
+Michael Miljanovic [1:53 PM] 
+A: Doesn't matter
+
+Alexander Crawford [1:54 PM] 
+Q: Alphanumeric characters and spaces are allowed for usernames. Are any other special characters allowed?
+
+Michael Miljanovic [1:57 PM] 
+A: Ascii only
+
+
+----- Yesterday February 3rd, 2017 -----
+Wesley Lawrence [4:37 PM] 
+Q: To clarify, there is no credit system? If a user gets a refund, it is sent back into his account as money, and not as in-store credit?
+
+Brian Domingo [4:49 PM] 
+Q: If a user buys tickets for multiple events, and wants to refund one of the tickets, how will they be able to specify which ticket they want to refund?
+
+Michael Miljanovic [6:04 PM] 
+Refunds just increase account money.
+
+Refunds and ticket sales have no relationship.
+
+Saif Niaz [11:57 PM] 
+Q: Is there any restriction on how many tickets a user can buy per day?
+
+
+----- Today February 4th, 2017 -----
+Mitchell Childerhose [12:15 PM] 
+Q: After a login, what is displayed to the screen? Is it a list of all the transactions you can choose from or does it just wait for the next input?
+
+Michael Miljanovic [1:29 PM] 
+No purchase limit other than 4 per transaction.
+
+Nothing is displayed after log in.
+
+Joshua Lemmon [2:58 PM] 
+Q: After a refund do the refunded tickets go back into the seller's inventory?
+
+Michael Miljanovic [3:26 PM] 
+No
+
+Alexander Crawford [8:27 PM] 
+What's the minimum price for a ticket sale?
+
+Michael Miljanovic [9:03 PM] 
+0$
+
+Jeremy Bradbury [10:31 PM] 
+Actually a ticket has to be greater than zero
+
+.....February 5th, 2017.......
+
+Damon Barton [5:33 PM] 
+The example posted showed expected terminal output. Do we need to include that as well?
+
+Hunter Thompson [5:57 PM] 
+Is there a minimum for the characters for an event title?
+
+
+----- Today February 6th, 2017 -----
+Damon Barton [8:12 AM] 
+How many things can/should we test in the same test input file? For example, could event length and event price be tested in one file or should they be separate.
+
+Michael Miljanovic [8:31 AM] 
+Aim for one constraint per input. Otherwise, if that test fails, you don't know why.
+
+Michael Stergianis [8:45 AM] 
+Q: How is the first user created?
+
+Jeremy Bradbury [8:47 AM] 
+@michael.stergianis: you can include users as input in the current accounts file
+
+Joshua Lemmon [8:50 AM] 
+What's the minimum amount of credit that can be added with add credit?
+
+Alexander Crawford [8:52 AM] 
+The requirements say that the parts will be run as console applications, using "text and text file input/output only". Does that mean our applications both need to support an 'interactive' mode (i.e. entering text as prompted) AND the ability to supply a text file which invokes one or more commands automatically, without further user input?
+
+Jeremy Bradbury [8:54 AM] 
+@alexander.crawford: we will use file redirection in Linux to support the commands in a file being input the same as if they were typed by a user
+
+Alexander Crawford [8:54 AM] 
+Gotcha.
+
+[8:56]  
+On a related note, when someone enters an invalid parameter in a command (eg. trying to enter a text value when the program is expecting a number), should the entire command fail, or should it prompt the user to re-enter the offending value?
+
+Michael Miljanovic [9:00 AM] 
+Minimum add credit is 0.01
+Invalid parameters should fail the entire transaction.
+*You will be required to submit both expected terminal output and output files for phase 1.*
+
+[9:01]  
+Minimum event title length is 1 character.
+
+Damon Barton [9:01 AM] 
+Can logout be accepted at anytime after login? So if being prompted for event length, could the user logout, or should there be someway to go back?
+
+Michael Miljanovic [9:02 AM] 
+Reject any attempt to start a new transaction in the midst of another transaction.
+
+Damon Barton [9:03 AM] 
+How would the user exit a transaction?
+
+Michael Miljanovic [9:05 AM] 
+Either by completing it, or putting in invalid input for a prompt
+
+Damon Barton [9:13 AM] 
+Do event titles need to be unique?
+
+Michael Miljanovic [9:13 AM] 
+Only per user. Two different users can have the same title
+
+Damon Barton [9:22 AM] 
+Should semi-privileged transactions be tested for all account types?
+
+Michael Miljanovic [9:23 AM] 
+I would say so
+
+Hunter Thompson [9:55 AM] 
+As far as the restriction on creating new users with an old name, and deleting users needing a day buffer. Is there a particular reason for this? Or is this simply preference.
+
+[10:00]  
+And to clarify on your answer of "Reject any attempt to start a new transaction in the midst of another transaction." Are you implying the user cannot log out until transaction is completed? Or that if the user logs out, when they log back in they will be sent back to their old transaction?
+
+Mitchell Childerhose [10:04 AM] 
+Does each transaction output a confirmation message when successfully completed?
+
+Kevin Lovell [10:13 AM] 
+joined #requirements-frontend
+
+Kevin Lovell [10:16 AM] 
+Are increments and decrements of user credits supposed to be outputted to the screen?
+
+Mitchell Childerhose [10:24 AM] 
+For requirements such as this:
+Test that if a session is terminated prematurely, no daily file is made and no transactions are recorded.
+
+How would this be represented with the input/output files?
+
+Michael Miljanovic [10:45 AM] 
+@h-thomp Customer preference. Users cannot log out in the middle of a transaction ever.
+@mitchell.childerhose No confirmation messages are required. The input file could be anything that doesn't end with a logout command; there should be no daily output file.
+@kevin.lovell no need to output increment/decrement amounts
+
+Damon Barton [11:11 AM] 
+For the daily output file, when an account is deleted should the user type that is saved be the account that deleted an account or the account that was deleted?
+
+Damon Barton [11:16 AM] 
+Actually I'm a little unsure what the output for a delete should be at all. Would it just be the same as other ones?
+
+Michael Miljanovic [11:18 AM] 
+supposing any admin deleted an account for John Doe,
+02 John Doe           000000000 (edited)
+
+Damon Barton [11:19 AM] 
+Who do the credits come from?
+
+Michael Miljanovic [11:20 AM] 
+Credits don't matter for a delete transaction
+from the document: "unused numeric fields are filled with zeros (e.g., 0000)"
+
+Damon Barton [11:20 AM] 
+Also, if the user type is excluded in deletes, are they excluded in other admin only transactions?
+
+Gayanath Sasitharanathan [11:20 AM] 
+If someone enters an invalid input does it terminate the transaction or does the system ask for a re-input
+
+Michael Miljanovic [11:20 AM] 
+Depends on the transaction. You definitely need to include a user type if you're making a new account.
+*terminate transactions when invalid input is given*
+
+[11:21]  
+(that prevents someone from being locked out if they start trying to do a transaction that will violate constraints under all parameters)
+
+Damon Barton [11:27 AM] 
+What user type is used for an add credit transaction? (edited)
+
+Michael Miljanovic [11:28 AM] 
+None
+
+Bradley Gardiner [11:53 AM] 
+Does Create user and Login need to be able to handle foreign characters (i.e. ç, й, etc ...)?
+
+Michael Miljanovic [11:54 AM] 
+No
+
+Anthony Didonato [11:57 AM] 
+for the create command do we also need to enter how much credit the new user account starts with? or would it be an assumed $0 and they need to add credit themselves?
+
+Damon Barton [11:58 AM] 
+in a buy transaction, is the number of tickets considered an unused value?
+
+Michael Miljanovic [11:59 AM] 
+you must enter how much credit the account starts with.
+The "TTT" field for a buy transaction is how many tickets are purchased
+
+Damon Barton [12:00 PM] 
+For anything involving money, how should we handle them entering more than 2 decimals i.e. 15.001
+
+Michael Miljanovic [12:02 PM] 
+that's invalid input
+
+Saman Yaghini [12:06 PM] 
+The back end's error message format is specified. Can this also be used for the front-end?
+
+Michael Miljanovic [12:07 PM] 
+For terminal output? sure
+
+Saman Yaghini [12:07 PM] 
+Yeah terminal output. Thanks
+
+[12:10]  
+Does the program have to output to the console that it is reading the current user accounts file before processing the login transaction?
+
+Brian Domingo [12:11 PM] 
+if a user does not have enough funds to buy tickets, should they be able to add more funds during the same transaction? or should they add more funds before they buy tickets
+
+[12:11]  
+?
+
+Michael Miljanovic [12:12 PM] 
+Dont need to output reading in the file
+Can't add funds and then buy tickets in the same day
+
+Damon Barton [12:16 PM] 
+Same day? Not same transaction?
+
+Michael Miljanovic [12:16 PM] 
+Neither
+
+Damon Barton [12:17 PM] 
+Is that for any funds at all?
+
+Michael Miljanovic [12:17 PM] 
+yes
+
+Brian Domingo [12:17 PM] 
+When you say 'same day', does that mean a full 24h?
+
+Michael Miljanovic [12:17 PM] 
+assuming they didnt already have enough
+
+[12:17]  
+the time isn't significant; when we say 'day' we refer to 'period between back end updates'
+
+Damon Barton [12:18 PM] 
+So if they had enough, but more were added, would they be able to buy? Or does add credit disable buying in general for the day?
+
+Michael Miljanovic [12:18 PM] 
+as long as they had enough, they can buy
+
+[12:18]  
+but if they dont have enough, then they cant
+
+Michael Stergianis [12:20 PM] 
+Q: Is there a desired format for our REPL? For the example where username is mic
+
+```mic> buy```
+
+Michael Miljanovic [12:20 PM] 
+format doesnt matter
+
+Brian Domingo [12:59 PM] 
+If a user creates a sell-standard account. Are they still required to add funds to their account even if they can't buy any tickets?
+
+Michael Miljanovic [1:00 PM] 
+you have to initialize an amount of funds to start with when you create any account
+you can initialize that number to 0 though
+
+Damon Barton [1:06 PM] 
+If the input for a transaction is invalid and the user logs out, the only thing in the output file should be end of session code?
+
+Michael Miljanovic [1:07 PM] 
+assuming that's all they do, yes
+
+[1:07]  
+incomplete transactions should not show up in the daily output files
+
+Brian Domingo [1:19 PM] 
+For sell-standard users, are their funds restricted to the ticket service? or are they allowed to take out the money and put back into their bank account? Like withdrawing the money
+
+Michael Miljanovic [1:20 PM] 
+credit in user accounts can't leave this system
+
+Damon Barton [1:37 PM] 
+If a seller specifies a ticket price that would if bought put their account credit over the maximum, should that be invalid?
+
+Michael Miljanovic [1:38 PM] 
+No; they just don't get any money when the ticket is bought
+
+Brian Domingo [1:41 PM] 
+If they were 4 dollars off the maximum credit, can they still get the 4 dollars? Or strictly no money at all?
+
+Michael Miljanovic [1:42 PM] 
+they would get the 4 dollars
+
+[1:43]  
+I actually answered this up above : "Q: If a ticket sale would put the seller over their limit, what happens?
+A: Set their credit to 999,999"
+
+Damon Barton [1:43 PM] 
+The user should not be able to do any other transactions after a successful sell. Should we test each transaction after a sell individually, or could they all be done in one test?
+
+Michael Miljanovic [1:45 PM] 
+That's not what it says. "no further transactions should be accepted on a new ticket for sale", meaning that once you put up something for sale, you can't immediately start buying it
+
+Damon Barton [1:45 PM] 
+Ah, misread
+
+[1:49]  
+Does that actually need to be explicitly tested then? It would be the same as trying to buy a nonexistent ticket I would think
+
+Michael Miljanovic [1:49 PM] 
+it's the same test, yes
+
+Alexander Crawford [2:18 PM] 
+I'm a bit confused on the nature of 'text file output' in this program - does that mean that the only output our program produces appears in an output text file, separate from the 'daily transaction' file? (edited)
+
+Jeremy Bradbury [2:19 PM] 
+@alexander.crawford: The terminal output is redirected to a text file. You should include a file for each test that includes exactly what the program will print to the command line
+
+Alexander Crawford [2:19 PM] 
+Gotcha. Thanks!
+
+Damon Barton [2:50 PM] 
+Can a user make an add credit transaction multiple times a session? If so, would a subsequent add credit that went over the max be invalid? i.e. adding 500 on the first transaction and 501 on the second.
+
+Michael Miljanovic [2:51 PM] 
+you can add credit as many times as you want but it's invalid if the total added credit for the session goes over 1000
+
+Christien Soosaipillai [4:50 PM] 
+If a user were to create an admin account do they require a special passwrod in order to create an admin/any account other than that of the non-privileged user?
+
+Michael Miljanovic [4:50 PM] 
+*there are no passwords in this system*
+
+Jeremy Bradbury [5:00 PM] 
+Some of the design decisions like no passwords may not be ideal but they are intended to simplify the system so that you will focus on using best practices with respect to software quality and not focus on simply coding the system.
+
+Damon Barton [5:08 PM] 
+I'm a little confused about the order of login/logout tests. In order to verify that login works, logout would need to already be working. But to verify logout, you would need to log in. Would these just be done together?
+
+Michael Miljanovic [5:09 PM] 
+you'll have to do both tests together initially, yes
+
+Damon Barton [5:10 PM] 
+But would they be separate tests? The input and output files for just testing if logging in and out would be identical
+
+Michael Miljanovic [5:10 PM] 
+you can have just one test that checks to make sure you can log in, then immediately log out
+
+new messages
+Samantha House [5:30 PM] 
+Michael can you please explain this again: A user cannot be created with the same username of a user of was deleted during the same day. Is it because the back-end has to process all of the transactions, so the user wouldn't appear to been have deleted during the same day?
+
+Michael Miljanovic [5:31 PM] 
+yes; you should prevent potential back-end issues by making sure you don't let users create accounts with duplicated names (edited)
+
+Christien Soosaipillai [5:34 PM] 
+Are admins the only ones that can create accounts? If that is the case then does that mean that users must make a request to create an account and admins are the ones to complete the request?
+
+Michael Miljanovic [5:35 PM] 
+Only admins can create accounts
+
+Samantha House [5:40 PM] 
+If two people want to create an account in the same day with the same username lets say, and none of these usernames are in the current user accounts file, would an admin need to reject making an account for the second person? So that it doesn't have two create transactions recorded with the same username?
+
+Michael Miljanovic [5:42 PM] 
+the back end will take care of that
+
+Caleb Phillips [6:16 PM] 
+Q: Can we assume there is an `exit` command that effectively exits the program the same as logout, but without logging anything?
+
+Michael Stergianis [6:39 PM] 
+Q: In an earlier question a user asked "For anything involving money, how should we handle them entering more than 2 decimals i.e. 15.001". The response was, "that's invalid input". How many decimal places of precision are we expected to maintain?
+
+Elias Amal [6:42 PM] 
+Can you issue a refund to an account that has made no purchases?
+
+Michael Miljanovic [7:30 PM] 
+No exit command is _required_
+Two decimal places exactly
+You can refund to any non deleted account
+
+Andrei Stoica [7:56 PM] 
+Is there a specific formatting for the filenames or some sort of directory structure to organize the saved files?
+
+Jeremy Bradbury [7:57 PM] 
+@andrei.stoica: That is not a requirements issue -- it is a design decision for you :)
+
+Andrei Stoica [8:04 PM] 
+However, if we have a class-wide standard for that it would aid with putting our frontends and backends together.
+
+Jeremy Bradbury [8:05 PM] 
+All you need to have is the file format standard and the flexibility in the front end and/or backend to specify the file location
+
+
+

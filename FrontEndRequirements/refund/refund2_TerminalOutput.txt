@@ -1,0 +1,8 @@
+Welcome to the Ticket Selling Service System
+Enter system command:
+login success
+Type the transaction to carry out:
+Enter username of buyer:
+Invalid username.
+Type the transaction to carry out:
+Thank you for using the Ticket Selling Service System

@@ -1,0 +1,13 @@
+Welcome to the Ticket Selling Service System
+Enter system command:
+Please enter username:
+login successful
+Type the transaction to carry out:
+Insufficient permission
+Type the transaction to carry out:
+Invalid command
+Type the transaction to carry out:
+logout successful
+Enter system command:
+session terminated
+Thank you for using the Ticket Selling Service System

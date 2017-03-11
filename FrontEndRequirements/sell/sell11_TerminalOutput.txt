@@ -1,0 +1,4 @@
+Welcome to the Ticket Selling Service System
+Enter system command:
+Please login first.
+Thank you for using the Ticket Selling Service System

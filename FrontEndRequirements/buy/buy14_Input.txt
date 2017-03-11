@@ -1,0 +1,14 @@
+login
+user sell
+sell
+another valid title
+1
+1
+logout
+
+login
+user
+buy
+another valid title
+user sell
+quit

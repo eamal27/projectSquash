@@ -1,0 +1,3 @@
+valid title               user sell       003 001.00
+also valid title          user sell       005 001.00
+

@@ -1,0 +1,7 @@
+login
+admin
+addcredit
+user
+1001
+logout
+quit

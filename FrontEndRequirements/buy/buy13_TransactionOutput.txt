@@ -1,0 +1,2 @@
+04 valid title               user sell       002 001.00
+00 user buy        FS 099999.00

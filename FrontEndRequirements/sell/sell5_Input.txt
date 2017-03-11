@@ -1,0 +1,6 @@
+login
+user
+sell
+valid title
+one dollar per ticket
+logout

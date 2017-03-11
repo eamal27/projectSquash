@@ -1,0 +1,6 @@
+login
+user_sell
+addcredit
+1
+logout
+quit
