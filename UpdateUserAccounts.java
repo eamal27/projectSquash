@@ -1,6 +1,6 @@
+import java.util.*;
 
-
-public class UpdateUserAccounts{
+class UpdateUserAccounts{
 	
 	public UpdateUserAccounts(){
 
@@ -18,8 +18,10 @@ public class UpdateUserAccounts{
 
 	}
 
-	public static void main(String args[]){
+	public static void main(String[] args){
 
+		ProcessCurrentUsers current_users = new ProcessCurrentUsers();
+		current_users.compareUsername();
 	}
 }
 
