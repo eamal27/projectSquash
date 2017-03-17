@@ -14,7 +14,6 @@ current user accounts file will store in separate arraylists.
 
 public class ProcessCurrentUsers {
 	
-	public List<String> store_users;
 	public String filename = "CurrentUserAccounts.txt";
 
 
@@ -27,7 +26,7 @@ public class ProcessCurrentUsers {
 	it in arraylist store_users*/
 	public List<String> getUsernameList(){
 		BufferedReader buffer = null;
-		store_users = new ArrayList<String>();
+		List<String>store_users = new ArrayList<String>();
 		String line; 
 
 		try{
