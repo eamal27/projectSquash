@@ -1,0 +1,14 @@
+01 sohail          AA 001000.00
+01 elias           AA 001000.00
+01 therock         BS 000001.00
+00 admin           AA 003673.47
+02 therock         BS 000001.00
+06 sohail          AA 000100.00
+00 admin           AA 003673.47
+03 bowling                   sohail          010 010.00
+00 sohail          AA 001100.00
+04 bowling                   elias           010 010.00
+00 elias           AA 000900.00
+05 elias           sohail          000100.00
+00 admin           AA 003673.47
+END
