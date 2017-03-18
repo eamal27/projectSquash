@@ -30,31 +30,31 @@ class UpdateUserAccounts{
 			String line;
 			while ((line = br.readLine()) != null) {
 				if (!line.equals("END")) {
-					transactionCode = Integer.parseInt(line.substring(0,2).trim());
-                    switch (transactionCode) {
+					transactionCode = Integer.parseInt(line.substring(0,2).trim());//extracts the code for transaction
+                    switch (transactionCode) { //parses in different formats based on the transaction code
                         case 1:
                             parseFormat1(line);
-                            createAccount();
+                            //createAccount();
                             break;
                         case 2:
                             parseFormat1(line);
-                            deleteAccount();
+                            //deleteAccount();
                             break;
                         case 3:
                             parseFormat3(line);
-                            sell();
+                            //sell();
                             break;
                         case 4:
                             parseFormat3(line);
-                            buy();
+                            //buy();
                             break;
                         case 5:
                             parseFormat2(line);
-                            refund();
+                            //refund();
                             break;
                         case 6:
                             parseFormat1(line);
-                            addCredit();
+                            //addCredit();
                             break;
                         default:
                             continue;
@@ -66,26 +66,6 @@ class UpdateUserAccounts{
 		}
 	}
 
-    private void addCredit() {
-
-    }
-
-    private void refund() {
-
-    }
-
-    private void buy() {
-
-    }
-
-    private void sell() {
-    }
-
-    private void deleteAccount() {
-    }
-
-    private void createAccount() {
-    }
 
     private void parseFormat1(String line) {
         buyerUsername = line.substring(3,18).trim();
@@ -146,12 +126,13 @@ class UpdateUserAccounts{
 	}
 
 	public static void main(String[] args){
-/*
+    /*
 		ProcessCurrentUsers current_users = new ProcessCurrentUsers();
 		List<String>old_users_list = current_users.getUsernameList();
 		//System.out.println(old_users_list.get(1)); Used of testing purposes
 		String user_type = current_users.findUserType(old_users_list.get(1));
-*/
+    */ //used for testing methods and classes
+        
         UpdateUserAccounts U = new UpdateUserAccounts();
         U.dailyTransactionParse();
 	}

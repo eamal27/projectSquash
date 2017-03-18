@@ -74,7 +74,6 @@ public class ProcessCurrentUsers {
 		try{
 			buffer = new BufferedReader(new FileReader(filename));
 			
-
 			while ((line = buffer.readLine()) != null){
 				String curr_user_type = line.substring(16, 18);
 				store_user_type.add(curr_user_type); 
