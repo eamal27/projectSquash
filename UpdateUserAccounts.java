@@ -1,3 +1,9 @@
+//<<<<<<< HEAD
+import java.util.*;
+
+class UpdateUserAccounts{
+	
+//=======
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -16,10 +22,21 @@ class UpdateUserAccounts{
     String sellerUsername;
     String eventName;
 
+//>>>>>>> bb064c088a31e86a25980814ba2d7453e7b8212f
 	public UpdateUserAccounts(){
 
 	}
 
+//<<<<<<< HEAD
+	public void updateAmount(String username){
+
+	}
+
+	public void updateTickets(String event_title){
+
+	}
+
+//=======
 	/**
 	 *  Parses daily transaction file and populates the username_list and user_credit_list arrays
 	 */
@@ -114,10 +131,17 @@ class UpdateUserAccounts{
 
 	/*Takes in the username_list, and gets the stored new credit amount_list then writes to the Current Accounts file
 	replacing the old contents */
+//>>>>>>> bb064c088a31e86a25980814ba2d7453e7b8212f
 	public void writeUsers(ArrayList<String> username_list){
 
 	}
 
+//<<<<<<< HEAD
+	public static void main(String[] args){
+
+		ProcessCurrentUsers current_users = new ProcessCurrentUsers();
+		current_users.compareUsername();
+//=======
 	/*Takes in the event title lists, and the seller's username list. Also, uses gettter methods to retrieve the
 	 number of tickets available and the price of the tickets. Then writes the values from the lists to the Available
 	 Tickets file replacing the old contents.  */
@@ -135,6 +159,7 @@ class UpdateUserAccounts{
         
         UpdateUserAccounts U = new UpdateUserAccounts();
         U.dailyTransactionParse();
+//>>>>>>> bb064c088a31e86a25980814ba2d7453e7b8212f
 	}
 }
 

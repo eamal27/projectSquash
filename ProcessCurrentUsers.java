@@ -14,13 +14,35 @@ current user accounts file will store in separate arraylists.
 
 public class ProcessCurrentUsers {
 	
+	public ArrayList<String> old_users;
+	public ArrayList<String> new_users;
+	public String filename;
+
+
+
 	public String filename = "CurrentUserAccounts.txt";
 
 
 	//Constructor
+
 	public ProcessCurrentUsers(){
 
 	}
+
+
+	public List<String> compareUsername(){
+		BufferedReader buffer = null;
+		try{
+			buffer = new BufferedReader(new FileReader("OldCurrentUsers.txt"));
+			String line;
+			List<String> new_users = new ArrayList<String>();
+			while ((line = buffer.readLine()) != null){
+				String[] curr_usr_info = line.split("\\{2}");//Best Buy row does not split properly
+				new_users.add(curr_usr_info[0]); 
+
+
+			}
+			System.out.println(new_users.get(4));
 
 	/*Extracts usernames from the current user accounts file and stores 
 	it in arraylist store_users*/
@@ -42,6 +64,7 @@ public class ProcessCurrentUsers {
 
 			}
 
+
 		} catch(IOException e){
 			e.printStackTrace();
 		} 
@@ -56,6 +79,17 @@ public class ProcessCurrentUsers {
 			}
 		}
 
+
+		return new_users;
+	}
+
+	public String findUserType(String username){
+		
+		return "Not known";
+	}
+
+	public double findUserAmount(String username){
+		
 
 		return store_users;
 	}
@@ -105,6 +139,7 @@ public class ProcessCurrentUsers {
 	second substring for the user amount.*/
 	public double findUserAmount(String username){
 			
+
 
 
 		return -1.0; 

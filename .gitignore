@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+a.out
+=======
 
 # Created by https://www.gitignore.io/api/intellij
 
@@ -43,3 +46,4 @@ fabric.properties
 .DS_Store
 
 # End of https://www.gitignore.io/api/intellij
+>>>>>>> bb064c088a31e86a25980814ba2d7453e7b8212f
