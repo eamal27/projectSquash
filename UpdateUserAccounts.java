@@ -2,10 +2,11 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.*;
+import junit.framework.TestCase;
 
 /*Merges changes that occured in the DailyTransaction file with the AvailableTickets file and the CurrentUserAccounts
 file. The main method passes the required lists to the methods. Each method  */
-class UpdateUserAccounts{
+public class UpdateUserAccounts extends TestCase {
 
     int transactionCode;
     float creditAmount;
@@ -16,15 +17,28 @@ class UpdateUserAccounts{
     String sellerUsername;
     String eventName;
 
-	public UpdateUserAccounts(){
+		public UpdateUserAccounts(){
+				
+		}
 
-	}
+		public void testOne() {
+				assertTrue(true);
+		}
+		public void testTwo() {
+				assertTrue(true);
+		}
+		public void testThree() {
+				assertTrue(true);
+		}
+		public void testFour() {
+				assertTrue(true);
+		}
 
 	/**
 	 *  Parses daily transaction file and populates the username_list and user_credit_list arrays
 	 */
 	public void dailyTransactionParse(){
-		// parse merge daily transaction file
+		// parse merge daily transaction file	
 		File file = new File("mergedDailyTransactions.log");
 		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 			String line;
