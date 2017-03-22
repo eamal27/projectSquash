@@ -1,25 +1,3 @@
-<<<<<<< HEAD
-
-
-public class ProcessAvailableTickets{
-	
-	public ArrayList<int> number_tickets;
-	public ArrayList<String> event_title;
-
-
-	public ProcessAvailableTickets(){
-		
-	}
-
-	public static ArrayList<int> determineTicketsLeft(){
-
-		return number_tickets;
-	}
-
-	public static ArrayList<String> determineEvent(){
-
-		return event_title;
-=======
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -38,7 +16,7 @@ public class ProcessAvailableTickets{
     //Extracts the event name, username, number of tickets, and price from the 
     //tickets file. These values from the file are then passed to the Ticket class
     public void ParseTickets(){
-                // initialize array
+				// initialize array
         this.tickets = new ArrayList<Ticket>();
 
         // read in old tickets files
@@ -65,7 +43,6 @@ public class ProcessAvailableTickets{
 	public ArrayList<Ticket> getTickets(){
 
 		return this.tickets;
->>>>>>> bb064c088a31e86a25980814ba2d7453e7b8212f
 	}
 
 }
