@@ -1,11 +1,13 @@
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.*;
+import junit.framework.TestCase;
 
 /*Merges changes that occured in the DailyTransaction file with the AvailableTickets file and the CurrentUserAccounts
 file. The main method passes the required lists to the methods. Each method  */
-class UpdateUserAccounts{
+public class UpdateUserAccounts {
 
     int transactionCode;
     float creditAmount;
@@ -16,15 +18,30 @@ class UpdateUserAccounts{
     String sellerUsername;
     String eventName;
 
-	public UpdateUserAccounts(){
 
-	}
+		public UpdateUserAccounts(){
+				
+		}
+        /* */
+		public void testOne() {
+				assertTrue(true);
+		}
+		public void testTwo() {
+				assertTrue(true);
+		}
+		public void testThree() {
+				assertTrue(true);
+		}
+		public void testFour() {
+				assertTrue(true);
+		}
+        
 
 	/**
 	 *  Parses daily transaction file and populates the username_list and user_credit_list arrays
 	 */
 	public void dailyTransactionParse(){
-		// parse merge daily transaction file
+		// parse merge daily transaction file	
 		File file = new File("mergedDailyTransactions.log");
 		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 			String line;
@@ -114,6 +131,7 @@ class UpdateUserAccounts{
 
 	/*Takes in the username_list, and gets the stored new credit amount_list then writes to the Current Accounts file
 	replacing the old contents */
+
 	public void writeUsers(ArrayList<String> username_list){
 
 	}
@@ -128,13 +146,22 @@ class UpdateUserAccounts{
 	public static void main(String[] args){
     /*
 		ProcessCurrentUsers current_users = new ProcessCurrentUsers();
-		List<String>old_users_list = current_users.getUsernameList();
-		//System.out.println(old_users_list.get(1)); Used of testing purposes
-		String user_type = current_users.findUserType(old_users_list.get(1));
+		
     */ //used for testing methods and classes
         
         UpdateUserAccounts U = new UpdateUserAccounts();
         U.dailyTransactionParse();
+
+        /*Tests the ProcessCurrentUsers class
+        ProcessCurrentUsers current_users = new ProcessCurrentUsers();
+        current_users.readUserAccounts();
+        List<String> usernames =  current_users.getUsernameList();
+        
+        for (int i = 0; i < usernames.size(); i++){
+            String usr = usernames.get(i);
+            System.out.println(usr);
+        } */
+
 	}
 }
 
