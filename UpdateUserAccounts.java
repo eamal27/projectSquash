@@ -1,13 +1,16 @@
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.FileReader;
 import java.util.*;
+import java.io.IOException;
 import junit.framework.TestCase;
 
 /*Merges changes that occured in the DailyTransaction file with the AvailableTickets file and the CurrentUserAccounts
 file. The main method passes the required lists to the methods. Each method  */
-public class UpdateUserAccounts {
+public class UpdateUserAccounts extends TestCase{
 
     int transactionCode;
     float creditAmount;
@@ -131,8 +134,27 @@ public class UpdateUserAccounts {
 
 	/*Takes in the username_list, and gets the stored new credit amount_list then writes to the Current Accounts file
 	replacing the old contents */
+	public void writeUsers(List<String> username_list, List<String> type_list, List<Double> amount_list){
 
-	public void writeUsers(ArrayList<String> username_list){
+        try{
+            File curr_user_accounts = new File("CurrentUserAccounts.txt");
+            if(!curr_user_accounts.exists()){
+                curr_user_accounts.createNewFile();
+            } 
+            FileWriter write_file = new FileWriter(curr_user_accounts.getName(), true);
+            BufferedWriter buffer_write = new BufferedWriter(write_file);
+            buffer_write.write("\n\n");
+
+            for(int j = 0; j < username_list.size(); j++){
+                buffer_write.write(username_list.get(j)+ " "+
+                type_list.get(j)+ " "+amount_list.get(j)+"\n");
+            
+            }
+            buffer_write.close();
+
+        } catch(IOException e){
+            e.printStackTrace();
+        }
 
 	}
 
@@ -152,15 +174,22 @@ public class UpdateUserAccounts {
         UpdateUserAccounts U = new UpdateUserAccounts();
         U.dailyTransactionParse();
 
-        /*Tests the ProcessCurrentUsers class
+        /* */
+        //Tests the ProcessCurrentUsers class
         ProcessCurrentUsers current_users = new ProcessCurrentUsers();
         current_users.readUserAccounts();
         List<String> usernames =  current_users.getUsernameList();
+        List<String> user_type = current_users.getUserType();
+        List<Double> user_amount = current_users.getUserAmount();
         
         for (int i = 0; i < usernames.size(); i++){
             String usr = usernames.get(i);
-            System.out.println(usr);
-        } */
+            String type = user_type.get(i);
+            Double amount = user_amount.get(i);
+            System.out.println(usr+user_type+user_amount);
+        } 
+
+        U.writeUsers(usernames, user_type, user_amount);
 
 	}
 }
