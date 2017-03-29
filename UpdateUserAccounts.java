@@ -26,8 +26,12 @@ public class UpdateUserAccounts extends TestCase{
     List<Float> fmtone_credit = new ArrayList<Float>();
     List<Integer> fmtone_code = new ArrayList<Integer>();
 
+    ProcessAvailableTickets ticketHelper = new ProcessAvailableTickets();
+    ArrayList<Ticket> tickets = new ArrayList<Ticket>();
+
 	public UpdateUserAccounts(){
-			
+        // parse old tickets file and store ticket data
+        ticketHelper.ParseTickets();
 	}
     /* */
 	public void testOne() {
@@ -161,7 +165,7 @@ public class UpdateUserAccounts extends TestCase{
             buffer_write.write("\n\n");
 
             for(int k = 0; k < fmtone_username.size(); k++){
-                if(fmtone_code.get(k) == 1 && checkUsernmae(fmtone_username.get(k), usernames)){
+                if(fmtone_code.get(k) == 1 && checkUsername(fmtone_username.get(k), usernames)){
                     buffer_write.write(fmtone_username.get(k)+ " "+
                     fmtone_usertype.get(k)+ " "+fmtone_credit.get(k)+"\n");    
                 }
@@ -180,7 +184,40 @@ public class UpdateUserAccounts extends TestCase{
 
 	}
 
-    public Boolean checkUsernmae(String identical_username, List<String> old_usernames){
+    /*Takes in the event title lists, and the seller's username list. Also, uses gettter methods to retrieve the
+     number of tickets available and the price of the tickets. Then writes the values from the lists to the Available
+     Tickets file replacing the old contents.  */
+    public void writeTickets(){
+        try{
+            File ticketsFile = new File("new_tickets.log");
+            if(!ticketsFile.exists()){
+                ticketsFile.createNewFile();
+            }
+            FileWriter write_file = new FileWriter(ticketsFile.getName(), false);
+            BufferedWriter buffer_write = new BufferedWriter(write_file);
+
+            tickets = ticketHelper.getTickets();
+            for(int k = 0; k < tickets.size(); k++){
+                int eventSpace = 25, usernameSpace = 15,
+                        countSpace = 3, priceSpace = 6;
+                String line = String.format("%" + -eventSpace + "s"
+                        + " " + "%" + -usernameSpace + "s"
+                        + " " + "%0" + countSpace + "d"
+                        + " " + "%0" + priceSpace + ".2f",
+                        tickets.get(k).eventName, tickets.get(k).sellerUsername,
+                        tickets.get(k).ticketCount, tickets.get(k).ticketPrice);
+                buffer_write.write(line+"\n");
+            }
+            buffer_write.write("END");
+            buffer_write.close();
+
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public Boolean checkUsername(String identical_username, List<String> old_usernames){
 
         for(int i=0; i< old_usernames.size(); i++){
             if(identical_username.equals(old_usernames.get(i))){
@@ -190,14 +227,16 @@ public class UpdateUserAccounts extends TestCase{
         return true;
     }
 
-	/*Takes in the event title lists, and the seller's username list. Also, uses gettter methods to retrieve the
-	 number of tickets available and the price of the tickets. Then writes the values from the lists to the Available
-	 Tickets file replacing the old contents.  */
-	public void writeTickets(List<String> event_title){
-
-	}
-
 	public static void main(String[] args){
+
+        UpdateUserAccounts updateUsersHelper = new UpdateUserAccounts();
+
+        // process tickets file as mergedTransactionFile is parsed
+        // TODO: update tickets
+
+        // write updated tickets to tickets.log
+        updateUsersHelper.writeTickets();
+
     /*
 		ProcessCurrentUsers current_users = new ProcessCurrentUsers();
 		
