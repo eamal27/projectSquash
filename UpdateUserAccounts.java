@@ -26,12 +26,16 @@ public class UpdateUserAccounts extends TestCase{
     List<Float> fmtone_credit = new ArrayList<Float>();
     List<Integer> fmtone_code = new ArrayList<Integer>();
 
+    ProcessCurrentUsers accountHelper = new ProcessCurrentUsers();
+    ArrayList<Account> accounts = new ArrayList<Account>();
+
     ProcessAvailableTickets ticketHelper = new ProcessAvailableTickets();
     ArrayList<Ticket> tickets = new ArrayList<Ticket>();
 
 	public UpdateUserAccounts(){
         // parse old tickets file and store ticket data
         ticketHelper.ParseTickets();
+        accountHelper.parseAccounts();
 	}
     /* */
 	public void testOne() {
@@ -62,7 +66,7 @@ public class UpdateUserAccounts extends TestCase{
                     switch (transactionCode) { //parses in different formats based on the transaction code
                         case 1:
                             parseFormat1(line, transactionCode);
-                            //createAccount();
+                            createAccount();
                             break;
                         case 2:
                             parseFormat1(line, transactionCode);
@@ -93,6 +97,10 @@ public class UpdateUserAccounts extends TestCase{
 			System.out.println("Could not find file.");
 		}
 	}
+
+    private void createAccount() {
+
+    }
 
 
     private void parseFormat1(String line, int transactionCode) {
@@ -148,32 +156,24 @@ public class UpdateUserAccounts extends TestCase{
 	/*Takes in the username_list, and gets the stored new credit amount_list then writes to the Current Accounts file
 	replacing the old contents */
 	public void writeUsers(){
-        ProcessCurrentUsers current_users = new ProcessCurrentUsers();
-        current_users.readUserAccounts();
-        List<String> usernames =  current_users.getUsernameList();
-        List<String> user_type = current_users.getUserType();
-        List<Double> user_amount = current_users.getUserAmount();
-
-
         try{
             File curr_user_accounts = new File("new_CurrentUserAccounts.txt");
             if(!curr_user_accounts.exists()){
                 curr_user_accounts.createNewFile();
-            } 
+            }
             FileWriter write_file = new FileWriter(curr_user_accounts.getName(), false);
             BufferedWriter buffer_write = new BufferedWriter(write_file);
 
-            for(int k = 0; k < fmtone_username.size(); k++){
-                if(fmtone_code.get(k) == 1 && checkUsername(fmtone_username.get(k), usernames)){
-                    buffer_write.write(fmtone_username.get(k)+ " "+
-                    fmtone_usertype.get(k)+ " "+fmtone_credit.get(k)+"\n");    
-                }
-                
-            }
-            for(int j = 0; j < usernames.size(); j++){
-                buffer_write.write(usernames.get(j)+ " "+
-                user_type.get(j)+ " "+user_amount.get(j)+"\n");
-            
+            accounts = accountHelper.getAccounts();
+
+            for(int k = 0; k < accounts.size(); k++){
+                int usernameSpace = 15, accTypeSpace = 2, creditSpace = 9;
+                String line = String.format("%" + -usernameSpace + "s"
+                        + " " + "%" + -accTypeSpace + "s"
+                        + " " + "%0" + creditSpace + ".2f",
+                        accounts.get(k).username, accounts.get(k).accountType,
+                        accounts.get(k).creditAmount);
+                buffer_write.write(line+"\n");
             }
             buffer_write.write("END");
             buffer_write.close();
@@ -231,36 +231,39 @@ public class UpdateUserAccounts extends TestCase{
 
         UpdateUserAccounts updateUsersHelper = new UpdateUserAccounts();
 
-        // process tickets file as mergedTransactionFile is parsed
+        // update tickets and accounts file as mergedTransactionFile is parsed
         // TODO: update tickets
 
         // write updated tickets to tickets.txt
         updateUsersHelper.writeTickets();
+
+        // write updated accounts to currentUserAccounts.txt
+        updateUsersHelper.writeUsers();
 
     /*
 		ProcessCurrentUsers current_users = new ProcessCurrentUsers();
 		
     */ //used for testing methods and classes
         
-        UpdateUserAccounts U = new UpdateUserAccounts();
-        U.dailyTransactionParse();
+        //UpdateUserAccounts U = new UpdateUserAccounts();
+        //U.dailyTransactionParse();
 
         /* */
         //Tests the ProcessCurrentUsers class
-        ProcessCurrentUsers current_users = new ProcessCurrentUsers();
-        current_users.readUserAccounts();
-        List<String> usernames =  current_users.getUsernameList();
-        List<String> user_type = current_users.getUserType();
-        List<Double> user_amount = current_users.getUserAmount();
+        //ProcessCurrentUsers current_users = new ProcessCurrentUsers();
+        //current_users.readUserAccounts();
+        //List<String> usernames =  current_users.getUsernameList();
+        //List<String> user_type = current_users.getUserType();
+        //List<Double> user_amount = current_users.getUserAmount();
         
-        for (int i = 0; i < usernames.size(); i++){
-            String usr = usernames.get(i);
-            String type = user_type.get(i);
-            Double amount = user_amount.get(i);
-            System.out.println(usr+user_type+user_amount);
-        } 
+        //for (int i = 0; i < usernames.size(); i++){
+        //    String usr = usernames.get(i);
+        //    String type = user_type.get(i);
+        //    Double amount = user_amount.get(i);
+        //    System.out.println(usr+user_type+user_amount);
+        //}
 
-        U.writeUsers();
+        //U.writeUsers();
 
 	}
 }
