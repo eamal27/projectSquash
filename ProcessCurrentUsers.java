@@ -63,22 +63,28 @@ public class ProcessCurrentUsers {
 			List<String> new_users = new ArrayList<String>();
 
 			while ((line = buffer.readLine()) != null){
+				if(!line.equals("END")){
+					String curr_username = line.substring(0, 15);
+					setUsername(curr_username);
+					String curr_user_type = line.substring(16, 18);
+					setUserType(curr_user_type);
+					String curr_user_amount = line.substring(19, 28);
+					double user_amount = Double.parseDouble(curr_user_amount);
+					setUserAmount(user_amount); 	
+				}			
 				
-				String curr_username = line.substring(0, 15);
-				setUsername(curr_username);
-				String curr_user_type = line.substring(16, 18);
-				setUserType(curr_user_type);
-				String curr_user_amount = line.substring(19, 28);
-				double user_amount = Double.parseDouble(curr_user_amount);
-				setUserAmount(user_amount); 
 
 				//System.out.println(curr_user_type); //Tests that curr_username is storing
 													//substring correctly into store_user_type
 			}
 		} catch(IOException e){
 			e.printStackTrace();
-		} 
-		 finally{
+		} catch(NumberFormatException n){
+			n.printStackTrace();
+		} catch(IndexOutOfBoundsException i){
+			i.printStackTrace();
+		}
+		finally{
 			try{
 				if(buffer != null){
 					buffer.close();

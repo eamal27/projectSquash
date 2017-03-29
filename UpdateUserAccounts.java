@@ -21,24 +21,28 @@ public class UpdateUserAccounts extends TestCase{
     String sellerUsername;
     String eventName;
 
+    List<String> fmtone_username = new ArrayList<String>();
+    List<String> fmtone_usertype = new ArrayList<String>();
+    List<Float> fmtone_credit = new ArrayList<Float>();
+    List<Integer> fmtone_code = new ArrayList<Integer>();
 
-		public UpdateUserAccounts(){
-				
-		}
-        /* */
-		public void testOne() {
-				assertTrue(true);
-		}
-		public void testTwo() {
-				assertTrue(true);
-		}
-		public void testThree() {
-				assertTrue(true);
-		}
-		public void testFour() {
-				assertTrue(true);
-		}
-        
+	public UpdateUserAccounts(){
+			
+	}
+    /* */
+	public void testOne() {
+			assertTrue(true);
+	}
+	public void testTwo() {
+			assertTrue(true);
+	}
+	public void testThree() {
+			assertTrue(true);
+	}
+	public void testFour() {
+			assertTrue(true);
+	}
+    
 
 	/**
 	 *  Parses daily transaction file and populates the username_list and user_credit_list arrays
@@ -53,11 +57,11 @@ public class UpdateUserAccounts extends TestCase{
 					transactionCode = Integer.parseInt(line.substring(0,2).trim());//extracts the code for transaction
                     switch (transactionCode) { //parses in different formats based on the transaction code
                         case 1:
-                            parseFormat1(line);
+                            parseFormat1(line, transactionCode);
                             //createAccount();
                             break;
                         case 2:
-                            parseFormat1(line);
+                            parseFormat1(line, transactionCode);
                             //deleteAccount();
                             break;
                         case 3:
@@ -73,7 +77,7 @@ public class UpdateUserAccounts extends TestCase{
                             //refund();
                             break;
                         case 6:
-                            parseFormat1(line);
+                            parseFormat1(line, transactionCode);
                             //addCredit();
                             break;
                         default:
@@ -87,11 +91,16 @@ public class UpdateUserAccounts extends TestCase{
 	}
 
 
-    private void parseFormat1(String line) {
-        buyerUsername = line.substring(3,18).trim();
-        userType = line.substring(19,21).trim();
-        creditAmount = Float.parseFloat(line.substring(22,31).trim());
+    private void parseFormat1(String line, int transactionCode) {
+        buyerUsername = line.substring(3,18);
+        userType = line.substring(19,21);
+        creditAmount = Float.parseFloat(line.substring(22,31));
         System.out.println(transactionCode + " " + buyerUsername + " " + userType + " " + creditAmount);
+        
+        fmtone_code.add(transactionCode);
+        fmtone_username.add(buyerUsername);
+        fmtone_usertype.add(userType);
+        fmtone_credit.add(creditAmount);
     }
 
     private void parseFormat2(String line) {
@@ -122,7 +131,7 @@ public class UpdateUserAccounts extends TestCase{
 
 	//sets the updated amount to the credit amount list, to store in list
 	public void setUserAmount(float new_amount){
-		//credit_amount_list.add(new_amount);
+		
 	}
 
 	/*Uses the number of tickets list from the Available Tickets file and the list of left over available tickets
@@ -134,7 +143,13 @@ public class UpdateUserAccounts extends TestCase{
 
 	/*Takes in the username_list, and gets the stored new credit amount_list then writes to the Current Accounts file
 	replacing the old contents */
-	public void writeUsers(List<String> username_list, List<String> type_list, List<Double> amount_list){
+	public void writeUsers(){
+        ProcessCurrentUsers current_users = new ProcessCurrentUsers();
+        current_users.readUserAccounts();
+        List<String> usernames =  current_users.getUsernameList();
+        List<String> user_type = current_users.getUserType();
+        List<Double> user_amount = current_users.getUserAmount();
+
 
         try{
             File curr_user_accounts = new File("CurrentUserAccounts.txt");
@@ -145,9 +160,16 @@ public class UpdateUserAccounts extends TestCase{
             BufferedWriter buffer_write = new BufferedWriter(write_file);
             buffer_write.write("\n\n");
 
-            for(int j = 0; j < username_list.size(); j++){
-                buffer_write.write(username_list.get(j)+ " "+
-                type_list.get(j)+ " "+amount_list.get(j)+"\n");
+            for(int k = 0; k < fmtone_username.size(); k++){
+                if(fmtone_code.get(k) == 1 && checkUsernmae(fmtone_username.get(k), usernames)){
+                    buffer_write.write(fmtone_username.get(k)+ " "+
+                    fmtone_usertype.get(k)+ " "+fmtone_credit.get(k)+"\n");    
+                }
+                
+            }
+            for(int j = 0; j < usernames.size(); j++){
+                buffer_write.write(usernames.get(j)+ " "+
+                user_type.get(j)+ " "+user_amount.get(j)+"\n");
             
             }
             buffer_write.close();
@@ -157,6 +179,16 @@ public class UpdateUserAccounts extends TestCase{
         }
 
 	}
+
+    public Boolean checkUsernmae(String identical_username, List<String> old_usernames){
+
+        for(int i=0; i< old_usernames.size(); i++){
+            if(identical_username.equals(old_usernames.get(i))){
+                return false;
+            }
+        }
+        return true;
+    }
 
 	/*Takes in the event title lists, and the seller's username list. Also, uses gettter methods to retrieve the
 	 number of tickets available and the price of the tickets. Then writes the values from the lists to the Available
@@ -189,7 +221,7 @@ public class UpdateUserAccounts extends TestCase{
             System.out.println(usr+user_type+user_amount);
         } 
 
-        U.writeUsers(usernames, user_type, user_amount);
+        U.writeUsers();
 
 	}
 }
