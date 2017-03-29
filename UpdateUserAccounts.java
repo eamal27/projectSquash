@@ -12,6 +12,7 @@ import junit.framework.TestCase;
 file. The main method passes the required lists to the methods. Each method  */
 public class UpdateUserAccounts extends TestCase{
 
+    static final float MAX_CREDIT_AMOUNT = 999999.00f;
     int transactionCode;
     float creditAmount;
     int numTickets;
@@ -21,10 +22,10 @@ public class UpdateUserAccounts extends TestCase{
     String sellerUsername;
     String eventName;
 
-    List<String> fmtone_username = new ArrayList<String>();
-    List<String> fmtone_usertype = new ArrayList<String>();
-    List<Float> fmtone_credit = new ArrayList<Float>();
-    List<Integer> fmtone_code = new ArrayList<Integer>();
+//    List<String> fmtone_username = new ArrayList<String>();
+//    List<String> fmtone_usertype = new ArrayList<String>();
+//    List<Float> fmtone_credit = new ArrayList<Float>();
+//    List<Integer> fmtone_code = new ArrayList<Integer>();
 
     ProcessCurrentUsers accountHelper = new ProcessCurrentUsers();
     ArrayList<Account> accounts = new ArrayList<Account>();
@@ -37,7 +38,7 @@ public class UpdateUserAccounts extends TestCase{
         ticketHelper.ParseTickets();
         accountHelper.parseAccounts();
 	}
-    /* */
+    /* dummy tests */
 	public void testOne() {
 			assertTrue(true);
 	}
@@ -65,28 +66,28 @@ public class UpdateUserAccounts extends TestCase{
 					transactionCode = Integer.parseInt(line.substring(0,2).trim());//extracts the code for transaction
                     switch (transactionCode) { //parses in different formats based on the transaction code
                         case 1:
-                            parseFormat1(line, transactionCode);
-                            createAccount();
+                            //parseFormat1(line);
+                            createAccount(line);
                             break;
                         case 2:
-                            parseFormat1(line, transactionCode);
-                            //deleteAccount();
+                            //parseFormat1(line);
+                            deleteAccount(line);
                             break;
                         case 3:
                             parseFormat3(line);
-                            //sell();
+                            //sell(line);
                             break;
                         case 4:
                             parseFormat3(line);
-                            //buy();
+                            //buy(line);
                             break;
                         case 5:
-                            parseFormat2(line);
-                            //refund();
+                            //parseFormat2(line);
+                            refund(line);
                             break;
                         case 6:
-                            parseFormat1(line, transactionCode);
-                            //addCredit();
+                            //parseFormat1(line);
+                            addCredit(line);
                             break;
                         default:
                             continue;
@@ -98,28 +99,108 @@ public class UpdateUserAccounts extends TestCase{
 		}
 	}
 
-    private void createAccount() {
+    private void refund(String line) {
+        ArrayList<String> strings = parseFormat2(line);
+        String buyerName = strings.get(0);
+        String sellerName = strings.get(1);
+        float creditAmount = Float.parseFloat(strings.get(2));
 
+        Account seller = null, buyer = null;
+        for(int k = 0; k < accounts.size(); k++) {
+            // increment buyer credit amount
+            if (buyer == null && accounts.get(k).username.equals(buyerName)) {
+                buyer = accounts.get(k);
+                if (buyer.creditAmount + creditAmount > MAX_CREDIT_AMOUNT) {
+                    buyer.creditAmount += creditAmount;
+                } else {
+                    // Error: failed to process refund
+                }
+            }
+            // decrement seller credit amount
+            if (seller == null && accounts.get(k).username.equals(sellerName)) {
+                seller = accounts.get(k);
+                if (seller.creditAmount - creditAmount < 0) {
+                    seller.creditAmount -= creditAmount;
+                } else {
+                    // Error: failed to process refund
+                }
+            }
+        }
+    }
+
+    private void addCredit(String line) {
+        ArrayList<String> strings = parseFormat1(line);
+        String username = strings.get(0);
+        String userType = strings.get(1);
+        float creditAmount = Float.parseFloat(strings.get(2));
+
+        // iterate through accounts array to find account to add credit to
+        for(int k = 0; k < accounts.size(); k++) {
+            if (accounts.get(k).username.equals(username)) {
+                // increment credit amount to a maximum of 999999.00
+                if (accounts.get(k).creditAmount + creditAmount <= MAX_CREDIT_AMOUNT) {
+                    accounts.get(k).creditAmount += creditAmount;
+                } else {
+                    accounts.get(k).creditAmount = MAX_CREDIT_AMOUNT;
+                }
+            }
+        }
+    }
+
+    private void deleteAccount(String line) {
+        ArrayList<String> strings = parseFormat1(line);
+        String username = strings.get(0);
+        for(int k = 0; k < accounts.size(); k++) {
+            if (accounts.get(k).username.equals(username)) {
+                if (!accounts.get(k).deleted) {
+                    accounts.get(k).deleted = true;
+                    return;
+                } else {
+                    // Error: already deleted
+                }
+            }
+        }
+        // Error: account not found
+    }
+
+    private void createAccount(String line) {
+        ArrayList<String> strings = parseFormat1(line);
+        String username = strings.get(0);
+        String userType = strings.get(1);
+        float creditAmount = Float.parseFloat(strings.get(2));
+        // check if username already exists
+        for(int k = 0; k < accounts.size(); k++) {
+            if (accounts.get(k).username.equals(username)) {
+                // Error: username exists
+                return;
+            }
+        }
+        accounts.add(new Account(userType,creditAmount,username));
     }
 
 
-    private void parseFormat1(String line, int transactionCode) {
-        buyerUsername = line.substring(3,18);
-        userType = line.substring(19,21);
-        creditAmount = Float.parseFloat(line.substring(22,31));
-        System.out.println(transactionCode + " " + buyerUsername + " " + userType + " " + creditAmount);
-        
-        fmtone_code.add(transactionCode);
-        fmtone_username.add(buyerUsername);
-        fmtone_usertype.add(userType);
-        fmtone_credit.add(creditAmount);
+    private ArrayList<String> parseFormat1(String line) {
+        ArrayList<String> strArray = new ArrayList<String>();
+        // buyerUsername
+        strArray.add(line.substring(3,18).trim());
+        // userType
+        strArray.add(line.substring(19,21).trim());
+        // creditAmount
+        strArray.add(line.substring(22,31).trim());
+
+        return strArray;
     }
 
-    private void parseFormat2(String line) {
-        buyerUsername = line.substring(3,18).trim();
-        sellerUsername = line.substring(19,34).trim();
-        creditAmount = Float.parseFloat(line.substring(35,44).trim());
-        System.out.println(transactionCode + " " + buyerUsername + " " + sellerUsername + " " + creditAmount);
+    private ArrayList<String> parseFormat2(String line) {
+        ArrayList<String> strArray = new ArrayList<String>();
+        //buyerUsername
+        strArray.add(line.substring(3,18).trim());
+        //sellerUsername
+        strArray.add(line.substring(19,34).trim());
+        //creditAmount
+        strArray.add(line.substring(35,44).trim());
+
+        return strArray;
     }
 
     private void parseFormat3(String line) {
