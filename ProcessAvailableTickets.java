@@ -20,7 +20,7 @@ public class ProcessAvailableTickets{
         this.tickets = new ArrayList<Ticket>();
 
         // read in old tickets files
-        File file = new File("tickets.log");
+        File file = new File("tickets.txt");
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = br.readLine()) != null) { //reads file line by line

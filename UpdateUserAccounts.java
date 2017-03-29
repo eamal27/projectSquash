@@ -53,7 +53,7 @@ public class UpdateUserAccounts extends TestCase{
 	 */
 	public void dailyTransactionParse(){
 		// parse merge daily transaction file	
-		File file = new File("mergedDailyTransactions.log");
+		File file = new File("mergedDailyTransactions.txt");
 		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 			String line;
 			while ((line = br.readLine()) != null) {
@@ -156,13 +156,12 @@ public class UpdateUserAccounts extends TestCase{
 
 
         try{
-            File curr_user_accounts = new File("CurrentUserAccounts.txt");
+            File curr_user_accounts = new File("new_CurrentUserAccounts.txt");
             if(!curr_user_accounts.exists()){
                 curr_user_accounts.createNewFile();
             } 
-            FileWriter write_file = new FileWriter(curr_user_accounts.getName(), true);
+            FileWriter write_file = new FileWriter(curr_user_accounts.getName(), false);
             BufferedWriter buffer_write = new BufferedWriter(write_file);
-            buffer_write.write("\n\n");
 
             for(int k = 0; k < fmtone_username.size(); k++){
                 if(fmtone_code.get(k) == 1 && checkUsername(fmtone_username.get(k), usernames)){
@@ -176,6 +175,7 @@ public class UpdateUserAccounts extends TestCase{
                 user_type.get(j)+ " "+user_amount.get(j)+"\n");
             
             }
+            buffer_write.write("END");
             buffer_write.close();
 
         } catch(IOException e){
@@ -189,7 +189,7 @@ public class UpdateUserAccounts extends TestCase{
      Tickets file replacing the old contents.  */
     public void writeTickets(){
         try{
-            File ticketsFile = new File("new_tickets.log");
+            File ticketsFile = new File("new_tickets.txt");
             if(!ticketsFile.exists()){
                 ticketsFile.createNewFile();
             }
@@ -234,7 +234,7 @@ public class UpdateUserAccounts extends TestCase{
         // process tickets file as mergedTransactionFile is parsed
         // TODO: update tickets
 
-        // write updated tickets to tickets.log
+        // write updated tickets to tickets.txt
         updateUsersHelper.writeTickets();
 
     /*
