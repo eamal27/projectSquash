@@ -242,38 +242,52 @@ public class UpdateUserAccounts {
 
     private ArrayList<String> parseFormat1(String line) {
         ArrayList<String> strArray = new ArrayList<String>();
-        // buyerUsername
-        strArray.add(line.substring(3,18).trim());
-        // userType
-        strArray.add(line.substring(19,21).trim());
-        // creditAmount
-        strArray.add(line.substring(22,31).trim());
-
+        if (line.length() != 31) {
+            // Error: fatal error
+            System.out.println("Error: fatal error");
+            System.exit(0);
+        } else {
+            // buyerUsername
+            strArray.add(line.substring(3, 18).trim());
+            // userType
+            strArray.add(line.substring(19, 21).trim());
+            // creditAmount
+            strArray.add(line.substring(22, 31).trim());
+        }
         return strArray;
     }
 
     private ArrayList<String> parseFormat2(String line) {
         ArrayList<String> strArray = new ArrayList<String>();
-        //buyerUsername
-        strArray.add(line.substring(3,18).trim());
-        //sellerUsername
-        strArray.add(line.substring(19,34).trim());
-        //creditAmount
-        strArray.add(line.substring(35,44).trim());
-
+        if (line.length() != 44) {
+            // Error: fatal error
+            System.exit(0);
+        } else {
+            //buyerUsername
+            strArray.add(line.substring(3,18).trim());
+            //sellerUsername
+            strArray.add(line.substring(19,34).trim());
+            //creditAmount
+            strArray.add(line.substring(35,44).trim());
+        }
         return strArray;
     }
 
     private ArrayList<String> parseFormat3(String line) {
         ArrayList<String> strArray = new ArrayList<String>();
-        // eventName
-        strArray.add(line.substring(3,28).trim());
-        // sellerUsername
-        strArray.add(line.substring(29,44).trim());
-        // numTickets
-        strArray.add(line.substring(45,48).trim());
-        // priceTicket
-        strArray.add(line.substring(49,55).trim());
+        if (line.length() != 55) {
+            // Error: fatal error
+            System.exit(0);
+        } else {
+            // eventName
+            strArray.add(line.substring(3,28).trim());
+            // sellerUsername
+            strArray.add(line.substring(29,44).trim());
+            // numTickets
+            strArray.add(line.substring(45,48).trim());
+            // priceTicket
+            strArray.add(line.substring(49,55).trim());
+        }
         return strArray;
     }
 
@@ -338,16 +352,6 @@ public class UpdateUserAccounts {
             e.printStackTrace();
         }
 
-    }
-
-    public Boolean checkUsername(String identical_username, List<String> old_usernames){
-
-        for(int i=0; i< old_usernames.size(); i++){
-            if(identical_username.equals(old_usernames.get(i))){
-                return false;
-            }
-        }
-        return true;
     }
 
 	public static void main(String[] args){

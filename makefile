@@ -12,9 +12,16 @@ CLASSES = \
 	ProcessAvailableTickets.java \
 	ProcessCurrentUsers.java \
 	Ticket.java \
-	Test.java \
+	ProcessAvailableTicketsTest.java \
+	ProcessCurrentUsersTest.java \
+	UpdateUserAccountsTest.java \
 
 MAIN = UpdateUserAccounts
+
+TESTS = \
+	UpdateUserAccountsTest \
+	ProcessCurrentUsersTest \
+	ProcessAvailableTicketsTest \
 
 default: classes
 
@@ -27,4 +34,4 @@ clean:
 	$(RM) *.class
 
 test: classes
-	$(JVM) org.junit.runner.JUnitCore Test
+	$(JVM) org.junit.runner.JUnitCore $(TESTS)
