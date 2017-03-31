@@ -74,13 +74,10 @@ public class UpdateUserAccountsTest extends TestCase {
         String line = "05 Joe             Jack            000100.00";
         Account buyer = null;
         for (Account acc: updateUser.accounts) {
-            System.out.println(acc.username);
             if (acc.username.equals("Joe")) {
-
                 buyer = acc;
             }
         }
-
         Float expected_amount = buyer.creditAmount + 100.00f;
         // should credit Joe 100.00
         updateUser.refund(line);
@@ -88,7 +85,7 @@ public class UpdateUserAccountsTest extends TestCase {
         //assertEquals("elias", username);
         assertEquals(expected_amount, buyer.creditAmount);
     }
-/*
+
     @Test
     public void testAddCredit() throws Exception {
         String line = "06 Joe             FS 000100.00";
@@ -148,7 +145,6 @@ public class UpdateUserAccountsTest extends TestCase {
 
         assertEquals(1,1);
     }
-*/
 
     public static void main(String[] args) throws Exception {
         UpdateUserAccountsTest t = new UpdateUserAccountsTest();

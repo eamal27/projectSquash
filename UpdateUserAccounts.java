@@ -178,7 +178,7 @@ public class UpdateUserAccounts {
             // increment buyer credit amount
             if (buyer == null && accounts.get(k).username.equals(buyerName)) {
                 buyer = accounts.get(k);
-                if (buyer.creditAmount + creditAmount > MAX_CREDIT_AMOUNT) {
+                if (buyer.creditAmount + creditAmount <= MAX_CREDIT_AMOUNT) {
                     buyer.creditAmount += creditAmount;
                 } else {
                     // Error: failed to process refund
@@ -187,7 +187,7 @@ public class UpdateUserAccounts {
             // decrement seller credit amount
             if (seller == null && accounts.get(k).username.equals(sellerName)) {
                 seller = accounts.get(k);
-                if (seller.creditAmount - creditAmount < 0) {
+                if (seller.creditAmount - creditAmount >= 0) {
                     seller.creditAmount -= creditAmount;
                 } else {
                     // Error: failed to process refund
