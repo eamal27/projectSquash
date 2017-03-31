@@ -15,88 +15,74 @@ file. The main method passes the required lists to the methods. Each method  */
 public class UpdateUserAccounts {
 
     static final float MAX_CREDIT_AMOUNT = 999999.00f;
-    int transactionCode;
-    float creditAmount;
-    int numTickets;
-    float priceTicket;
-    String userType;
-    String buyerUsername;
-    String sellerUsername;
-    String eventName;
-
-//    List<String> fmtone_username = new ArrayList<String>();
-//    List<String> fmtone_usertype = new ArrayList<String>();
-//    List<Float> fmtone_credit = new ArrayList<Float>();
-//    List<Integer> fmtone_code = new ArrayList<Integer>();
 
     ProcessCurrentUsers accountHelper = new ProcessCurrentUsers();
-    ArrayList<Account> accounts = new ArrayList<Account>();
+    ArrayList<Account> accounts = null;
 
     ProcessAvailableTickets ticketHelper = new ProcessAvailableTickets();
-    ArrayList<Ticket> tickets = new ArrayList<Ticket>();
+    ArrayList<Ticket> tickets = null;
+    private float decrementFromBuyer;
 
-	public UpdateUserAccounts(){
+    public UpdateUserAccounts(){
         // parse old tickets file and store ticket data
         ticketHelper.ParseTickets();
+        tickets = ticketHelper.getTickets();
         accountHelper.parseAccounts();
+        accounts =  accountHelper.getAccounts();
 	}
-    /* dummy tests */
-    @Test
-	public void testOne() {
-		assertTrue(true);
-	}
-    @Test
-	public void testTwo() {
-			assertTrue(true);
-	}
-    @Test
-	public void testThree() {
-			assertTrue(true);
-	}
-    @Test
-	public void testFour() {
-			assertTrue(true);
-	}
-
-
-    /**/    
-
+    
+/* dummy tests */
+//	public void testOne() {
+//			assertTrue(true);
+//	}
+//	public void testTwo() {
+//			assertTrue(true);
+//	}
+//	public void testThree() {
+//			assertTrue(true);
+//	}
+//	public void testFour() {
+//			assertTrue(true);
+//	}
+    
 	/**
 	 *  Parses daily transaction file and populates the username_list and user_credit_list arrays
 	 */
-	public void dailyTransactionParse(){
 		// parse merge daily transaction file	
-        String filename = "mergedDailyTransactions.txt";
-		File file = new File(filename);
+
      
-		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+	public void parseDailyTransactions(){
+		// parse merge daily transaction file
+        String filename = "mergedDailyTransactions.txt";
+        File file = new File(filename);
+        BufferedReader br = null;
+
+		try {
+            br = new BufferedReader(new FileReader(file));
 			String line;
 			while ((line = br.readLine()) != null) {
-				if (!line.equals("END")) {
-					transactionCode = Integer.parseInt(line.substring(0,2).trim());//extracts the code for transaction
+				if (!line.equals("00")) {
+					int transactionCode = Integer.parseInt(line.substring(0,2).trim());//extracts the code for transaction
                     switch (transactionCode) { //parses in different formats based on the transaction code
+                        case 0:
+                            updateCreditAmount(line);
+                            break;
                         case 1:
-                            //parseFormat1(line);
                             createAccount(line);
                             break;
                         case 2:
-                            //parseFormat1(line);
                             deleteAccount(line);
                             break;
                         case 3:
-                            parseFormat3(line);
-                            //sell(line);
+                            sell(line);
                             break;
                         case 4:
-                            parseFormat3(line);
-                            //buy(line);
+                            buy(line);
                             break;
                         case 5:
-                            //parseFormat2(line);
                             refund(line);
                             break;
                         case 6:
-                            //parseFormat1(line);
                             addCredit(line);
                             break;
                         default:
@@ -105,9 +91,81 @@ public class UpdateUserAccounts {
 				}
 			}
 		}catch(Exception e){
-			System.out.println("Could not find file.");
+			System.out.println("Could not find merged file.");
 		}
+        finally{
+            try{
+                if(br != null){
+                    br.close();
+                }
+            } catch (IOException ex){
+                ex.printStackTrace();
+            }
+        }
 	}
+
+	// upon logout, update user credit amount if necessary
+    private void updateCreditAmount(String line) {
+        ArrayList<String> strings = parseFormat1(line);
+        String username = strings.get(0);
+        String userType = strings.get(1);
+        float creditAmount = Float.parseFloat(strings.get(2));
+
+        // iterate through accounts array to find account to add credit to
+        for(int k = 0; k < accounts.size(); k++) {
+            Account buyer = accounts.get(k);
+            if (buyer.username.equals(username) && buyer.creditAmount != creditAmount) {
+                // verify credit amount to be set is correct
+                if (buyer.creditAmount - decrementFromBuyer == creditAmount) {
+                    buyer.creditAmount = creditAmount;
+                }
+            }
+        }
+    }
+
+    private void buy(String line) {
+        ArrayList<String> strings = parseFormat3(line);
+        String eventName = strings.get(0);
+        String sellerName = strings.get(1);
+        int numTickets = Integer.parseInt(strings.get(2));
+        float priceTicket = Float.parseFloat(strings.get(3));
+
+        for (int i=0; i < tickets.size(); i++) {
+            if (tickets.get(i).eventName.equals(eventName) && tickets.get(i).sellerUsername.equals(sellerName)) {
+                // decrement ticket count bought
+                if (tickets.get(i).ticketCount - numTickets >= 0) {
+                    tickets.get(i).ticketCount -= numTickets;
+                } else {
+                    return;
+                    // Error: failed to buy (not enough tickets available)
+                }
+                // find seller and increment credit amount
+                for (int a=0; a < accounts.size(); a++) {
+                    Account seller = accounts.get(a);
+                    if (seller.username.equals(sellerName)) {
+                        seller.creditAmount += numTickets * priceTicket;
+                        if (seller.creditAmount > MAX_CREDIT_AMOUNT) {
+                            seller.creditAmount = MAX_CREDIT_AMOUNT;
+                        }
+                        // store credit to decrement from buyer (use it on logout)
+                        decrementFromBuyer = numTickets * priceTicket;
+                        return;
+                    }
+                }
+                // Error: failed to find seller and increment credit amount
+            }
+        }
+    }
+
+    private void sell(String line) {
+        ArrayList<String> strings = parseFormat3(line);
+        String eventName = strings.get(0);
+        String sellerName = strings.get(1);
+        int numTickets = Integer.parseInt(strings.get(2));
+        float priceTicket = Float.parseFloat(strings.get(3));
+
+        tickets.add(new Ticket(eventName,sellerName,numTickets, priceTicket));
+    }
 
     private void refund(String line) {
         ArrayList<String> strings = parseFormat2(line);
@@ -182,6 +240,7 @@ public class UpdateUserAccounts {
         for(int k = 0; k < accounts.size(); k++) {
             if (accounts.get(k).username.equals(username)) {
                 // Error: username exists
+                //System.out.println("username " + username + " exists");
                 return;
             }
         }
@@ -191,60 +250,56 @@ public class UpdateUserAccounts {
 
     private ArrayList<String> parseFormat1(String line) {
         ArrayList<String> strArray = new ArrayList<String>();
-        // buyerUsername
-        strArray.add(line.substring(3,18).trim());
-        // userType
-        strArray.add(line.substring(19,21).trim());
-        // creditAmount
-        strArray.add(line.substring(22,31).trim());
-
+        if (line.length() != 31) {
+            // Error: fatal error
+            System.out.println("Error: fatal error");
+            System.exit(0);
+        } else {
+            // buyerUsername
+            strArray.add(line.substring(3, 18).trim());
+            // userType
+            strArray.add(line.substring(19, 21).trim());
+            // creditAmount
+            strArray.add(line.substring(22, 31).trim());
+        }
         return strArray;
     }
 
     private ArrayList<String> parseFormat2(String line) {
         ArrayList<String> strArray = new ArrayList<String>();
-        //buyerUsername
-        strArray.add(line.substring(3,18).trim());
-        //sellerUsername
-        strArray.add(line.substring(19,34).trim());
-        //creditAmount
-        strArray.add(line.substring(35,44).trim());
-
+        if (line.length() != 44) {
+            // Error: fatal error
+            System.exit(0);
+        } else {
+            //buyerUsername
+            strArray.add(line.substring(3,18).trim());
+            //sellerUsername
+            strArray.add(line.substring(19,34).trim());
+            //creditAmount
+            strArray.add(line.substring(35,44).trim());
+        }
         return strArray;
     }
 
-    private void parseFormat3(String line) {
-        eventName = line.substring(3,28).trim();
-        sellerUsername = line.substring(29,44).trim();
-        numTickets = Integer.parseInt(line.substring(45,48).trim());
-        priceTicket = Float.parseFloat(line.substring(49,55).trim());
-        System.out.println(transactionCode + " " + eventName + " " + sellerUsername + " " + numTickets + " " + priceTicket);
+    private ArrayList<String> parseFormat3(String line) {
+        ArrayList<String> strArray = new ArrayList<String>();
+        if (line.length() != 55) {
+            // Error: fatal error
+            System.exit(0);
+        } else {
+            // eventName
+            strArray.add(line.substring(3,28).trim());
+            // sellerUsername
+            strArray.add(line.substring(29,44).trim());
+            // numTickets
+            strArray.add(line.substring(45,48).trim());
+            // priceTicket
+            strArray.add(line.substring(49,55).trim());
+        }
+        return strArray;
     }
 
-    /*Uses the old user amount, and the change user amount lists from the ProcessCurrentUsers class, and the 
-      ReadDailyTransaction class respectively. It updates the old user amount list with the change. The username
-      index identifies which amount in list belongs to the username specified. */
-	public void updateAmount(List<Float> old_user_amount, List<Float> change_user_amount, int user_index){
-
-		float old_amount = old_user_amount.get(user_index);
-		float new_amount = old_amount + (change_user_amount.get(user_index));
-		setUserAmount(new_amount);
-
-	}	
-
-	//sets the updated amount to the credit amount list, to store in list
-	public void setUserAmount(float new_amount){
-		
-	}
-
-	/*Uses the number of tickets list from the Available Tickets file and the list of left over available tickets
-	  from the DailyTransaction file. It creates a new list after adding or substracting from the old available
-	  tickets list. The event_index will be used to idenitify the correct event to event.*/
-	public void updateNumberTickets(ArrayList<Integer> old_number_tickets, List<Integer> change_number_tickets, int event_index){
-
-	}
-
-	/*Takes in the username_list, and gets the stored new credit amount_list then writes to the Current Accounts file
+	/* writes the new set of current users to the currentUserAccounts log file
 	replacing the old contents */
 	public void writeUsers(){
         try{
@@ -255,16 +310,17 @@ public class UpdateUserAccounts {
             FileWriter write_file = new FileWriter(curr_user_accounts.getName(), false);
             BufferedWriter buffer_write = new BufferedWriter(write_file);
 
-            accounts = accountHelper.getAccounts();
-
             for(int k = 0; k < accounts.size(); k++){
-                int usernameSpace = 15, accTypeSpace = 2, creditSpace = 9;
-                String line = String.format("%" + -usernameSpace + "s"
-                        + " " + "%" + -accTypeSpace + "s"
-                        + " " + "%0" + creditSpace + ".2f",
-                        accounts.get(k).username, accounts.get(k).accountType,
-                        accounts.get(k).creditAmount);
-                buffer_write.write(line+"\n");
+                // if account is not deleted, print to new currentUserAccounts file
+                if (!accounts.get(k).deleted) {
+                    int usernameSpace = 15, accTypeSpace = 2, creditSpace = 9;
+                    String line = String.format("%" + -usernameSpace + "s"
+                                    + " " + "%" + -accTypeSpace + "s"
+                                    + " " + "%0" + creditSpace + ".2f",
+                            accounts.get(k).username, accounts.get(k).accountType,
+                            accounts.get(k).creditAmount);
+                    buffer_write.write(line + "\n");
+                }
             }
             buffer_write.write("END");
             buffer_write.close();
@@ -275,9 +331,8 @@ public class UpdateUserAccounts {
 
 	}
 
-    /*Takes in the event title lists, and the seller's username list. Also, uses gettter methods to retrieve the
-     number of tickets available and the price of the tickets. Then writes the values from the lists to the Available
-     Tickets file replacing the old contents.  */
+    /* writes the tickets for sale to the new
+     tickets log file replacing the old contents.  */
     public void writeTickets(){
         try{
             File ticketsFile = new File("new_tickets.txt");
@@ -287,7 +342,6 @@ public class UpdateUserAccounts {
             FileWriter write_file = new FileWriter(ticketsFile.getName(), false);
             BufferedWriter buffer_write = new BufferedWriter(write_file);
 
-            tickets = ticketHelper.getTickets();
             for(int k = 0; k < tickets.size(); k++){
                 int eventSpace = 25, usernameSpace = 15,
                         countSpace = 3, priceSpace = 6;
@@ -308,22 +362,12 @@ public class UpdateUserAccounts {
 
     }
 
-    public Boolean checkUsername(String identical_username, List<String> old_usernames){
-
-        for(int i=0; i< old_usernames.size(); i++){
-            if(identical_username.equals(old_usernames.get(i))){
-                return false;
-            }
-        }
-        return true;
-    }
-
 	public static void main(String[] args){
 
         UpdateUserAccounts updateUsersHelper = new UpdateUserAccounts();
 
-        // update tickets and accounts file as mergedTransactionFile is parsed
-        // TODO: update tickets
+        // parse mergedTransactionFile and update tickets and accounts file
+        updateUsersHelper.parseDailyTransactions();
 
         // write updated tickets to tickets.txt
         updateUsersHelper.writeTickets();
@@ -331,31 +375,6 @@ public class UpdateUserAccounts {
         // write updated accounts to currentUserAccounts.txt
         updateUsersHelper.writeUsers();
         System.out.println("Write to ticket and user files, completed");
-
-    /*
-		ProcessCurrentUsers current_users = new ProcessCurrentUsers();
-		
-    */ //used for testing methods and classes
-        
-        //UpdateUserAccounts U = new UpdateUserAccounts();
-        //U.dailyTransactionParse();
-
-        /* */
-        //Tests the ProcessCurrentUsers class
-        //ProcessCurrentUsers current_users = new ProcessCurrentUsers();
-        //current_users.readUserAccounts();
-        //List<String> usernames =  current_users.getUsernameList();
-        //List<String> user_type = current_users.getUserType();
-        //List<Double> user_amount = current_users.getUserAmount();
-        
-        //for (int i = 0; i < usernames.size(); i++){
-        //    String usr = usernames.get(i);
-        //    String type = user_type.get(i);
-        //    Double amount = user_amount.get(i);
-        //    System.out.println(usr+user_type+user_amount);
-        //}
-
-        //U.writeUsers();
 
 	}
 }

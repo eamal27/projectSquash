@@ -16,12 +16,13 @@ public class ProcessAvailableTickets{
     //Extracts the event name, username, number of tickets, and price from the 
     //tickets file. These values from the file are then passed to the Ticket class
     public void ParseTickets(){
-                // initialize array
+        // initialize array
         this.tickets = new ArrayList<Ticket>();
-
-        // read in old tickets files
+        BufferedReader br = null;
         File file = new File("tickets.txt");
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+        // read in old tickets files
+        try {
+            br = new BufferedReader(new FileReader(file));
             String line;
             while ((line = br.readLine()) != null) { //reads file line by line
                 if (!line.equals("END")) {
@@ -35,6 +36,17 @@ public class ProcessAvailableTickets{
             }
         }catch(Exception e){
             System.out.println("Could not find file.");
+        }
+        finally{
+            try{
+                if(br != null){
+                    br.close();
+                }
+
+            } catch (IOException ex){
+                ex.printStackTrace();
+            }
+
         }
 
     }
