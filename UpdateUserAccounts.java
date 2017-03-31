@@ -6,11 +6,10 @@ import java.io.FileWriter;
 import java.io.FileReader;
 import java.util.*;
 import java.io.IOException;
-import junit.framework.TestCase;
 
 /*Merges changes that occured in the DailyTransaction file with the AvailableTickets file and the CurrentUserAccounts
 file. The main method passes the required lists to the methods. Each method  */
-public class UpdateUserAccounts extends TestCase{
+public class UpdateUserAccounts {
 
     static final float MAX_CREDIT_AMOUNT = 999999.00f;
 
@@ -28,19 +27,19 @@ public class UpdateUserAccounts extends TestCase{
         accountHelper.parseAccounts();
         accounts =  accountHelper.getAccounts();
 	}
-    /* dummy tests */
-	public void testOne() {
-			assertTrue(true);
-	}
-	public void testTwo() {
-			assertTrue(true);
-	}
-	public void testThree() {
-			assertTrue(true);
-	}
-	public void testFour() {
-			assertTrue(true);
-	}
+//    /* dummy tests */
+//	public void testOne() {
+//			assertTrue(true);
+//	}
+//	public void testTwo() {
+//			assertTrue(true);
+//	}
+//	public void testThree() {
+//			assertTrue(true);
+//	}
+//	public void testFour() {
+//			assertTrue(true);
+//	}
     
 
 	/**

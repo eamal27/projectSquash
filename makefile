@@ -12,6 +12,7 @@ CLASSES = \
 	ProcessAvailableTickets.java \
 	ProcessCurrentUsers.java \
 	Ticket.java \
+	Test.java \
 
 MAIN = UpdateUserAccounts
 
@@ -26,4 +27,4 @@ clean:
 	$(RM) *.class
 
 test: classes
-	$(JVM) org.junit.runner.JUnitCore $(MAIN)
+	$(JVM) org.junit.runner.JUnitCore Test
