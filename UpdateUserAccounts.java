@@ -157,7 +157,7 @@ public class UpdateUserAccounts {
         }
     }
 
-    private void sell(String line) {
+    public void sell(String line) {
         ArrayList<String> strings = parseFormat3(line);
         String eventName = strings.get(0);
         String sellerName = strings.get(1);
@@ -167,7 +167,7 @@ public class UpdateUserAccounts {
         tickets.add(new Ticket(eventName,sellerName,numTickets, priceTicket));
     }
 
-    private void refund(String line) {
+    public void refund(String line) {
         ArrayList<String> strings = parseFormat2(line);
         String buyerName = strings.get(0);
         String sellerName = strings.get(1);

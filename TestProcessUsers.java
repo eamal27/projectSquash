@@ -12,17 +12,18 @@ public class TestProcessUsers {
 
 	UpdateUserAccounts updateUser = new UpdateUserAccounts();
 	Account userAccount = new Account("H", 0, "H");
+	Ticket ticket;
 
 	//Test for statement coverage 
 	@Test
 	public void testCreateAccount(){
 		String line = "01 sohail          AA 001000.00";
 		updateUser.createAccount(line);
-		String usr = Account.getUsername();
+		String usr = userAccount.getUsername();
 		assertEquals("sohail", usr);
-		String type = Account.getAccountType();
+		String type = userAccount.getAccountType();
 		assertEquals("AA", type);
-		Float amount = Account.getCreditAmount();
+		Float amount = userAccount.getCreditAmount();
 		Float expected_amount = Float.parseFloat("001000.00");
 		assertEquals(expected_amount, amount);
 	}
@@ -40,16 +41,40 @@ public class TestProcessUsers {
 	public void testAddCredit(){
 		String line = "06 Joe             FS 000100.00";
 		updateUser.addCredit(line);
-		Float amount = Account.getCreditAmount();
+		Float amount = userAccount.getCreditAmount();
 		Float expected_amount = Float.parseFloat("000100.00");
 		assertEquals(expected_amount, amount);
 	}
 
+	@Test
+	public void testRefund(){
+		String line = "05 elias           sohail          000100.00";
+		updateUser.refund(line);
+		String username = userAccount.getUsername();
+		Float amount = userAccount.getCreditAmount();
+		Float expected_amount = Float.parseFloat("000500.00");
+		//assertEquals("elias", username);
+		assertEquals(expected_amount, amount);
 
+	}
+
+	@Test
+	public void testSell(){
+		String line = "03 bowling                   sohail          010 010.00";
+		updateUser.sell(line);
+		String seller = ticket.getSellerUsername();
+		String event = ticket.getEventName();
+		int num_tickets = ticket.getTicketCount();
+		Float ticket_price = ticket.getTicketPrice();
+		ticket = new Ticket(event, seller, num_tickets, ticket_price);
+		assertEquals("bowling", event);
+		//assertEquals("sohail", seller);		
+
+	}
 
 	@Test
 	public void testTransactionParse(){
-		updateUser.dailyTransactionParse();
+		updateUser.parseDailyTransactions();
 		String filename = "mergedDailyTransactions.txt";
 		assertEquals("mergedDailyTransactions.txt", filename);
 		File file = new File("mergedDailyTransactions.txt");
