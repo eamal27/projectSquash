@@ -7,10 +7,12 @@ import java.io.FileReader;
 import java.util.*;
 import java.io.IOException;
 import junit.framework.TestCase;
+import static org.junit.Assert.*;
+import org.junit.Test;
 
 /*Merges changes that occured in the DailyTransaction file with the AvailableTickets file and the CurrentUserAccounts
 file. The main method passes the required lists to the methods. Each method  */
-public class UpdateUserAccounts extends TestCase{
+public class UpdateUserAccounts {
 
     static final float MAX_CREDIT_AMOUNT = 999999.00f;
     int transactionCode;
@@ -39,26 +41,34 @@ public class UpdateUserAccounts extends TestCase{
         accountHelper.parseAccounts();
 	}
     /* dummy tests */
+    @Test
 	public void testOne() {
-			assertTrue(true);
+		assertTrue(true);
 	}
+    @Test
 	public void testTwo() {
 			assertTrue(true);
 	}
+    @Test
 	public void testThree() {
 			assertTrue(true);
 	}
+    @Test
 	public void testFour() {
 			assertTrue(true);
 	}
-    
+
+
+    /**/    
 
 	/**
 	 *  Parses daily transaction file and populates the username_list and user_credit_list arrays
 	 */
 	public void dailyTransactionParse(){
 		// parse merge daily transaction file	
-		File file = new File("mergedDailyTransactions.txt");
+        String filename = "mergedDailyTransactions.txt";
+		File file = new File(filename);
+     
 		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 			String line;
 			while ((line = br.readLine()) != null) {
@@ -128,7 +138,7 @@ public class UpdateUserAccounts extends TestCase{
         }
     }
 
-    private void addCredit(String line) {
+    public void addCredit(String line) {
         ArrayList<String> strings = parseFormat1(line);
         String username = strings.get(0);
         String userType = strings.get(1);
@@ -147,7 +157,7 @@ public class UpdateUserAccounts extends TestCase{
         }
     }
 
-    private void deleteAccount(String line) {
+    public void deleteAccount(String line) {
         ArrayList<String> strings = parseFormat1(line);
         String username = strings.get(0);
         for(int k = 0; k < accounts.size(); k++) {
@@ -163,7 +173,7 @@ public class UpdateUserAccounts extends TestCase{
         // Error: account not found
     }
 
-    private void createAccount(String line) {
+    public void createAccount(String line) {
         ArrayList<String> strings = parseFormat1(line);
         String username = strings.get(0);
         String userType = strings.get(1);
@@ -320,6 +330,7 @@ public class UpdateUserAccounts extends TestCase{
 
         // write updated accounts to currentUserAccounts.txt
         updateUsersHelper.writeUsers();
+        System.out.println("Write to ticket and user files, completed");
 
     /*
 		ProcessCurrentUsers current_users = new ProcessCurrentUsers();
