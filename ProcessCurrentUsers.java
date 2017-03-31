@@ -34,13 +34,13 @@ public class ProcessCurrentUsers {
 
 			while ((line = buffer.readLine()) != null){
 				if(!line.equals("END")){
-					String curr_username = line.substring(0, 15);
-					String curr_user_type = line.substring(16, 18);
-					String curr_user_amount = line.substring(19, 28);
+					String curr_username = line.substring(0, 15).trim();
+					String curr_user_type = line.substring(16, 18).trim();
+					String curr_user_amount = line.substring(19, 28).trim();
 					float user_amount = Float.parseFloat(curr_user_amount);
-					this.accounts.add(new Account(curr_user_type,user_amount,curr_username));
-				}			
-				
+					accounts.add(new Account(curr_user_type,user_amount,curr_username));
+				}
+
 			}
 		} catch(IOException e){
 			e.printStackTrace();
@@ -63,8 +63,7 @@ public class ProcessCurrentUsers {
 	}
 
     // return list of accounts
-    public ArrayList<Account> getAccounts(){
-
+    public ArrayList<Account> getAccounts() {
         return this.accounts;
     }
 

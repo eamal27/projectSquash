@@ -2,10 +2,10 @@
  * Created by eamal27 on 2017-03-16.
  */
 public class Account {
-    public static String accountType;
-    public static float creditAmount;
-    public static String username;
-    public static boolean deleted;
+    public String accountType;
+    public float creditAmount;
+    public String username;
+    public boolean deleted;
 
     public Account(String accountType, float creditAmount, String username) {
         this.accountType = accountType;
@@ -14,19 +14,19 @@ public class Account {
         this.deleted = false;
     }
 
-    public static float getCreditAmount(){
+    public float getCreditAmount(){
         return creditAmount;
     }
 
-    public static String getUsername(){
+    public String getUsername(){
         return username;
     }
 
-    public static String getAccountType(){
+    public String getAccountType(){
         return accountType;
     }
 
-    public static boolean getDeleted(){
+    public boolean getDeleted(){
         return deleted;
     }
 }

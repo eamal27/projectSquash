@@ -29,7 +29,7 @@ public class UpdateUserAccounts {
         tickets = ticketHelper.getTickets();
         accountHelper.parseAccounts();
         accounts =  accountHelper.getAccounts();
-	}
+    }
     
 /* dummy tests */
 //	public void testOne() {
@@ -44,13 +44,13 @@ public class UpdateUserAccounts {
 //	public void testFour() {
 //			assertTrue(true);
 //	}
-    
+
 	/**
 	 *  Parses daily transaction file and populates the username_list and user_credit_list arrays
 	 */
-		// parse merge daily transaction file	
+		// parse merge daily transaction file
 
-     
+
 	public void parseDailyTransactions(){
 		// parse merge daily transaction file
         String filename = "mergedDailyTransactions.txt";
@@ -218,10 +218,10 @@ public class UpdateUserAccounts {
     public void deleteAccount(String line) {
         ArrayList<String> strings = parseFormat1(line);
         String username = strings.get(0);
-        for(int k = 0; k < accounts.size(); k++) {
-            if (accounts.get(k).username.equals(username)) {
-                if (!accounts.get(k).deleted) {
-                    accounts.get(k).deleted = true;
+        for (Account accountToDelete: accounts) {
+            if (accountToDelete.username.equals(username)) {
+                if (!accountToDelete.deleted) {
+                    accountToDelete.deleted = true;
                     return;
                 } else {
                     // Error: already deleted
@@ -310,15 +310,15 @@ public class UpdateUserAccounts {
             FileWriter write_file = new FileWriter(curr_user_accounts.getName(), false);
             BufferedWriter buffer_write = new BufferedWriter(write_file);
 
-            for(int k = 0; k < accounts.size(); k++){
+            //accountHelper.accounts = accounts;
+            for (Account acc: accounts) {
                 // if account is not deleted, print to new currentUserAccounts file
-                if (!accounts.get(k).deleted) {
+                if (!acc.deleted) {
                     int usernameSpace = 15, accTypeSpace = 2, creditSpace = 9;
                     String line = String.format("%" + -usernameSpace + "s"
                                     + " " + "%" + -accTypeSpace + "s"
                                     + " " + "%0" + creditSpace + ".2f",
-                            accounts.get(k).username, accounts.get(k).accountType,
-                            accounts.get(k).creditAmount);
+                            acc.username, acc.accountType, acc.creditAmount);
                     buffer_write.write(line + "\n");
                 }
             }

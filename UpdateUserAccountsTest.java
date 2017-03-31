@@ -3,14 +3,19 @@ import org.junit.Test;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.ArrayList;
 
 public class UpdateUserAccountsTest extends TestCase {
+
     UpdateUserAccounts updateUser = new UpdateUserAccounts();
-    Account admin = new Account("AA", 100.00f, "John");
-    Ticket ticket;
+    ProcessCurrentUsers accountHelper = new ProcessCurrentUsers();
+    ProcessAvailableTickets ticketHelper = new ProcessAvailableTickets();
+    ArrayList<Account> accounts = null;
+    ArrayList<Ticket> tickets = null;
 
     @Test
     public void testTransactionParse(){
+        UpdateUserAccounts updateUser = new UpdateUserAccounts();
         updateUser.parseDailyTransactions();
         String filename = "mergedDailyTransactions.txt";
         assertEquals("mergedDailyTransactions.txt", filename);
@@ -47,37 +52,43 @@ public class UpdateUserAccountsTest extends TestCase {
 
     @Test
     public void testSell() throws Exception {
+        System.out.println(updateUser.tickets.size());
+        Ticket ticket = null;
         String line = "03 bowling                   sohail          010 010.00";
         updateUser.sell(line);
-        String seller = ticket.getSellerUsername();
-        String event = ticket.getEventName();
-        int num_tickets = ticket.getTicketCount();
-        Float ticket_price = ticket.getTicketPrice();
-        ticket = new Ticket(event, seller, num_tickets, ticket_price);
-        assertEquals("bowling", event);
-        //assertEquals("sohail", seller);
+        for (Ticket t: updateUser.tickets) {
+            if(t.sellerUsername.equals("sohail") &&
+                    t.eventName.equals("bowling")) {
+                ticket = t;
+            }
+        }
+        System.out.println(updateUser.tickets.size());
+        // assert event name
+        assertEquals("bowling", ticket.eventName);
+        // assert seller name
+        assertEquals("sohail", ticket.sellerUsername);
     }
 
     @Test
     public void testRefund() throws Exception {
-        String line = "05 elias           sohail          000100.00";
+        String line = "05 Joe             Jack            000100.00";
         Account buyer = null;
+        for (Account acc: updateUser.accounts) {
+            System.out.println(acc.username);
+            if (acc.username.equals("Joe")) {
 
-        for (int i = 0; i < updateUser.accounts.size(); i++) {
-            if (updateUser.accounts.get(i).username.equals("elias")) {
-                buyer = updateUser.accounts.get(i);
+                buyer = acc;
             }
         }
 
         Float expected_amount = buyer.creditAmount + 100.00f;
-
-        // should credit elias 100.00
+        // should credit Joe 100.00
         updateUser.refund(line);
 
         //assertEquals("elias", username);
         assertEquals(expected_amount, buyer.creditAmount);
     }
-
+/*
     @Test
     public void testAddCredit() throws Exception {
         String line = "06 Joe             FS 000100.00";
@@ -137,5 +148,12 @@ public class UpdateUserAccountsTest extends TestCase {
 
         assertEquals(1,1);
     }
+*/
 
+    public static void main(String[] args) throws Exception {
+        UpdateUserAccountsTest t = new UpdateUserAccountsTest();
+        t.testSell();
+        t.testRefund();
+
+    }
 }
