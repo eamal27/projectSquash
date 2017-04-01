@@ -39,7 +39,7 @@ public class ProcessCurrentUsers {
 					float user_amount = Float.parseFloat(curr_user_amount);
 					accounts.add(new Account(curr_user_type,user_amount,curr_username));
 				}
-
+ 
 
 			}
 		} catch(IOException e){

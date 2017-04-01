@@ -16,6 +16,16 @@ public class UpdateUserAccountsTest extends TestCase {
 
     @Test
     public void testTransactionParse(){
+        String zero_line = "zero_line.txt";
+        boolean loop = updateUser.parseDailyTransactions(zero_line);
+
+        String one_line = "one_line.txt";
+        loop = updateUser.parseDailyTransactions(one_line);
+        String two_line = "two_line.txt";
+        loop = updateUser.parseDailyTransactions(zero_line);
+        String many_line = "many_line.txt";
+        loop = updateUser.parseDailyTransactions(many_line);
+
         assertEquals(1,1);
     }
 

@@ -32,19 +32,6 @@ public class UpdateUserAccounts {
         accounts =  accountHelper.getAccounts();
     }
     
-/* dummy tests */
-//	public void testOne() {
-//			assertTrue(true);
-//	}
-//	public void testTwo() {
-//			assertTrue(true);
-//	}
-//	public void testThree() {
-//			assertTrue(true);
-//	}
-//	public void testFour() {
-//			assertTrue(true);
-//	}
 
 	/**
 	 *  Parses daily transaction file and populates the username_list and user_credit_list arrays
@@ -52,15 +39,17 @@ public class UpdateUserAccounts {
 		// parse merge daily transaction file
 
 
-	public void parseDailyTransactions(){
+	public boolean parseDailyTransactions(String filename){
 		// parse merge daily transaction file
-        String filename = "mergedDailyTransactions.txt";
+        //String filename = "mergedDailyTransactions.txt";
         File file = new File(filename);
         BufferedReader br = null;
-
+        boolean run_loop = false;
 		try {
             br = new BufferedReader(new FileReader(file));
-			String line;
+			String line; 
+
+
 			while ((line = br.readLine()) != null) {
 				if (!line.equals("00")) {
 					int transactionCode = Integer.parseInt(line.substring(0,2).trim());//extracts the code for transaction
@@ -90,6 +79,7 @@ public class UpdateUserAccounts {
                             continue;
                     }
 				}
+                run_loop = true;
 			}
 		}catch(Exception e){
 			System.out.println("Could not find merged file.");
@@ -103,6 +93,8 @@ public class UpdateUserAccounts {
                 ex.printStackTrace();
             }
         }
+
+        return run_loop;
 	}
 
 	// upon logout, update user credit amount if necessary
@@ -368,7 +360,8 @@ public class UpdateUserAccounts {
         UpdateUserAccounts updateUsersHelper = new UpdateUserAccounts();
 
         // parse mergedTransactionFile and update tickets and accounts file
-        updateUsersHelper.parseDailyTransactions();
+        String filename = "mergedDailyTransactions.txt";
+        boolean parse_success = updateUsersHelper.parseDailyTransactions(filename);
 
         // write updated tickets to tickets.txt
         updateUsersHelper.writeTickets();
