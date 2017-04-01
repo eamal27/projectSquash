@@ -27,7 +27,8 @@ public class UpdateUserAccounts {
         // parse old tickets file and store ticket data
         ticketHelper.ParseTickets();
         tickets = ticketHelper.getTickets();
-        accountHelper.parseAccounts();
+        String filename = "CurrentUserAccounts.txt";
+        accountHelper.parseAccounts(filename);
         accounts =  accountHelper.getAccounts();
     }
     

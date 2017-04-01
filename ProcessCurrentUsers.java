@@ -16,22 +16,21 @@ public class ProcessCurrentUsers {
 
 	public ArrayList<Account> accounts;
 
-	public String filename = "CurrentUserAccounts.txt";
+	//public String filename = "CurrentUserAccounts.txt";
 
 	//Constructor
 	public ProcessCurrentUsers(){
 
 	}
 
-	public void parseAccounts(){
+	public void parseAccounts(String filename){
         // initialize array
         this.accounts = new ArrayList<Account>();
 
 		BufferedReader buffer = null;
 		try{
-			buffer = new BufferedReader(new FileReader(filename));
+			buffer = new BufferedReader(new FileReader(filename));//use filename as parameter to parseAccounts(filename); change size of file zero lines, one line, two lines, etc.
 			String line;
-
 			while ((line = buffer.readLine()) != null){
 				if(!line.equals("END")){
 					String curr_username = line.substring(0, 15).trim();
@@ -40,6 +39,7 @@ public class ProcessCurrentUsers {
 					float user_amount = Float.parseFloat(curr_user_amount);
 					accounts.add(new Account(curr_user_type,user_amount,curr_username));
 				}
+
 
 			}
 		} catch(IOException e){
