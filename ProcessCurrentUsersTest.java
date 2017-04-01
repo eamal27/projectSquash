@@ -1,6 +1,6 @@
 import junit.framework.TestCase;
 import org.junit.Test;
-
+import java.util.*;
 /**
  * Created by eamal27 on 2017-03-30.
  */
@@ -41,7 +41,10 @@ public class ProcessCurrentUsersTest extends TestCase {
 
     @Test
     public void testGetAccounts() throws Exception {
-
+      	currentUsers.parseAccounts("TestTextFiles/one_line.txt");
+    	ArrayList<Account> accountUsers = currentUsers.getAccounts();
+    	assertNotNull(accountUsers);
     }
+
 }
 

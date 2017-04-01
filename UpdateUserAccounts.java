@@ -39,14 +39,14 @@ public class UpdateUserAccounts {
 		// parse merge daily transaction file
 
 
-	public boolean parseDailyTransactions(String filename){
+	public int parseDailyTransactions(String filename){
 		// parse merge daily transaction file
         //String filename = "mergedDailyTransactions.txt";
-        File file = new File(filename);
+        
         BufferedReader br = null;
-        boolean run_loop = false;
+        int run_loop = 0;
 		try {
-            br = new BufferedReader(new FileReader(file));
+            br = new BufferedReader(new FileReader(filename));
 			String line; 
 
 
@@ -76,14 +76,14 @@ public class UpdateUserAccounts {
                             addCredit(line);
                             break;
                         default:
-                            continue;
+                            break;
                     }
 				}
-                run_loop = true;
+                run_loop += 1;
 			}
-		}catch(Exception e){
-			System.out.println("Could not find merged file.");
-		}
+		} catch (IOException ex){
+                ex.printStackTrace();
+            }
         finally{
             try{
                 if(br != null){
@@ -361,7 +361,7 @@ public class UpdateUserAccounts {
 
         // parse mergedTransactionFile and update tickets and accounts file
         String filename = "mergedDailyTransactions.txt";
-        boolean parse_success = updateUsersHelper.parseDailyTransactions(filename);
+        int parse_count = updateUsersHelper.parseDailyTransactions(filename);
 
         // write updated tickets to tickets.txt
         updateUsersHelper.writeTickets();

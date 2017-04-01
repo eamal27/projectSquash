@@ -29,7 +29,7 @@ public class ProcessCurrentUsers {
 
 		BufferedReader buffer = null;
 		try{
-			buffer = new BufferedReader(new FileReader(filename));//use filename as parameter to parseAccounts(filename); change size of file zero lines, one line, two lines, etc.
+			buffer = new BufferedReader(new FileReader(filename));
 			String line;
 			while ((line = buffer.readLine()) != null){
 				if(!line.equals("END")){

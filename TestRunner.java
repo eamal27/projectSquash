@@ -5,7 +5,7 @@ import org.junit.runner.notification.Failure;
 
 public class TestRunner{
   public static void main(String[] args){
-      Result result = JUnitCore.runClasses(ProcessCurrentUsersTest.class);
+      Result result = JUnitCore.runClasses(UpdateUserAccountsTest.class);
 
       for(Failure failure : result.getFailures()){
         System.out.println(failure.toString());

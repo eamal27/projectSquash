@@ -16,17 +16,51 @@ public class UpdateUserAccountsTest extends TestCase {
 
     @Test
     public void testTransactionParse(){
-        String zero_line = "zero_line.txt";
-        boolean loop = updateUser.parseDailyTransactions(zero_line);
 
-        String one_line = "one_line.txt";
-        loop = updateUser.parseDailyTransactions(one_line);
-        String two_line = "two_line.txt";
-        loop = updateUser.parseDailyTransactions(zero_line);
-        String many_line = "many_line.txt";
-        loop = updateUser.parseDailyTransactions(many_line);
+        //branch coverage
+        String filename = "TestMergeFiles/zero_line.txt";
+        int is_parsed = updateUser.parseDailyTransactions(filename);
+        int expected_parse = 1; 
+        assertEquals(expected_parse, is_parsed);        
 
-        assertEquals(1,1);
+        filename = "TestMergeFiles/one_code.txt";
+        is_parsed = updateUser.parseDailyTransactions(filename);
+        expected_parse = 1; 
+        assertEquals(expected_parse, is_parsed);        
+
+        /*filename = "TestMergeFiles/one_code.txt";
+        is_parsed = updateUser.parseDailyTransactions(filename);
+        String user = admin.getUsername(); 
+        assertEquals("Sohail", user);
+
+        filename = "TestMergeFiles/one_code.txt";
+        is_parsed = updateUser.parseDailyTransactions(filename);
+        String user = admin.getUsername(); 
+        assertEquals("Sohail", user); */
+
+
+
+
+        //loop coverage, while loop in parseAccounts
+        filename = "TestMergeFiles/blank_line.txt";
+        is_parsed = updateUser.parseDailyTransactions(filename);
+        expected_parse = 0; 
+        assertEquals(expected_parse, is_parsed);
+
+        filename = "TestMergeFiles/one_line.txt";
+        is_parsed = updateUser.parseDailyTransactions(filename);
+        expected_parse = 2; 
+        assertEquals(expected_parse, is_parsed);
+
+        filename = "TestMergeFiles/two_line.txt";
+        is_parsed = updateUser.parseDailyTransactions(filename);
+        expected_parse = 3; 
+        assertEquals(expected_parse, is_parsed);
+
+        filename = "TestMergeFiles/many_line.txt";
+        is_parsed = updateUser.parseDailyTransactions(filename);
+        expected_parse = 5; 
+        assertEquals(expected_parse, is_parsed);
     }
 
     @Test
