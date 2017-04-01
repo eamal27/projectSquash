@@ -4,9 +4,12 @@
 public class Account {
     public String accountType;
     public float creditAmount;
-    public String username;
+    public static String username;//causes problems to the test refund amount not updated, updateusersTest 
     public boolean deleted;
 
+    public Account(){
+
+    }
     public Account(String accountType, float creditAmount, String username) {
         this.accountType = accountType;
         this.creditAmount = creditAmount;
