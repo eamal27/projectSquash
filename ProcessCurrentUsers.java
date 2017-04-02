@@ -19,9 +19,11 @@ public class ProcessCurrentUsers {
 	//public String filename = "CurrentUserAccounts.txt";
 
 	//Constructor
+
 	public ProcessCurrentUsers(){
 
 	}
+
 
 	public void parseAccounts(String filename){
         // initialize array
