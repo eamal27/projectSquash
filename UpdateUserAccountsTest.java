@@ -3,6 +3,7 @@ import org.junit.Test;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class UpdateUserAccountsTest extends TestCase {
@@ -174,38 +175,114 @@ public class UpdateUserAccountsTest extends TestCase {
 
     @Test
     public void testParseFormat1() throws Exception {
+        ArrayList<String> strArray = new ArrayList<String>();
+        String line = "00 elias           AA 000900.00";
+        strArray = updateUser.parseFormat1(line);
+        assertEquals("elias",strArray.get(0));
+        assertEquals("AA",strArray.get(1));
+        assertEquals(900.00f,Float.parseFloat(strArray.get(2)));
 
-        assertEquals(1,1);
     }
 
     @Test
     public void testParseFormat2() throws Exception {
-
-        assertEquals(1,1);
+        ArrayList<String> strArray = new ArrayList<String>();
+        String line = "05 elias           sohail          000100.00";
+        strArray = updateUser.parseFormat2(line);
+        assertEquals("elias",strArray.get(0));
+        assertEquals("sohail",strArray.get(1));
+        assertEquals(100.00f,Float.parseFloat(strArray.get(2)));
     }
 
     @Test
     public void testParseFormat3() throws Exception {
-
-        assertEquals(1,1);
+        ArrayList<String> strArray = new ArrayList<String>();
+        String line = "04 bowling                   sohail          010 010.00";
+        strArray = updateUser.parseFormat3(line);
+        assertEquals("bowling",strArray.get(0));
+        assertEquals("sohail",strArray.get(1));
+        assertEquals(10,Integer.parseInt(strArray.get(2)));
+        assertEquals(10.00f,Float.parseFloat(strArray.get(3)));
     }
 
     @Test
     public void testWriteUsers() throws Exception {
+        String filename = "testWriteUsers.txt";
+        updateUser.writeUsers(filename);
+        String expectedString = "Joe             FS 006798.97" +
+                                "Jack            BS 000578.66" +
+                                "admin           AA 003673.47" +
+                                "Wal-Mart        SS 000235.87" +
+                                "Best Buy        SS 067765.99" +
+                                "END";
+        String string = "";
+        BufferedReader buffer = null;
+        try{
+            buffer = new BufferedReader(new FileReader(filename));
+            String line;
+            while ((line = buffer.readLine()) != null){
+                string += line;
+            }
+        } catch(IOException e){
+            e.printStackTrace();
+        } catch(NumberFormatException n){
+            n.printStackTrace();
+        } catch(IndexOutOfBoundsException i){
+            i.printStackTrace();
+        }
+        finally{
+            try{
+                if(buffer != null){
+                    buffer.close();
+                }
 
-        assertEquals(1,1);
+            } catch (IOException ex){
+                ex.printStackTrace();
+            }
+        }
+        // assert expected output was written to file
+        assertEquals(expectedString,string);
     }
 
     @Test
     public void testWriteTickets() throws Exception {
+        String filename = "testWriteTickets.txt";
+        updateUser.writeTickets(filename);
+        String expectedString = "SomeEvent                 someUser        010 009.99" +
+                                "paintball                 sohail          014 010.00" +
+                                "END";
+        String string = "";
+        BufferedReader buffer = null;
+        try{
+            buffer = new BufferedReader(new FileReader(filename));
+            String line;
+            while ((line = buffer.readLine()) != null){
+                string += line;
+            }
+        } catch(IOException e){
+            e.printStackTrace();
+        } catch(NumberFormatException n){
+            n.printStackTrace();
+        } catch(IndexOutOfBoundsException i){
+            i.printStackTrace();
+        }
+        finally{
+            try{
+                if(buffer != null){
+                    buffer.close();
+                }
 
-        assertEquals(1,1);
+            } catch (IOException ex){
+                ex.printStackTrace();
+            }
+        }
+        // assert expected output was written to file
+        assertEquals(expectedString,string);
     }
 
     public static void main(String[] args) throws Exception {
         UpdateUserAccountsTest t = new UpdateUserAccountsTest();
-        t.testSell();
-        t.testRefund();
+        t.testWriteTickets();
 
     }
 }

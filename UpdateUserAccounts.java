@@ -11,6 +11,8 @@ import java.io.IOException;
 file. The main method passes the required lists to the methods. Each method  */
 public class UpdateUserAccounts {
 
+    String input_users_file  = "CurrentUserAccounts.txt";
+    String input_tickets_file = "tickets.txt";
     static final float MAX_CREDIT_AMOUNT = 999999.00f;
 
     ProcessCurrentUsers accountHelper = new ProcessCurrentUsers();
@@ -22,10 +24,9 @@ public class UpdateUserAccounts {
 
     public UpdateUserAccounts(){
         // parse old tickets file and store ticket data
-        ticketHelper.ParseTickets("tickets.txt");
+        ticketHelper.ParseTickets(input_tickets_file);
         tickets = ticketHelper.getTickets();
-        String filename = "CurrentUserAccounts.txt";
-        accountHelper.parseAccounts(filename);
+        accountHelper.parseAccounts(input_users_file);
         accounts =  accountHelper.getAccounts();
     }
     
@@ -238,7 +239,7 @@ public class UpdateUserAccounts {
     }
 
 
-    private ArrayList<String> parseFormat1(String line) {
+    public ArrayList<String> parseFormat1(String line) {
         ArrayList<String> strArray = new ArrayList<String>();
         if (line.length() != 31) {
             // Error: fatal error
@@ -255,7 +256,7 @@ public class UpdateUserAccounts {
         return strArray;
     }
 
-    private ArrayList<String> parseFormat2(String line) {
+    public ArrayList<String> parseFormat2(String line) {
         ArrayList<String> strArray = new ArrayList<String>();
         if (line.length() != 44) {
             // Error: fatal error
@@ -271,7 +272,7 @@ public class UpdateUserAccounts {
         return strArray;
     }
 
-    private ArrayList<String> parseFormat3(String line) {
+    public ArrayList<String> parseFormat3(String line) {
         ArrayList<String> strArray = new ArrayList<String>();
         if (line.length() != 55) {
             // Error: fatal error
@@ -291,9 +292,9 @@ public class UpdateUserAccounts {
 
 	/* writes the new set of current users to the currentUserAccounts log file
 	replacing the old contents */
-	public void writeUsers(){
+	public void writeUsers(String outputFile){
         try{
-            File curr_user_accounts = new File("new_CurrentUserAccounts.txt");
+            File curr_user_accounts = new File(outputFile);
             if(!curr_user_accounts.exists()){
                 curr_user_accounts.createNewFile();
             }
@@ -323,9 +324,9 @@ public class UpdateUserAccounts {
 
     /* writes the tickets for sale to the new
      tickets log file replacing the old contents.  */
-    public void writeTickets(){
+    public void writeTickets(String outputFile){
         try{
-            File ticketsFile = new File("new_tickets.txt");
+            File ticketsFile = new File(outputFile);
             if(!ticketsFile.exists()){
                 ticketsFile.createNewFile();
             }
@@ -353,6 +354,8 @@ public class UpdateUserAccounts {
     }
 
 	public static void main(String[] args){
+        String output_users_file = "new_CurrentUserAccounts.txt";
+        String output_tickets_file = "new_tickets.txt";
 
         UpdateUserAccounts updateUsersHelper = new UpdateUserAccounts();
 
@@ -361,10 +364,10 @@ public class UpdateUserAccounts {
         int parse_count = updateUsersHelper.parseDailyTransactions(filename);
 
         // write updated tickets to tickets.txt
-        updateUsersHelper.writeTickets();
+        updateUsersHelper.writeTickets(output_tickets_file);
 
         // write updated accounts to currentUserAccounts.txt
-        updateUsersHelper.writeUsers();
+        updateUsersHelper.writeUsers(output_users_file);
         System.out.println("Write to ticket and user files, completed");
 
 	}
