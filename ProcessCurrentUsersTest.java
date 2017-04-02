@@ -6,9 +6,7 @@ import java.util.*;
  */
 public class ProcessCurrentUsersTest extends TestCase {
 
-	String users_file = "CurrentUserAccounts.txt";
 	ProcessCurrentUsers currentUsers = new ProcessCurrentUsers();
-	Account userAccount = new Account("AA", 21f, "Bob"); ;
 
     @Test
     public void testParseAccounts() throws Exception {
