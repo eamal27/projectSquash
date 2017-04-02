@@ -4,7 +4,7 @@
 public class Account {
     public String accountType;
     public float creditAmount;
-    public static String username;//causes problems to the test refund amount not updated, updateusersTest 
+    public String username;
     public boolean deleted;
 
     public Account(){

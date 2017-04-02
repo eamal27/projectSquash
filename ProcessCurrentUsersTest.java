@@ -15,27 +15,35 @@ public class ProcessCurrentUsersTest extends TestCase {
 
     	//branch coverage, if != END
     	currentUsers.parseAccounts("TestTextFiles/end_line.txt");
-    	String end_user = userAccount.getUsername();
-    	assertEquals("Bob", end_user);
+        //array should be empty since no users in end_line.txt
+    	assertEquals(0, currentUsers.accounts.size());
 
-    	    	//loop coverag, while loop in parseAccounts
+        //loop coverag, while loop in parseAccounts
     	currentUsers.parseAccounts("TestTextFiles/blank_line.txt");
-    	String no_user = userAccount.getUsername();
-    	assertEquals("Bob", no_user);/*should be bob because did not enter loop,
-    								 file had null content*/
+		//array should be empty since no users in end_line.txt
+		assertEquals(0, currentUsers.accounts.size());
 
       	currentUsers.parseAccounts("TestTextFiles/one_line.txt");
-      	String user = userAccount.getUsername();
+      	String user = currentUsers.accounts.get(0).getUsername();
       	assertEquals("Joe", user);
        	
        	currentUsers.parseAccounts("TestTextFiles/two_line.txt");
-       	String two_user = userAccount.getUsername();
-       	assertEquals("Jack", two_user);//expected user is last username in file
+		String first_user = currentUsers.accounts.get(0).getUsername();
+       	String second_user = currentUsers.accounts.get(1).getUsername();
+		assertEquals("Joe", first_user);
+       	assertEquals("Jack", second_user);
 
       	currentUsers.parseAccounts("TestTextFiles/many_line.txt");
-      	String many_user = userAccount.getUsername();
-      	assertEquals("Best Buy", many_user);//expected user is last username in file
-
+		String user1 = currentUsers.accounts.get(0).getUsername();
+		String user2 = currentUsers.accounts.get(1).getUsername();
+		String user3 = currentUsers.accounts.get(2).getUsername();
+		String user4 = currentUsers.accounts.get(3).getUsername();
+		String user5 = currentUsers.accounts.get(4).getUsername();
+		assertEquals("Joe", user1);
+		assertEquals("Jack", user2);
+      	assertEquals("admin", user3);
+		assertEquals("Wal-Mart", user4);
+		assertEquals("Best Buy", user5);
 
     }
 

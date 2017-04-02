@@ -132,13 +132,19 @@ public class UpdateUserAccountsTest extends TestCase {
     public void testCreateAccount() throws Exception {
         String line = "01 sohail          AA 001000.00";
         updateUser.createAccount(line);
-        String usr = admin.getUsername();
+        Account newAcc = null;
+        for (Account acc: updateUser.accounts) {
+            if (acc.username.equals("sohail")) {
+                newAcc = acc;
+            }
+        }
+        String usr = newAcc.getUsername();
         assertEquals("sohail", usr);
-        /*String type = admin.getAccountType();
+        String type = newAcc.getAccountType();
         assertEquals("AA", type);
-        Float amount = admin.getCreditAmount();
+        Float amount = newAcc.getCreditAmount();
         Float expected_amount = Float.parseFloat("001000.00");
-        assertEquals(expected_amount, amount);*/
+        assertEquals(expected_amount, amount);
     }
 
     @Test
