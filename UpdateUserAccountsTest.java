@@ -65,19 +65,45 @@ public class UpdateUserAccountsTest extends TestCase {
 
     @Test
     public void testUpdateCreditAmount() throws Exception {
+        Account buyer = null;
+        String line  = "04 paintball                 sohail          010 010.00";
+        String line2 = "00 Jack            AA 000478.66";
+        for (Account acc: updateUser.accounts) {
+            if(acc.username.equals("Jack")) {
+                buyer = acc;
+            }
+        }
+        // assert credit amount before logout
+        assertEquals(578.66f, buyer.creditAmount);
 
-        assertEquals(1,1);
+        updateUser.buy(line);
+        updateUser.updateCreditAmount(line2);
+
+        // assert credit amount after logout
+        assertEquals(478.66f, buyer.creditAmount);
     }
 
     @Test
     public void testBuy() throws Exception {
+        Ticket ticket = null;
+        String line = "04 paintball                 sohail          010 010.00";
+        for (Ticket t: updateUser.tickets) {
+            if(t.sellerUsername.equals("sohail") &&
+                    t.eventName.equals("paintball")) {
+                ticket = t;
+            }
+        }
+        // assert ticket count before buy
+        assertEquals(14, ticket.ticketCount);
 
-        assertEquals(1,1);
+        updateUser.buy(line);
+
+        // assert ticket count after buy
+        assertEquals(4, ticket.ticketCount);
     }
 
     @Test
     public void testSell() throws Exception {
-        System.out.println(updateUser.tickets.size());
         Ticket ticket = null;
         String line = "03 bowling                   sohail          010 010.00";
         updateUser.sell(line);
@@ -87,7 +113,6 @@ public class UpdateUserAccountsTest extends TestCase {
                 ticket = t;
             }
         }
-        System.out.println(updateUser.tickets.size());
         // assert event name
         assertEquals("bowling", ticket.eventName);
         // assert seller name

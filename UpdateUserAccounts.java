@@ -95,7 +95,7 @@ public class UpdateUserAccounts {
 	}
 
 	// upon logout, update user credit amount if necessary
-    private void updateCreditAmount(String line) {
+    public void updateCreditAmount(String line) {
         ArrayList<String> strings = parseFormat1(line);
         String username = strings.get(0);
         String userType = strings.get(1);
@@ -106,14 +106,14 @@ public class UpdateUserAccounts {
             Account buyer = accounts.get(k);
             if (buyer.username.equals(username) && buyer.creditAmount != creditAmount) {
                 // verify credit amount to be set is correct
-                if (buyer.creditAmount - decrementFromBuyer == creditAmount) {
+                //if (buyer.creditAmount - decrementFromBuyer == creditAmount) {
                     buyer.creditAmount = creditAmount;
-                }
+                //}
             }
         }
     }
 
-    private void buy(String line) {
+    public void buy(String line) {
         ArrayList<String> strings = parseFormat3(line);
         String eventName = strings.get(0);
         String sellerName = strings.get(1);
