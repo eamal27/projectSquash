@@ -8,13 +8,24 @@ FILE=
 CLASSES = \
 	UpdateUserAccounts.java \
 	ErrorLogs.java \
-	Account.java \
 	ProcessAvailableTickets.java \
 	ProcessCurrentUsers.java \
-	ReadDailyTransactions.java \
+	Account.java \
 	Ticket.java \
+	ProcessAvailableTicketsTest.java \
+	ProcessCurrentUsersTest.java \
+	UpdateUserAccountsTest.java \
+	AccountTest.java \
+	TicketTest.java \
 
 MAIN = UpdateUserAccounts
+
+TESTS = \
+	UpdateUserAccountsTest \
+	ProcessCurrentUsersTest \
+	ProcessAvailableTicketsTest \
+	AccountTest \
+	TicketTest \
 
 default: classes
 
@@ -25,3 +36,6 @@ run: classes
 
 clean:
 	$(RM) *.class
+
+test: classes
+	$(JVM) org.junit.runner.JUnitCore $(TESTS)

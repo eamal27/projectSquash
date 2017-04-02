@@ -13,15 +13,10 @@ current user accounts file will store in separate arraylists.
  */
 
 public class ProcessCurrentUsers {
-	
-	public ArrayList<String> old_users;
-	public ArrayList<String> new_users;
-	public String filename;
 
+	public ArrayList<Account> accounts;
 
-
-	public String filename = "CurrentUserAccounts.txt";
-
+	//public String filename = "CurrentUserAccounts.txt";
 
 	//Constructor
 
@@ -30,96 +25,33 @@ public class ProcessCurrentUsers {
 	}
 
 
-	public List<String> compareUsername(){
+	public void parseAccounts(String filename){
+        // initialize array
+        this.accounts = new ArrayList<Account>();
+
 		BufferedReader buffer = null;
 		try{
-			buffer = new BufferedReader(new FileReader("OldCurrentUsers.txt"));
+			buffer = new BufferedReader(new FileReader(filename));
 			String line;
-			List<String> new_users = new ArrayList<String>();
 			while ((line = buffer.readLine()) != null){
-				String[] curr_usr_info = line.split("\\{2}");//Best Buy row does not split properly
-				new_users.add(curr_usr_info[0]); 
-
-
-			}
-			System.out.println(new_users.get(4));
-
-	/*Extracts usernames from the current user accounts file and stores 
-	it in arraylist store_users*/
-	public List<String> getUsernameList(){
-		BufferedReader buffer = null;
-		List<String>store_users = new ArrayList<String>();
-		String line; 
-
-		try{
-			buffer = new BufferedReader(new FileReader(filename));
-			
-
-			while ((line = buffer.readLine()) != null){
-				String curr_username = line.substring(0, 15);//extracts the spaces
-															// reserved for username
-				store_users.add(curr_username); 
-				//System.out.println(curr_username); Tests that curr_username is storing
-				//substring correctly into store_users
-
-			}
-
-
-		} catch(IOException e){
-			e.printStackTrace();
-		} 
-		 finally{
-			try{
-				if(buffer != null){
-					buffer.close();
+				if(!line.equals("END")){
+					String curr_username = line.substring(0, 15).trim();
+					String curr_user_type = line.substring(16, 18).trim();
+					String curr_user_amount = line.substring(19, 28).trim();
+					float user_amount = Float.parseFloat(curr_user_amount);
+					accounts.add(new Account(curr_user_type,user_amount,curr_username));
 				}
-
-			} catch (IOException ex){
-				ex.printStackTrace();
-			}
-		}
-
-
-		return new_users;
-	}
-
-	public String findUserType(String username){
-		
-		return "Not known";
-	}
-
-	public double findUserAmount(String username){
-		
-
-		return store_users;
-	}
-
-	/*Takes in the username of user then searches for the user type 
-	for that user. The function parses the user accounts file extracts
-	the specific part that gives the user type of the user when the first 
-	part of the substring equals the username.
-	*/
-	public String findUserType(String username){
-		
-		BufferedReader buffer = null;
-		List<String>store_user_type = new ArrayList<String>();
-		String line; 
-
-		try{
-			buffer = new BufferedReader(new FileReader(filename));
-			
-			while ((line = buffer.readLine()) != null){
-				String curr_user_type = line.substring(16, 18);
-				store_user_type.add(curr_user_type); 
-				System.out.println(curr_user_type); //Tests that curr_username is storing
-													//substring correctly into store_user_type
+ 
 
 			}
-
 		} catch(IOException e){
 			e.printStackTrace();
-		} 
-		 finally{
+		} catch(NumberFormatException n){
+			n.printStackTrace();
+		} catch(IndexOutOfBoundsException i){
+			i.printStackTrace();
+		}
+		finally{
 			try{
 				if(buffer != null){
 					buffer.close();
@@ -130,19 +62,11 @@ public class ProcessCurrentUsers {
 			}		
 
 		}
-		return "Not found";
 	}
 
-	/*Takes in the username of user then searches the available amount of 
-	credit for that user. The function parses the user accounts file line by
-	line, when the first part of line equals the username then extracts 
-	second substring for the user amount.*/
-	public double findUserAmount(String username){
-			
-
-
-
-		return -1.0; 
-	}	
+    // return list of accounts
+    public ArrayList<Account> getAccounts() {
+        return this.accounts;
+    }
 
 }
