@@ -15,14 +15,13 @@ public class ProcessAvailableTickets{
 
     //Extracts the event name, username, number of tickets, and price from the 
     //tickets file. These values from the file are then passed to the Ticket class
-    public void ParseTickets(){
+    public void ParseTickets(String filename){
         // initialize array
         this.tickets = new ArrayList<Ticket>();
         BufferedReader br = null;
-        File file = new File("tickets.txt");
         // read in old tickets files
         try {
-            br = new BufferedReader(new FileReader(file));
+            br = new BufferedReader(new FileReader(filename));
             String line;
             while ((line = br.readLine()) != null) { //reads file line by line
                 if (!line.equals("END")) {

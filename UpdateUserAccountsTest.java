@@ -25,7 +25,7 @@ public class UpdateUserAccountsTest extends TestCase {
 
         filename = "TestMergeFiles/one_code.txt";
         is_parsed = updateUser.parseDailyTransactions(filename);
-        expected_parse = 1; 
+        expected_parse = 2;
         assertEquals(expected_parse, is_parsed);        
 
         /*filename = "TestMergeFiles/one_code.txt";

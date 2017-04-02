@@ -6,9 +6,6 @@ import java.io.FileWriter;
 import java.io.FileReader;
 import java.util.*;
 import java.io.IOException;
-import junit.framework.TestCase;
-import static org.junit.Assert.*;
-import org.junit.Test;
 
 /*Merges changes that occured in the DailyTransaction file with the AvailableTickets file and the CurrentUserAccounts
 file. The main method passes the required lists to the methods. Each method  */
@@ -25,7 +22,7 @@ public class UpdateUserAccounts {
 
     public UpdateUserAccounts(){
         // parse old tickets file and store ticket data
-        ticketHelper.ParseTickets();
+        ticketHelper.ParseTickets("tickets.txt");
         tickets = ticketHelper.getTickets();
         String filename = "CurrentUserAccounts.txt";
         accountHelper.parseAccounts(filename);
