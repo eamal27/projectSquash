@@ -1,0 +1,7 @@
+login
+darth vader
+sell
+dark side
+999 
+3
+logout

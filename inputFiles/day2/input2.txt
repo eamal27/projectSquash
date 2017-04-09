@@ -1,0 +1,7 @@
+login
+admin
+create
+sohail
+AA
+500
+logout

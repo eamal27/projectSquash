@@ -1,0 +1,7 @@
+login
+benjamin
+sell
+zoo
+15
+8
+logout

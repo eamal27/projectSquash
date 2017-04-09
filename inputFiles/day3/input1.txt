@@ -1,0 +1,6 @@
+login
+admin
+addcredit
+sohail
+250
+logout

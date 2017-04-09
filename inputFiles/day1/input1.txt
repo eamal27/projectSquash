@@ -1,0 +1,7 @@
+login
+admin
+create
+darth vader
+AA
+999999
+logout

@@ -1,0 +1,6 @@
+login
+benjamin
+addcredit
+sohail
+250
+logout
