@@ -1,0 +1,7 @@
+login
+someuser
+buy
+zoo
+1
+benjamin
+logout
