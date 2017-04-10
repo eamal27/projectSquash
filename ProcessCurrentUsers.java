@@ -4,12 +4,12 @@ import java.io.BufferedReader;
 import java.util.*;
 
 /*ProcessCurrentUsers
-This is utilized to retrieve information relating to the 
+This is utilized to retrieve information relating to the
 current users file. The username, user type, and available credit
-of the user will be retrived and stored here.  This class reads the 
-Current User Accounts file and the DailyTransaction file. Any newly 
+of the user will be retrived and stored here.  This class reads the
+Current User Accounts file and the DailyTransaction file. Any newly
 created user from the Daily Transactions and the old users from the
-current user accounts file will store in separate arraylists.  
+current user accounts file will store in separate arraylists.
  */
 
 public class ProcessCurrentUsers {
@@ -39,11 +39,12 @@ public class ProcessCurrentUsers {
 					float user_amount = Float.parseFloat(curr_user_amount);
 					accounts.add(new Account(curr_user_type,user_amount,curr_username));
 				}
- 
+
 
 			}
 		} catch(IOException e){
 			e.printStackTrace();
+			ErrorLogs("IOException", "ProcessCurrentUsers");
 		} catch(NumberFormatException n){
 			n.printStackTrace();
 		} catch(IndexOutOfBoundsException i){
@@ -57,7 +58,7 @@ public class ProcessCurrentUsers {
 
 			} catch (IOException ex){
 				ex.printStackTrace();
-			}		
+			}
 
 		}
 	}
