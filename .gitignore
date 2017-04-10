@@ -1,4 +1,3 @@
-
 # Created by https://www.gitignore.io/api/intellij
 
 ### Intellij ###
@@ -38,5 +37,11 @@ fabric.properties
 
 # .class files
 *.class
+
+# .DS_Store
+.DS_Store
+
+# .out files
+*.out
 
 # End of https://www.gitignore.io/api/intellij

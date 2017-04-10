@@ -29,24 +29,23 @@ public class UpdateUserAccounts {
         accountHelper.parseAccounts(input_users_file);
         accounts =  accountHelper.getAccounts();
     }
-    
 
 	/**
 	 *  Parses daily transaction file and populates the username_list and user_credit_list arrays
 	 */
+
 		// parse merge daily transaction file
 
 
 	public int parseDailyTransactions(String filename){
 		// parse merge daily transaction file
-        //String filename = "mergedDailyTransactions.txt";
+    //String filename = "mergedDailyTransactions.txt";
         
         BufferedReader br = null;
         int run_loop = 0;
 		try {
             br = new BufferedReader(new FileReader(filename));
 			String line; 
-
 
 			while ((line = br.readLine()) != null) {
 				if (!line.equals("00")) {
